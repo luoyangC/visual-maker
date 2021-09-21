@@ -1,0 +1,33 @@
+@for $i from 5 to 26 {
+  .mt-#{$i} {
+    margin-top: 1px * $i;
+  }
+  .ml-#{$i} {
+    margin-left: 1px * $i;
+  }
+  .mr-#{$i} {
+    margin-right: 1px * $i;
+  }
+  .mb-#{$i} {
+    margin-bottom: 1px * $i;
+  }
+}
+
+.v-link {
+  display: inline-flex;
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.v-button {
+  display: inline-block;
+  cursor: pointer;
+  background-color: #ffffff;
+  border: 1px solid #dcdfe6;
+  box-sizing: border-box;
+  outline: none;
+  margin: 0;
+  padding: 12px 20px;
+  border-radius: 4px;
+}
