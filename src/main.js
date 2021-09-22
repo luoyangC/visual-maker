@@ -6,6 +6,7 @@ import App from './App.vue';
 import 'element-ui/lib/theme-chalk/index.css';
 import '@/assets/icon/iconfont.css';
 import '@/assets/icon/iconfont.js';
+import '@/assets/style/index.scss';
 
 import '@/hooks';
 import '@/common';

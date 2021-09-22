@@ -1,3 +1,5 @@
+import widgetHook from '@/hooks/widget';
+
 export default class WidgetDefault {
   constructor() {
     this.name = 'default';
@@ -25,7 +27,17 @@ export default class WidgetDefault {
 
   getTemplate() {}
 
+  getPreview() {}
+
   getObject() {}
+
+  getWidget(name) {
+    return widgetHook.getWidget(name);
+  }
+
+  getWidgetObj(name) {
+    return widgetHook.getObject(name);
+  }
 
   getWidgetStyle(style, index) {
     const result = { ...style };

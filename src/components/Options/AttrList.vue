@@ -54,14 +54,28 @@
       </vm-collapse>
     </div>
     <el-divider class="divider" />
+    <div v-if="curAttrConfigs.length" class="attr-more">
+      <vm-collapse title="更多属性">
+        <vm-dynamic
+          v-for="(item, index) in curAttrConfigs"
+          :key="index"
+          :config="item"
+          :widget="curWidgetObj"
+          :model-type="'attrs'"
+          class="mt-10"
+        />
+      </vm-collapse>
+    </div>
   </div>
 </template>
 
 <script>
+import VmCollapse from '@/common/VmCollapse.vue';
 import { mapState } from 'vuex';
 
 export default {
   name: 'AttrList',
+  components: { VmCollapse },
   data() {
     return {
       lock: false,
@@ -187,6 +201,9 @@ export default {
     ...mapState([
       'curWidgetObj',
     ]),
+    curAttrConfigs() {
+      return this.curWidgetObj.attrConfigs || [];
+    },
   },
 };
 </script>

@@ -12,9 +12,13 @@ export default {
       type: Object,
       default: null,
     },
+    modelType: {
+      type: String,
+      default: 'props',
+    },
   },
   render(h) {
-    return DynamicHook.getDynamic(this.config.type).getTemplate(h, this.config, this.widget.props);
+    return DynamicHook.getDynamic(this.config.type).getTemplate(h, this.config, this.widget[this.modelType]);
   },
 };
 </script>

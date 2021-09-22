@@ -3,12 +3,12 @@
     <vm-icon
       v-for="(item, index) in widgetList"
       :key="index"
-      :data-index="index"
-      draggable
-      class="widget-item"
       :name="item.icon"
-      size="24"
       :text="item.label"
+      :data-type="item.type"
+      size="24"
+      class="widget-item"
+      draggable
     />
   </div>
 </template>
@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     handleDragStart(e) {
-      e.dataTransfer.setData('index', e.target.dataset.index);
+      e.dataTransfer.setData('type', e.target.dataset.type);
     },
   },
 };

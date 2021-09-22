@@ -1,5 +1,5 @@
 import WidgetDefault from './widget-default';
-
+import { PAGE_SCHEMA_TYPES } from '@/constant/dict';
 export default class WidgetRoot extends WidgetDefault {
   constructor() {
     super();
@@ -10,29 +10,18 @@ export default class WidgetRoot extends WidgetDefault {
 
   getTemplate(h, config) {
     return (
-      <div style={this.getWidgetStyle(config.style)}>
-        <vm-slot parentWidgetObj={config}></vm-slot>
+      <div class='v-root' style={this.getWidgetStyle(config.style)}>
+        {this.getWidget('slot').getTemplate(h, config.children[0])}
       </div>
     );
   }
 
   getObject() {
-    const schemaItems = [
-      {
-        value: 1,
-        label: '静态',
-      },
-      {
-        value: 2,
-        label: '动态',
-      },
-    ];
-
     return {
       type: 'root',
       props: {
         schema: 1,
-        url: '',
+        dataUrl: '',
       },
       attr: {},
       style: {
@@ -46,15 +35,15 @@ export default class WidgetRoot extends WidgetDefault {
           label: '页面类型',
           type: 'select',
           model: 'schema',
-          items: schemaItems,
+          items: PAGE_SCHEMA_TYPES,
         },
         {
           label: '数据接口',
           type: 'input',
-          model: 'url',
+          model: 'dataUrl',
         },
       ],
-      children: [],
+      children: [this.getWidgetObj('slot')],
     };
   }
 }

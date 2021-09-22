@@ -17,13 +17,17 @@ class WidgetHook {
     this.widgets[el.name] = el;
     if (el.isDrag) {
       this.dragTypeList.push({
+        type: el.name,
         icon: el.icon,
         label: el.label,
-        ...el.getObject(),
       });
     }
     if (el.isEnum) {
-      this.enumTypeList.push(el.getObject());
+      this.enumTypeList.push({
+        type: el.name,
+        icon: el.icon,
+        label: el.label,
+      });
     }
     return el;
   }

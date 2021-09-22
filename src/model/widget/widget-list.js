@@ -10,7 +10,17 @@ export default class WidgetList extends WidgetDefault {
     this.isDrag = true;
     this.isEnum = false;
   }
-  getTemplate(h, config) {}
+  getTemplate(h, config) {
+    return (
+      <ul
+        class='v-ul'
+        style={this.getWidgetStyle(config.style)}
+        v-on:mousedown={this.preventDefault}
+      >
+        <li>{this.getWidget('slot').getTemplate(h, config.children[0])}</li>
+      </ul>
+    );
+  }
 
   getObject() {
     return {
@@ -20,7 +30,17 @@ export default class WidgetList extends WidgetDefault {
         width: 200,
         height: 200,
       },
-      children: [],
+      props: {
+        size: 1,
+      },
+      propConfigs: [
+        {
+          label: '列数',
+          type: 'input',
+          model: 'size',
+        },
+      ],
+      children: [this.getWidgetObj('slot')],
     };
   }
 }
