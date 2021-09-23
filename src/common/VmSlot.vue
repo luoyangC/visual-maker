@@ -32,7 +32,6 @@ export default {
       'curWidgetObj',
     ]),
     active() {
-      console.log(this.curWidgetObj);
       return this.parentWidgetObj.parent === this.curWidgetObj;
     },
   },
@@ -66,6 +65,7 @@ export default {
 
 <style lang="scss" scoped>
 .vm-slot {
+  position: relative;
   width: 100%;
   height: 100%;
 }
@@ -73,7 +73,7 @@ export default {
   border: 1px solid #70c0ff;
 }
 .vm-slot.active {
-  width: calc(100% - 2px);
-  height: calc(100% - 2px);
+  margin-left:-1px;
+  margin-top:-1px;
 }
 </style>

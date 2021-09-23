@@ -1,7 +1,6 @@
 <template>
   <div
-    class="vm-shape"
-    :class="{ active: active }"
+    :class="{ 'vm-shape': true, active: active }"
     :style="getShapeStyle(widgetObj.style)"
     @click="selectCurWidgetObj"
     @mousedown="handleMouseDown"
@@ -42,43 +41,18 @@ export default {
     };
   },
   computed: {
-    ...mapState([
-      'curWidgetObj',
-    ]),
+    ...mapState(['curWidgetObj']),
     active() {
       return this.widgetObj === this.curWidgetObj;
     },
   },
   methods: {
     getShapeStyle(style, index) {
-      const result = { ...style };
-      if (result.width) {
-        result.width += 'px';
-      }
-
-      if (result.height) {
-        result.height += 'px';
-      }
-
-      if (result.top) {
-        result.top += 'px';
-      }
-
-      if (result.left) {
-        result.left += 'px';
-      }
-
-      if (result.fontSize) {
-        result.fontSize += 'px';
-      }
-
-      if (result.rotate) {
-        result.transform = 'rotate(' + result.rotate + 'deg)';
-      }
-      // 按顺序添加 z-index 层级
-      result.zIndex = index;
-
-      return result;
+      return {
+        top: style.top + 'px',
+        left: style.left + 'px',
+        transform: style.rotate ? 'rotate(' + style.rotate + 'deg)' : undefined,
+      };
     },
 
     getPointStyle(point) {
