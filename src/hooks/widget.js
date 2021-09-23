@@ -36,8 +36,8 @@ class WidgetHook {
     return this.dragTypeList;
   }
 
-  getObject(name) {
-    return this.getWidget(name).getObject();
+  getObject(name, params) {
+    return this.getWidget(name).getObject(params);
   }
 }
 

@@ -35,8 +35,8 @@ export default class WidgetDefault {
     return widgetHook.getWidget(name);
   }
 
-  getWidgetObj(name) {
-    return widgetHook.getObject(name);
+  getWidgetObj(name, params) {
+    return widgetHook.getObject(name, params);
   }
 
   getWidgetStyle(style, index) {
@@ -70,6 +70,11 @@ export default class WidgetDefault {
     result.left = 0;
 
     return result;
+  }
+
+  pushSlotToChildren(obj, params) {
+    const slot = this.getWidgetObj('slot', params);
+    obj.children.push({ ...slot, parent: obj });
   }
 
   preventDefault(e) {

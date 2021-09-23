@@ -11,10 +11,13 @@ export default class WidgetSlot extends WidgetDefault {
     return <vm-slot class='v-slot' parentWidgetObj={config}></vm-slot>;
   }
 
-  getObject() {
+  getObject(params = { free: true }) {
     return {
       type: 'slot',
       style: {},
+      props: {
+        free: params.free,
+      },
       children: [],
     };
   }

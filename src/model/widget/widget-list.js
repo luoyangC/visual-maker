@@ -17,13 +17,13 @@ export default class WidgetList extends WidgetDefault {
         style={this.getWidgetStyle(config.style)}
         v-on:mousedown={this.preventDefault}
       >
-        <li>{this.getWidget('slot').getTemplate(h, config.children[0])}</li>
+        <li class='v-li'>{this.getWidget('slot').getTemplate(h, config.children[0])}</li>
       </ul>
     );
   }
 
   getObject() {
-    return {
+    const obj = {
       type: 'list',
       style: {
         ...this.commonStyle,
@@ -40,7 +40,9 @@ export default class WidgetList extends WidgetDefault {
           model: 'size',
         },
       ],
-      children: [this.getWidgetObj('slot')],
+      children: [],
     };
+    this.pushSlotToChildren(obj, { free: false });
+    return obj;
   }
 }

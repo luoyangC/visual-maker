@@ -1,6 +1,6 @@
 <template>
   <div
-    class="vm-slot"
+    :class="{ 'vm-slot': true, active: active }"
     @drop="handleDrop"
     @dragover="handleDragOver"
   >
@@ -17,6 +17,7 @@
 <script>
 import WidgetHook from '@/hooks/widget';
 import { clone, generateID } from '@/utils/index';
+import { mapState } from 'vuex';
 
 export default {
   name: 'VmSlot',
@@ -24,6 +25,15 @@ export default {
     parentWidgetObj: {
       type: Object,
       default: null,
+    },
+  },
+  computed: {
+    ...mapState([
+      'curWidgetObj',
+    ]),
+    active() {
+      console.log(this.curWidgetObj);
+      return this.parentWidgetObj.parent === this.curWidgetObj;
     },
   },
   methods: {
@@ -58,5 +68,12 @@ export default {
 .vm-slot {
   width: 100%;
   height: 100%;
+}
+.active {
+  border: 1px solid #70c0ff;
+}
+.vm-slot.active {
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
 }
 </style>

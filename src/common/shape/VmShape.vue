@@ -42,7 +42,9 @@ export default {
     };
   },
   computed: {
-    ...mapState(['curWidgetObj']),
+    ...mapState([
+      'curWidgetObj',
+    ]),
     active() {
       return this.widgetObj === this.curWidgetObj;
     },

@@ -17,7 +17,7 @@ export default class WidgetRoot extends WidgetDefault {
   }
 
   getObject() {
-    return {
+    const obj = {
       type: 'root',
       props: {
         schema: 1,
@@ -43,7 +43,10 @@ export default class WidgetRoot extends WidgetDefault {
           model: 'dataUrl',
         },
       ],
-      children: [this.getWidgetObj('slot')],
+      parent: null,
+      children: [],
     };
+    this.pushSlotToChildren(obj);
+    return obj;
   }
 }
