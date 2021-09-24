@@ -1,9 +1,11 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
+    "allowSyntheticDefaultImports": false,
+    "target": "es2020",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
   },
   "include": ["./src/**/*"],
   "exclude": ["node_modules"]

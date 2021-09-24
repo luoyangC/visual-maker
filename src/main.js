@@ -1,21 +1,17 @@
 import Vue from 'vue';
-import ElementUI from 'element-ui';
 import store from './store';
 import App from './App.vue';
 
-import 'element-ui/lib/theme-chalk/index.css';
 import '@/assets/icon/iconfont.css';
 import '@/assets/icon/iconfont.js';
 import '@/assets/style/index.scss';
 
+import '@/plugins';
 import '@/hooks';
 import '@/common';
 import '@/constant';
-import '@/common/index.scss';
 
 Vue.config.productionTip = false;
-
-Vue.use(ElementUI);
 
 new Vue({
   store,
