@@ -19,14 +19,18 @@ export default class WidgetList extends WidgetDefault {
     };
     if (config.attrs.flexDirection === 'column') {
       reslut.width = config.style.width;
-      reslut.height = config.style.height / config.props.size - 10;
+      reslut.height = config.style.height / config.props.size - config.attrs.itemGap;
     } else {
-      reslut.width = config.style.width / config.props.size - 10;
+      reslut.width = config.style.width / config.props.size - config.attrs.itemGap;
       reslut.height = config.style.height;
     }
     config.children.forEach((item) => {
       item.style.width = reslut.width;
       item.style.height = reslut.height;
+      if (item.restrict && item.children.length) {
+        item.children[0].style.width = reslut.width;
+        item.children[0].style.height = reslut.height;
+      }
     });
   }
 
@@ -41,9 +45,9 @@ export default class WidgetList extends WidgetDefault {
     };
     if (config.parent.attrs.flexDirection === 'column') {
       reslut.width = config.parent.style.width + 'px';
-      reslut.height = config.parent.style.height / config.parent.props.size - 10 + 'px';
+      reslut.height = config.parent.style.height / config.parent.props.size - config.parent.attrs.itemGap + 'px';
     } else {
-      reslut.width = config.parent.style.width / config.parent.props.size - 10 + 'px';
+      reslut.width = config.parent.style.width / config.parent.props.size - config.parent.attrs.itemGap + 'px';
       reslut.height = config.parent.style.height + 'px';
     }
     return reslut;
@@ -83,6 +87,7 @@ export default class WidgetList extends WidgetDefault {
       attrs: {
         flexDirection: 'column',
         listStyle: 'none',
+        itemGap: 10,
       },
       attrConfigs: [
         {
@@ -97,6 +102,11 @@ export default class WidgetList extends WidgetDefault {
           model: 'listStyle',
           items: LIST_STYLE_TYPES,
         },
+        {
+          label: '元素间距',
+          type: 'input',
+          model: 'itemGap',
+        },
       ],
       props: {
         size: 3,
@@ -104,8 +114,15 @@ export default class WidgetList extends WidgetDefault {
       propConfigs: [
         {
           label: '列数',
-          type: 'input',
           model: 'size',
+          type: 'number',
+          func: (val, old, objct) => {
+            if (val > old) {
+              this.pushSlotToChildren(objct, { restrict: true });
+            } else if (val < old) {
+              this.popSlotFromChildren(objct);
+            }
+          },
         },
       ],
       children: [],

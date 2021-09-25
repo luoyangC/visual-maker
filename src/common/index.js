@@ -12,6 +12,7 @@ import VmShape from './shape';
 import VmWidget from './VmWidget.vue';
 import VmColorPicker from './VmColorPicker.vue';
 import VmDynamic from './VmDynamic.vue';
+import VmInputNumber from './VmInputNumber';
 
 Vue.component('VmIcon', VmIcon);
 Vue.component('VmFormLabel', VmFormLabel);
@@ -26,3 +27,4 @@ Vue.component('VmShape', VmShape);
 Vue.component('VmWidget', VmWidget);
 Vue.component('VmColorPicker', VmColorPicker);
 Vue.component('VmDynamic', VmDynamic);
+Vue.component('VmInputNumber', VmInputNumber);

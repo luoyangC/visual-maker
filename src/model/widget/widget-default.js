@@ -79,6 +79,10 @@ export default class WidgetDefault {
     obj.children.push({ ...slot, parent: obj });
   }
 
+  popSlotFromChildren(obj) {
+    obj.children.pop();
+  }
+
   preventDefault(e) {
     e.preventDefault();
   }

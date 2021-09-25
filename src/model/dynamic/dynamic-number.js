@@ -1,17 +1,16 @@
 import DynamicDefault from './dynamic-default';
 
-export default class DynamicInput extends DynamicDefault {
+export default class DynamicNumber extends DynamicDefault {
   constructor() {
     super();
-    this.name = 'input';
+    this.name = 'number';
   }
 
   getTemplate(h, config, props, obj) {
     return (
-      <vm-input
+      <vm-input-number
         value={props[this.getModel(config)]}
         v-on:input={this.setModelValue(config, props, obj)}
-        type='string'
         label={config.label}
         border={true}
       />

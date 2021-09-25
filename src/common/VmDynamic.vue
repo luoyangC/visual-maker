@@ -18,7 +18,7 @@ export default {
     },
   },
   render(h) {
-    return DynamicHook.getDynamic(this.config.type).getTemplate(h, this.config, this.widget[this.modelType]);
+    return DynamicHook.getDynamic(this.config.type).getTemplate(h, this.config, this.widget[this.modelType], this.widget);
   },
 };
 </script>
