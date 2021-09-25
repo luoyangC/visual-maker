@@ -1,4 +1,5 @@
 import WidgetDefault from './widget-default';
+import { LIST_DIRECTION_TYPES, LIST_STYLE_TYPES } from '@/constant/dict';
 
 export default class WidgetList extends WidgetDefault {
   constructor() {
@@ -10,14 +11,63 @@ export default class WidgetList extends WidgetDefault {
     this.isDrag = true;
     this.isEnum = false;
   }
+
+  onStyleRepaint(config) {
+    const reslut = {
+      width: 0,
+      height: 0,
+    };
+    if (config.attrs.flexDirection === 'column') {
+      reslut.width = config.style.width;
+      reslut.height = config.style.height / config.props.size - 10;
+    } else {
+      reslut.width = config.style.width / config.props.size - 10;
+      reslut.height = config.style.height;
+    }
+    config.children.forEach((item) => {
+      item.style.width = reslut.width;
+      item.style.height = reslut.height;
+    });
+  }
+
+  getListAttrs(attrs) {
+    return { ...attrs };
+  }
+
+  getItemStyle(config) {
+    const reslut = {
+      width: 0,
+      height: 0,
+    };
+    if (config.parent.attrs.flexDirection === 'column') {
+      reslut.width = config.parent.style.width + 'px';
+      reslut.height = config.parent.style.height / config.parent.props.size - 10 + 'px';
+    } else {
+      reslut.width = config.parent.style.width / config.parent.props.size - 10 + 'px';
+      reslut.height = config.parent.style.height + 'px';
+    }
+    return reslut;
+  }
+
+  getItemTemplate(h, config, index) {
+    return (
+      <li class='v-li' style={this.getItemStyle(config)}>
+        {this.getWidget('slot').getTemplate(h, config)}
+      </li>
+    );
+  }
+
   getTemplate(h, config) {
+    const listElment = config.children.map((item, index) => {
+      return this.getItemTemplate(h, item, index);
+    });
     return (
       <ul
         class='v-ul'
-        style={this.getWidgetStyle(config.style)}
+        style={{ ...this.getWidgetStyle(config.style, config), ...this.getListAttrs(config.attrs) }}
         v-on:mousedown={this.preventDefault}
       >
-        <li class='v-li'>{this.getWidget('slot').getTemplate(h, config.children[0])}</li>
+        {listElment}
       </ul>
     );
   }
@@ -27,11 +77,29 @@ export default class WidgetList extends WidgetDefault {
       type: 'list',
       style: {
         ...this.commonStyle,
-        width: 200,
-        height: 200,
+        width: 400,
+        height: 400,
       },
+      attrs: {
+        flexDirection: 'column',
+        listStyle: 'none',
+      },
+      attrConfigs: [
+        {
+          label: '列表方向',
+          type: 'select',
+          model: 'flexDirection',
+          items: LIST_DIRECTION_TYPES,
+        },
+        {
+          label: '列表样式',
+          type: 'select',
+          model: 'listStyle',
+          items: LIST_STYLE_TYPES,
+        },
+      ],
       props: {
-        size: 1,
+        size: 3,
       },
       propConfigs: [
         {
@@ -42,7 +110,9 @@ export default class WidgetList extends WidgetDefault {
       ],
       children: [],
     };
-    this.pushSlotToChildren(obj, { free: false });
+    for (let index = 0; index < obj.props.size; index++) {
+      this.pushSlotToChildren(obj, { restrict: true });
+    }
     return obj;
   }
 }

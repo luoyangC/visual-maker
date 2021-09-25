@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { eventBus } from '@/utils/index';
+import { eventBus, debounce } from '@/utils';
 import { mapState } from 'vuex';
 
 export default {
@@ -41,18 +41,28 @@ export default {
     };
   },
   computed: {
-    ...mapState(['curWidgetObj']),
+    ...mapState([
+      'curWidgetObj',
+    ]),
     active() {
       return this.widgetObj === this.curWidgetObj;
     },
+    restrict() {
+      return this.widgetObj.parent && this.widgetObj.parent.type === 'slot' && this.widgetObj.parent.restrict;
+    },
   },
   methods: {
-    getShapeStyle(style, index) {
-      return {
-        top: style.top + 'px',
-        left: style.left + 'px',
-        transform: style.rotate ? 'rotate(' + style.rotate + 'deg)' : undefined,
-      };
+    getShapeStyle(style) {
+      const restyle = {};
+      if (this.restrict) {
+        // restyle.width = '100%';
+        // restyle.height = '100%';
+      } else {
+        restyle.top = style.top + 'px';
+        restyle.left = style.left + 'px';
+        restyle.transform = 'rotate(' + style.rotate + 'deg)';
+      }
+      return restyle;
     },
 
     getPointStyle(point) {
@@ -106,6 +116,8 @@ export default {
         zIndex: this.zIndex,
       });
 
+      if (this.restrict) { return; }
+
       const pos = { ...this.widgetObj.style };
       const startY = e.clientY;
       const startX = e.clientX;
@@ -115,7 +127,7 @@ export default {
 
       // 如果元素没有移动，则不保存快照
       let hasMove = false;
-      const move = (moveEvent) => {
+      const move = debounce((moveEvent) => {
         hasMove = true;
         const currX = moveEvent.clientX;
         const currY = moveEvent.clientY;
@@ -133,15 +145,15 @@ export default {
           // currX - startX > 0 true 表示向右移动 false 表示向左移动
           eventBus.$emit('move', this.$el, currY - startY > 0, currX - startX > 0);
         });
-      };
+      });
 
-      const up = () => {
+      const up = debounce(() => {
         hasMove && this.$store.commit('recordSnapshot');
         // 触发元素停止移动事件，用于隐藏标线
         eventBus.$emit('unmove');
         document.removeEventListener('mousemove', move);
         document.removeEventListener('mouseup', up);
-      };
+      });
 
       document.addEventListener('mousemove', move);
       document.addEventListener('mouseup', up);
@@ -221,9 +233,16 @@ export default {
 <style lang="scss" scoped>
 .vm-shape {
   position: absolute;
+  border: 1px solid #ebebeb;
+  border-radius: 2px;
+  font-size: 0;
 }
 .active {
   border: 1px solid #70c0ff;
+}
+.vm-shape.active {
+  margin-left:-1px;
+  margin-top:-1px;
 }
 .shape-point {
   position: absolute;

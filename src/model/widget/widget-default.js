@@ -1,5 +1,4 @@
 import widgetHook from '@/hooks/widget';
-
 export default class WidgetDefault {
   constructor() {
     this.name = 'default';
@@ -39,38 +38,41 @@ export default class WidgetDefault {
     return widgetHook.getObject(name, params);
   }
 
-  getWidgetStyle(style, index) {
+  getWidgetStyle(style, config) {
     const result = { ...style };
-    if (result.width) {
+    if (!isNaN(result.width)) {
       result.width += 'px';
     }
 
-    if (result.height) {
+    if (!isNaN(result.height)) {
       result.height += 'px';
     }
 
-    if (result.top) {
+    if (!isNaN(result.top)) {
       result.top += 'px';
     }
 
-    if (result.left) {
+    if (!isNaN(result.left)) {
       result.left += 'px';
     }
 
-    if (result.fontSize) {
+    if (!isNaN(result.fontSize)) {
       result.fontSize += 'px';
     }
 
-    if (result.rotate) {
+    if (!isNaN(result.rotate)) {
       result.transform = 'rotate(' + result.rotate + 'deg)';
     }
 
-    result.zIndex = index;
     result.top = 0;
     result.left = 0;
 
+    this.onStyleRepaint(config);
+
     return result;
   }
+
+  onStyleRepaint(config) {}
 
   pushSlotToChildren(obj, params) {
     const slot = this.getWidgetObj('slot', params);

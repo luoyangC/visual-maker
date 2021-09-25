@@ -1,14 +1,7 @@
 
-export { clone } from './clone.js';
-export { eventBus } from './eventBus.js';
-
-export const swap = (arr, i, j) => {
-  const temp = arr[i];
-  arr[i] = arr[j];
-  arr[j] = temp;
-};
-
-let id = 0;
-export const generateID = () => {
-  return id++;
-};
+export * from './type';
+export { clone } from './clone';
+export { eventBus } from './eventBus';
+export { generateID } from './generateID';
+export { debounce } from './debounce';
+export { throttle } from './throttle';

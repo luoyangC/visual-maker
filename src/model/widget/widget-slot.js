@@ -1,4 +1,5 @@
 import WidgetDefault from './widget-default';
+import { isBoolean } from '@/utils/type';
 
 export default class WidgetSlot extends WidgetDefault {
   constructor() {
@@ -11,13 +12,16 @@ export default class WidgetSlot extends WidgetDefault {
     return <vm-slot class='v-slot' parentWidgetObj={config}></vm-slot>;
   }
 
-  getObject(params = { free: true }) {
+  getObject(params = {}) {
     return {
       type: 'slot',
-      style: {},
-      props: {
-        free: params.free,
+      style: {
+        ...params.style,
       },
+      props: {
+        ...params.props,
+      },
+      restrict: isBoolean(params.restrict) ? params.restrict : false,
       children: [],
     };
   }

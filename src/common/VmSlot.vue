@@ -46,6 +46,13 @@ export default {
       widgetObj.id = generateID();
       widgetObj.parent = this.parentWidgetObj;
 
+      if (this.parentWidgetObj.restrict) {
+        widgetObj.style.height = widgetObj.parent.style.height;
+        widgetObj.style.width = widgetObj.parent.style.width;
+        widgetObj.style.top = 0;
+        widgetObj.style.left = 0;
+      }
+
       this.$store.commit('addWidgetObj', { widgetObj: widgetObj, parentWidgetObj: this.parentWidgetObj });
       // this.$store.commit('recordSnapshot');
     },
@@ -68,6 +75,8 @@ export default {
   position: relative;
   width: 100%;
   height: 100%;
+  border: 1px solid #ebebeb;
+  border-radius: 2px;
 }
 .active {
   border: 1px solid #70c0ff;

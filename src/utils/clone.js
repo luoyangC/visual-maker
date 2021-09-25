@@ -1,3 +1,4 @@
+import { getTag, isObject } from './type';
 
 const mapTag = '[object Map]';
 const setTag = '[object Set]';
@@ -22,15 +23,6 @@ function forEach(array, iteratee) {
     iteratee(array[index], index);
   }
   return array;
-}
-
-function isObject(target) {
-  const type = typeof target;
-  return target !== null && (type === 'object' || type === 'function');
-}
-
-function getType(target) {
-  return Object.prototype.toString.call(target);
 }
 
 function getInit(target) {
@@ -76,10 +68,10 @@ function cloneOtherType(targe, type) {
   const Ctor = targe.constructor;
   switch (type) {
     case boolTag:
+    case dateTag:
+    case errorTag:
     case numberTag:
     case stringTag:
-    case errorTag:
-    case dateTag:
       return new Ctor(targe);
     case regexpTag:
       return cloneReg(targe);
@@ -92,14 +84,14 @@ function cloneOtherType(targe, type) {
   }
 }
 
-export const clone = (target, map = new WeakMap()) => {
+export function clone(target, map = new WeakMap()) {
   // 克隆原始类型
   if (!isObject(target)) {
     return target;
   }
 
   // 初始化
-  const type = getType(target);
+  const type = getTag(target);
   let cloneTarget;
   if (deepTag.includes(type)) {
     cloneTarget = getInit(target, type);
@@ -115,7 +107,7 @@ export const clone = (target, map = new WeakMap()) => {
 
   // 克隆set
   if (type === setTag) {
-    target.forEach(value => {
+    target.forEach((value) => {
       cloneTarget.add(clone(value, map));
     });
     return cloneTarget;
@@ -139,4 +131,4 @@ export const clone = (target, map = new WeakMap()) => {
   });
 
   return cloneTarget;
-};
+}

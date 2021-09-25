@@ -84,3 +84,44 @@ export const IMAGE_OBJECT_FIT_TYPES = [
     label: '最小',
   },
 ];
+
+export const LIST_DIRECTION_TYPES = [
+  {
+    index: 0,
+    value: 'row',
+    label: '水平方向',
+  },
+  {
+    index: 1,
+    value: 'column',
+    label: '垂直方向',
+  },
+];
+
+export const LIST_STYLE_TYPES = [
+  {
+    index: 0,
+    value: 'none',
+    label: '无',
+  },
+  {
+    index: 1,
+    value: 'disc',
+    label: '实心圆',
+  },
+  {
+    index: 2,
+    value: 'circle',
+    label: '空心圆',
+  },
+  {
+    index: 3,
+    value: 'square',
+    label: '方块',
+  },
+  {
+    index: 4,
+    value: 'decimal',
+    label: '数字',
+  },
+];
