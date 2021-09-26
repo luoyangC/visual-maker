@@ -228,7 +228,7 @@ export default {
     align-items: center;
     justify-content: flex-start;
     height: 26px;
-    width: 76px;
+    width: 80px;
     margin: 2px 0;
     padding-left: 4px;
   }

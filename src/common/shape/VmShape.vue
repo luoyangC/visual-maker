@@ -215,14 +215,8 @@ export default {
       e.preventDefault();
 
       // 计算菜单相对于编辑器的位移
-      let target = e.target;
-      let top = e.offsetY;
-      let left = e.offsetX;
-      while (!target.className.includes('editor')) {
-        left += target.offsetLeft;
-        top += target.offsetTop;
-        target = target.parentNode;
-      }
+      const top = e.pageY;
+      const left = e.pageX;
 
       this.$store.commit('showContexeMenu', { top, left, widgetObj: this.widgetObj });
     },
@@ -240,10 +234,6 @@ export default {
 .active {
   border: 1px solid #70c0ff;
 }
-.vm-shape.active {
-  margin-left:-1px;
-  margin-top:-1px;
-}
 .shape-point {
   position: absolute;
   background: #fff;
@@ -251,5 +241,8 @@ export default {
   width: 6px;
   height: 6px;
   border-radius: 50%;
+}
+.root-widget.active {
+  border: none;
 }
 </style>

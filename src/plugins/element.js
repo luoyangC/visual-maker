@@ -13,6 +13,7 @@ import {
   TabPane,
   Divider,
   InputNumber,
+  Footer,
 } from 'element-ui';
 
 import 'element-ui/lib/theme-chalk/index.css';
@@ -30,3 +31,4 @@ Vue.use(Header);
 Vue.use(Main);
 Vue.use(Divider);
 Vue.use(InputNumber);
+Vue.use(Footer);

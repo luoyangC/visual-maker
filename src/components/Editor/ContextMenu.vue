@@ -60,8 +60,8 @@ export default {
 
 <style lang="scss" scoped>
 .contextmenu {
-  position: absolute;
   z-index: 1000;
+  position: fixed;
 
   ul {
     border: 1px solid #e4e7ed;

@@ -40,8 +40,8 @@ export default {
 }
 .widget-item {
   text-align: center;
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
   padding: 10px;
   margin-right: 10px;
   margin-bottom: 10px;

@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="{ 'vm-slot': true, active: active }"
+    :class="{ 'vm-slot': true, active: active, filled: isFilled }"
     @drop="handleDrop"
     @dragover="handleDragOver"
   >
@@ -33,6 +33,9 @@ export default {
     ]),
     active() {
       return this.parentWidgetObj.parent === this.curWidgetObj;
+    },
+    isFilled() {
+      return this.parentWidgetObj.restrict && this.parentWidgetObj.children.length;
     },
   },
   methods: {
@@ -81,8 +84,7 @@ export default {
 .active {
   border: 1px solid #70c0ff;
 }
-.vm-slot.active {
-  margin-left:-1px;
-  margin-top:-1px;
+.filled {
+  border: none;
 }
 </style>

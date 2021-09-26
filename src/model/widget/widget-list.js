@@ -13,23 +13,28 @@ export default class WidgetList extends WidgetDefault {
   }
 
   onStyleRepaint(config) {
-    const reslut = {
-      width: 0,
-      height: 0,
-    };
+    const restyle = { width: 0, height: 0 };
+
+    const listPading = config.attrs.padding;
+    const itemGap = config.attrs.itemGap;
+    const itemSize = config.props.size;
+    const contentWidth = config.style.width - 2 * listPading;
+    const contentHeight = config.style.height - 2 * listPading;
+
     if (config.attrs.flexDirection === 'column') {
-      reslut.width = config.style.width;
-      reslut.height = config.style.height / config.props.size - config.attrs.itemGap;
+      restyle.width = contentWidth;
+      restyle.height = contentHeight / itemSize - itemGap;
     } else {
-      reslut.width = config.style.width / config.props.size - config.attrs.itemGap;
-      reslut.height = config.style.height;
+      restyle.width = contentWidth / itemSize - itemGap;
+      restyle.height = contentHeight;
     }
+
     config.children.forEach((item) => {
-      item.style.width = reslut.width;
-      item.style.height = reslut.height;
+      item.style.width = restyle.width;
+      item.style.height = restyle.height;
       if (item.restrict && item.children.length) {
-        item.children[0].style.width = reslut.width;
-        item.children[0].style.height = reslut.height;
+        item.children[0].style.width = restyle.width;
+        item.children[0].style.height = restyle.height;
       }
     });
   }
@@ -40,16 +45,9 @@ export default class WidgetList extends WidgetDefault {
 
   getItemStyle(config) {
     const reslut = {
-      width: 0,
-      height: 0,
+      width: config.style.width + 'px',
+      height: config.style.height + 'px',
     };
-    if (config.parent.attrs.flexDirection === 'column') {
-      reslut.width = config.parent.style.width + 'px';
-      reslut.height = config.parent.style.height / config.parent.props.size - config.parent.attrs.itemGap + 'px';
-    } else {
-      reslut.width = config.parent.style.width / config.parent.props.size - config.parent.attrs.itemGap + 'px';
-      reslut.height = config.parent.style.height + 'px';
-    }
     return reslut;
   }
 
@@ -88,6 +86,7 @@ export default class WidgetList extends WidgetDefault {
         flexDirection: 'column',
         listStyle: 'none',
         itemGap: 10,
+        padding: 10,
       },
       attrConfigs: [
         {
@@ -103,8 +102,13 @@ export default class WidgetList extends WidgetDefault {
           items: LIST_STYLE_TYPES,
         },
         {
+          label: '列表边距',
+          type: 'number',
+          model: 'padding',
+        },
+        {
           label: '元素间距',
-          type: 'input',
+          type: 'number',
           model: 'itemGap',
         },
       ],
@@ -130,6 +134,7 @@ export default class WidgetList extends WidgetDefault {
     for (let index = 0; index < obj.props.size; index++) {
       this.pushSlotToChildren(obj, { restrict: true });
     }
+    this.onStyleRepaint(obj);
     return obj;
   }
 }

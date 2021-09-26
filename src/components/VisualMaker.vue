@@ -36,6 +36,7 @@
         </el-tabs>
       </div>
     </el-main>
+    <!-- <el-footer /> -->
   </el-container>
 </template>
 
@@ -96,13 +97,13 @@ export default {
 }
 .vm-aside {
   z-index: 1;
-  width: 34px;
-  background-color: #ffffff;
+  width: 55px;
   padding: 10px;
+  background-color: #ffffff;
   border-right: 1px solid #e6e6e6;
 }
 .vm-option {
-  width: 230px;
+  width: 250px;
   background-color: #ffffff;
   padding: 10px;
   box-shadow: 0 2px 10px rgb(0 0 0 / 5%);
@@ -115,7 +116,7 @@ export default {
   padding: 10px;
 }
 .vm-attribute {
-  width: 260px;
+  width: 280px;
   background-color: #ffffff;
   padding: 10px;
   box-shadow: 0 2px 10px rgb(0 0 0 / 5%);
@@ -125,16 +126,16 @@ export default {
 }
 
 .header-item {
-  height: 40px;
-  width: 40px;
+  height: 50px;
+  width: 50px;
   padding: 5px;
   margin-right: 8px;
   border-radius: 4px;
 }
 
 .aside-item {
-  height: 24px;
-  width: 24px;
+  height: 35px;
+  width: 35px;
   padding: 5px;
   margin-bottom: 10px;
   border-radius: 4px;

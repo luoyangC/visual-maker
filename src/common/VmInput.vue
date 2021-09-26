@@ -158,7 +158,7 @@ export default {
     align-items: center;
     justify-content: center;
     padding: 0px 2px 0px 4px;
-    width: 14px;
+    width: 20px;
     height: 100%;
     user-select: none;
     color: rgb(141, 158, 167);
@@ -180,7 +180,7 @@ export default {
     display: block;
     margin: 0px;
     padding: 0px 4px 0px 2px;
-    width: 14px;
+    width: 20px;
     line-height: 0;
   }
   &__increase {
