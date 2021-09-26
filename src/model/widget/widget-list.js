@@ -23,9 +23,9 @@ export default class WidgetList extends WidgetDefault {
 
     if (config.attrs.flexDirection === 'column') {
       restyle.width = contentWidth;
-      restyle.height = contentHeight / itemSize - itemGap;
+      restyle.height = (contentHeight - (itemSize - 1) * itemGap) / itemSize;
     } else {
-      restyle.width = contentWidth / itemSize - itemGap;
+      restyle.width = (contentWidth - (itemSize - 1) * itemGap) / itemSize;
       restyle.height = contentHeight;
     }
 

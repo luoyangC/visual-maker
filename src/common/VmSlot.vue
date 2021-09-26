@@ -82,7 +82,7 @@ export default {
   border-radius: 2px;
 }
 .active {
-  border: 1px solid #70c0ff;
+  border: 1px solid #E6A23C;
 }
 .filled {
   border: none;

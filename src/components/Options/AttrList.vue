@@ -38,7 +38,8 @@
           <div class="attr-text__cell">
             <vm-input v-model="curWidgetObj.style.fontSize" icon="font-size" type="number" width="80" />
             <vm-input v-model="curWidgetObj.style.lineHeight" icon="height" type="number" width="80" />
-            <vm-color-picker v-model="curWidgetObj.style.color" width="80" />
+            <vm-color-picker v-model="curWidgetObj.style.color" width="35" />
+            <vm-color-picker v-model="curWidgetObj.style.background" width="35" />
           </div>
           <div class="attr-text__cell">
             <vm-select v-model="curWidgetObj.style.fontFamily" :items="$dict.FONT_FAMILY_TYPES" :width="94" />

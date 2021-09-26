@@ -21,6 +21,7 @@ export default class WidgetDefault {
       lineHeight: 1.5,
       letterSpacing: 0,
       color: '',
+      background: '#fff',
     };
   }
 
