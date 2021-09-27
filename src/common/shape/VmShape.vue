@@ -6,13 +6,13 @@
     @mousedown="handleMouseDown"
     @contextmenu="handleContextMenu"
   >
-    <!-- <div
-      v-for="(item, index) in active ? pointList : []"
+    <div
+      v-for="(item, index) in showPoint ? pointList : []"
       :key="index"
       class="shape-point"
       :style="getPointStyle(item)"
       @mousedown="handleMouseDownOnPoint(item)"
-    /> -->
+    />
     <vm-widget class="vm-widget" :widget="widgetObj" />
   </div>
 </template>
@@ -41,51 +41,52 @@ export default {
     };
   },
   computed: {
-    ...mapState([
-      'curWidgetObj',
-    ]),
+    ...mapState(['curWidgetObj']),
     active() {
       return this.widgetObj === this.curWidgetObj;
     },
     restrict() {
-      return this.widgetObj.parent && this.widgetObj.parent.type === 'slot' && this.widgetObj.parent.restrict;
+      return (
+        this.widgetObj.parent &&
+        this.widgetObj.parent.type === 'slot' &&
+        this.widgetObj.parent.restrict
+      );
+    },
+    isFilled() {
+      return this.restrict && this.widgetObj.parent.children.length;
+    },
+    showPoint() {
+      return this.active && !this.isFilled && this.widgetObj.type !== 'root';
     },
   },
   methods: {
     getShapeStyle(style) {
       const restyle = {};
-      if (this.restrict) {
-        // restyle.width = '100%';
-        // restyle.height = '100%';
-      } else {
-        restyle.top = style.top + 'px';
-        restyle.left = style.left + 'px';
-        restyle.transform = 'rotate(' + style.rotate + 'deg)';
-      }
+      restyle.top = style.top + 'px';
+      restyle.left = style.left + 'px';
+      restyle.transform = 'rotate(' + style.rotate + 'deg)';
       return restyle;
     },
 
     getPointStyle(point) {
       const { width, height } = this.widgetObj.style;
+
       const hasT = /t/.test(point);
       const hasB = /b/.test(point);
       const hasL = /l/.test(point);
       const hasR = /r/.test(point);
+
       let newLeft = 0;
       let newTop = 0;
 
-      // 四个角的点
       if (point.length === 2) {
         newLeft = hasL ? 0 : width;
         newTop = hasT ? 0 : height;
       } else {
-        // 上下两点的点，宽度居中
         if (hasT || hasB) {
-          newLeft = width / 2;
+          newLeft = Math.floor(width / 2);
           newTop = hasT ? 0 : height;
         }
-
-        // 左右两边的点，高度居中
         if (hasL || hasR) {
           newLeft = hasL ? 0 : width;
           newTop = Math.floor(height / 2);
@@ -93,8 +94,8 @@ export default {
       }
 
       const style = {
-        marginLeft: hasR ? '-4px' : '-3px',
-        marginTop: '-3px',
+        marginLeft: hasR ? '-3px' : '-4px',
+        marginTop: hasB ? '-3px' : '-4px',
         left: `${newLeft}px`,
         top: `${newTop}px`,
         cursor:
@@ -116,7 +117,9 @@ export default {
         zIndex: this.zIndex,
       });
 
-      if (this.restrict) { return; }
+      if (this.restrict) {
+        return;
+      }
 
       const pos = { ...this.widgetObj.style };
       const startY = e.clientY;
@@ -235,11 +238,12 @@ export default {
   border: 1px solid #70c0ff;
 }
 .shape-point {
+  z-index: 100;
   position: absolute;
   background: #fff;
   border: 1px solid #59c7f9;
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
 }
 .root-widget.active {
