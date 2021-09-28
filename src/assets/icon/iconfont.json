@@ -6,6 +6,41 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "12770885",
+      "name": "切换",
+      "font_class": "switch",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "77156",
+      "name": "微信",
+      "font_class": "weixin",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "750883",
+      "name": "二维码",
+      "font_class": "qr-code",
+      "unicode": "e7ad",
+      "unicode_decimal": 59309
+    },
+    {
+      "icon_id": "4936984",
+      "name": "QQ",
+      "font_class": "qq",
+      "unicode": "e882",
+      "unicode_decimal": 59522
+    },
+    {
+      "icon_id": "4937000",
+      "name": "github-fill",
+      "font_class": "github",
+      "unicode": "e885",
+      "unicode_decimal": 59525
+    },
+    {
       "icon_id": "6337467",
       "name": "字体删除线",
       "font_class": "delete-line",

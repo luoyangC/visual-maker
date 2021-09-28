@@ -38,8 +38,13 @@
           <div class="attr-text__cell">
             <vm-input v-model="curWidgetObj.style.fontSize" icon="font-size" type="number" width="80" />
             <vm-input v-model="curWidgetObj.style.lineHeight" icon="height" type="number" width="80" />
-            <vm-color-picker v-model="curWidgetObj.style.color" width="35" />
-            <vm-color-picker v-model="curWidgetObj.style.background" width="35" />
+            <div class="attr-color-picker">
+              <vm-color-picker v-model="curWidgetObj.style.color" width="28" />
+              <svg class="vm-icon_svg" aria-hidden="true" @click="handleSwitchColor">
+                <use xlink:href="#icon-switch" />
+              </svg>
+              <vm-color-picker v-model="curWidgetObj.style.backgroundColor" width="28" />
+            </div>
           </div>
           <div class="attr-text__cell">
             <vm-select v-model="curWidgetObj.style.fontFamily" :items="$dict.FONT_FAMILY_TYPES" :width="94" />
@@ -206,6 +211,14 @@ export default {
       return this.curWidgetObj.attrConfigs || [];
     },
   },
+  methods: {
+    handleSwitchColor() {
+      const color = this.curWidgetObj.style.color;
+      const bgColor = this.curWidgetObj.style.backgroundColor;
+      this.curWidgetObj.style.color = bgColor;
+      this.curWidgetObj.style.backgroundColor = color;
+    },
+  },
 };
 </script>
 
@@ -244,6 +257,17 @@ export default {
   ::v-deep.el-divider {
     height: 28px;
     margin: 2px 0;
+  }
+}
+.attr-color {
+  &-picker {
+    display: flex;
+    width: 80px;
+    justify-content: space-between;
+    align-items: center;
+    .vm-icon_svg {
+      font-size: 14px;
+    }
   }
 }
 .divider {
