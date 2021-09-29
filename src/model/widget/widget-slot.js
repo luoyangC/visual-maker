@@ -13,7 +13,7 @@ export default class WidgetSlot extends WidgetDefault {
   }
 
   getObject(params = {}) {
-    return {
+    const obj = {
       type: 'slot',
       style: {
         ...params.style,
@@ -24,5 +24,10 @@ export default class WidgetSlot extends WidgetDefault {
       restrict: isBoolean(params.restrict) ? params.restrict : false,
       children: [],
     };
+    if (params.slotType) {
+      const slot = this.getWidgetObj(params.slotType, params);
+      obj.children.push({ ...slot, parent: obj });
+    }
+    return obj;
   }
 }

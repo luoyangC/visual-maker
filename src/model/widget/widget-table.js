@@ -10,45 +10,84 @@ export default class WidgetTable extends WidgetDefault {
     this.isDrag = true;
     this.isEnum = false;
   }
+  getHeadTemplate(h, config) {
+    return <th>{this.getWidget('column').getHeadTemplate(h, config.children[0])}</th>;
+  }
+  getItemTemplate(h, config, index) {
+    return <td>{this.getWidget('column').getItemTemplate(h, config, index)}</td>;
+  }
+  getRowTemplate(h, config, index) {
+    const items = config.children.map((item) => {
+      const column = item.children[0];
+      const slotConfig = column.children[index];
+      return this.getItemTemplate(h, slotConfig, index);
+    });
+    return <tr>{items}</tr>;
+  }
   getTemplate(h, config) {
+    const columnHeads = config.children.map((item) => {
+      return this.getHeadTemplate(h, item);
+    });
+    const rows = [];
+    for (let index = 0; index < config.props.row; index++) {
+      rows.push(this.getRowTemplate(h, config, index));
+    }
     return (
-      <table style={{ ...this.getWidgetStyle(config.style, config) }}>
+      <table border='1' style={{ ...this.getWidgetStyle(config.style, config) }}>
         <thead>
-          <tr>
-            <th>aaa</th>
-            <th>bbb</th>
-            <th>ccc</th>
-          </tr>
+          <tr>{columnHeads}</tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>123</td>
-            <td>123</td>
-            <td>123</td>
-          </tr>
-          <tr>
-            <td>456</td>
-            <td>456</td>
-            <td>456</td>
-          </tr>
-          <tr>
-            <td>789</td>
-            <td>789</td>
-            <td>789</td>
-          </tr>
-        </tbody>
+        <tbody>{rows}</tbody>
       </table>
     );
   }
 
+  pushColumnToChildren(obj, params) {
+    const column = this.getWidgetObj('column', params);
+    obj.children.push({ ...column, parent: obj });
+  }
+
+  popColumnFromChildren(obj) {
+    obj.children.pop();
+  }
+
   getObject() {
-    return {
+    const obj = {
       type: 'table',
       style: {
         ...this.commonStyle,
         width: 400,
-        height: 400,
+        height: 300,
       },
+      props: {
+        column: 3,
+        row: 3,
+      },
+      propConfigs: [
+        {
+          label: '列数',
+          model: 'column',
+          type: 'number',
+          func: (val, old, objct) => {
+            if (val > old) {
+              this.pushSlotToChildren(objct);
+            } else if (val < old) {
+              this.popSlotFromChildren(objct);
+            }
+          },
+        },
+        {
+          label: '行数',
+          model: 'row',
+          type: 'number',
+          func: () => {},
+        },
+      ],
+      children: [],
     };
+    for (let index = 0; index < obj.props.column; index++) {
+      this.pushSlotToChildren(obj, { restrict: true, slotType: 'column', row: obj.props.row });
+    }
+    return obj;
   }
 }

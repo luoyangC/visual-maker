@@ -7,6 +7,7 @@ import WidgetLink from './widget-link';
 import WidgetList from './widget-list';
 import WidgetTable from './widget-table';
 import WidgetButton from './widget-button';
+import WidgetColumn from './widget-column';
 
 export default {
   WidgetDefault,
@@ -18,4 +19,5 @@ export default {
   WidgetList,
   WidgetTable,
   WidgetButton,
+  WidgetColumn,
 };
