@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="{ 'vm-slot': true, active: active, filled: isFilled }"
+    :class="{ 'vm-slot': true, 'vm-slot--active': active, 'vm-slot--filled': isFilled, 'vm-slot--root': isRoot }"
     @drop="handleDrop"
     @dragover="handleDragOver"
   >
@@ -36,6 +36,9 @@ export default {
     },
     isFilled() {
       return this.parentWidgetObj.restrict && this.parentWidgetObj.children.length;
+    },
+    isRoot() {
+      return this.parentWidgetObj.parent && this.parentWidgetObj.parent.type === 'root';
     },
   },
   methods: {
@@ -77,13 +80,19 @@ export default {
   position: relative;
   width: 100%;
   height: 100%;
-  border: 1px solid #ebebeb;
+  border: 1px dashed #ebebeb;
   border-radius: 2px;
+  &--active {
+    border: 1px solid #E6A23C;
+  }
+  &--filled {
+    border: none;
+  }
+  &--root {
+    border: none;
+  }
 }
-.active {
+.vm-slot--root.vm-slot--active {
   border: 1px solid #E6A23C;
-}
-.filled {
-  border: none;
 }
 </style>

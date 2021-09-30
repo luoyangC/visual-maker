@@ -28,6 +28,7 @@ export default class WidgetText extends WidgetDefault {
       style: {
         ...this.commonStyle,
         verticalAlign: 'middle',
+        textAlign: 'center',
       },
       props: {
         value: '文本占位',

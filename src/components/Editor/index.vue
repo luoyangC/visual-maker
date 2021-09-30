@@ -1,6 +1,6 @@
 <template>
   <div id="editor" class="editor">
-    <vm-shape :key="rootWidgetObj.id" :widget-obj="rootWidgetObj" class="root-widget" />
+    <vm-shape :key="rootWidgetObj.id" :widget-obj="rootWidgetObj" />
     <!-- 右击菜单 -->
     <context-menu />
     <!-- 标线 -->
@@ -34,8 +34,5 @@ export default {
   box-shadow: 0 2px 10px rgb(0 0 0 / 5%);
   max-height: 800px;
   max-width: 1000px;
-}
-.root-widget {
-  position: relative !important;
 }
 </style>

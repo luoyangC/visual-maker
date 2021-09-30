@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="{ 'vm-shape': true, active: active }"
+    :class="{ 'vm-shape': true, 'vm-shape--active': active, 'vm-shape--root': isRoot }"
     :style="getShapeStyle(widgetObj.style)"
     @click="selectCurWidgetObj"
     @mousedown="handleMouseDown"
@@ -9,7 +9,7 @@
     <div
       v-for="(item, index) in showPoint ? pointList : []"
       :key="index"
-      class="shape-point"
+      class="vm-shape-point"
       :style="getPointStyle(item)"
       @mousedown="handleMouseDownOnPoint(item)"
     />
@@ -57,6 +57,9 @@ export default {
     },
     showPoint() {
       return this.active && !this.isFilled && this.widgetObj.type !== 'root';
+    },
+    isRoot() {
+      return this.widgetObj.type === 'root';
     },
   },
   methods: {
@@ -230,24 +233,25 @@ export default {
 <style lang="scss" scoped>
 .vm-shape {
   position: absolute;
-  border: 1px solid #ebebeb;
+  border: 1px dashed #ebebeb;
   border-radius: 2px;
   font-size: 0;
-}
-.active {
-  z-index: 100;
-  border-color: #70c0ff;
-}
-.shape-point {
-  z-index: 100;
-  position: absolute;
-  background: #fff;
-  border: 1px solid #59c7f9;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-}
-.root-widget.active {
-  border: none;
+  &--active {
+    z-index: 100;
+    border: 1px solid #70c0ff;
+  }
+  &--root {
+    position: relative !important;
+    border: none;
+  }
+  &-point {
+    z-index: 100;
+    position: absolute;
+    background: #fff;
+    border: 1px solid #59c7f9;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+  }
 }
 </style>
