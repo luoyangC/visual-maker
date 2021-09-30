@@ -43,7 +43,6 @@ export default {
       e.preventDefault();
       e.stopPropagation();
       const widgetObj = clone(WidgetHook.getObject(e.dataTransfer.getData('type')));
-
       widgetObj.style.top = e.offsetY;
       widgetObj.style.left = e.offsetX;
       widgetObj.id = generateID();

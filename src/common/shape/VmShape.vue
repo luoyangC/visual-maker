@@ -235,7 +235,8 @@ export default {
   font-size: 0;
 }
 .active {
-  border: 1px solid #70c0ff;
+  z-index: 100;
+  border-color: #70c0ff;
 }
 .shape-point {
   z-index: 100;

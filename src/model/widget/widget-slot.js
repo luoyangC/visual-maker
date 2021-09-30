@@ -9,7 +9,7 @@ export default class WidgetSlot extends WidgetDefault {
     this.isEnum = false;
   }
   getTemplate(h, config) {
-    return <vm-slot class='v-slot' parentWidgetObj={config}></vm-slot>;
+    return <vm-slot class='v-slot' parentWidgetObj={config} v-on:mousedown={this.preventDefault}></vm-slot>;
   }
 
   getObject(params = {}) {
@@ -21,12 +21,13 @@ export default class WidgetSlot extends WidgetDefault {
       props: {
         ...params.props,
       },
+      parent: params.parent,
       restrict: isBoolean(params.restrict) ? params.restrict : false,
       children: [],
     };
     if (params.slotType) {
-      const slot = this.getWidgetObj(params.slotType, params);
-      obj.children.push({ ...slot, parent: obj });
+      const slotObj = this.getWidgetObj(params.slotType, { ...params, parent: obj });
+      obj.children.push(slotObj);
     }
     return obj;
   }

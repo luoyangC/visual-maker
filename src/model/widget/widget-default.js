@@ -76,8 +76,8 @@ export default class WidgetDefault {
   onStyleRepaint(config) {}
 
   pushSlotToChildren(obj, params) {
-    const slot = this.getWidgetObj('slot', params);
-    obj.children.push({ ...slot, parent: obj });
+    const slotObj = this.getWidgetObj('slot', { ...params, parent: obj });
+    obj.children.push({ ...slotObj, parent: obj });
   }
 
   popSlotFromChildren(obj) {

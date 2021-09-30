@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import widgetHook from '@/hooks/widget';
-import { clone, generateID } from '@/utils/index';
+import { isBoolean, clone, generateID } from '@/utils/index';
 // import toast from '@/utils/toast';
 
 Vue.use(Vuex);
@@ -13,6 +13,11 @@ const store = new Vuex.Store({
   getters: {
     rootWidgetObj: state => state.rootWidgetObj,
     curWidgetObj: state => state.curWidgetObj,
+    curDeletable: state => isBoolean(state.curWidgetObj.deletable) ? state.curWidgetObj.deletable : true,
+
+    menuTop: state => state.menuTop,
+    menuLeft: state => state.menuLeft,
+    menuShow: state => state.menuShow,
   },
   state: {
     rootWidgetObj: rootWidgetObj,

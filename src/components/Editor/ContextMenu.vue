@@ -5,7 +5,7 @@
     :style="{ top: menuTop + 'px', left: menuLeft + 'px' }"
   >
     <ul>
-      <li @click="delWidgetObj">删除</li>
+      <li v-if="curDeletable" @click="delWidgetObj">删除</li>
       <li @click="topComponent">置顶</li>
       <li @click="bottomComponent">置底</li>
       <li @click="upComponent">上移</li>
@@ -15,15 +15,16 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
   computed: {
-    ...mapState([
+    ...mapGetters([
       'menuTop',
       'menuLeft',
       'menuShow',
       'rootWidgetObj',
+      'curDeletable',
     ]),
     isRootWidget() {
       return false;

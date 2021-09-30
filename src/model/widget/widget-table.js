@@ -10,45 +10,50 @@ export default class WidgetTable extends WidgetDefault {
     this.isDrag = true;
     this.isEnum = false;
   }
-  getHeadTemplate(h, config) {
-    return <th>{this.getWidget('column').getHeadTemplate(h, config.children[0])}</th>;
-  }
-  getItemTemplate(h, config, index) {
-    return <td>{this.getWidget('column').getItemTemplate(h, config, index)}</td>;
-  }
-  getRowTemplate(h, config, index) {
-    const items = config.children.map((item) => {
-      const column = item.children[0];
-      const slotConfig = column.children[index];
-      return this.getItemTemplate(h, slotConfig, index);
+  onStyleRepaint(config) {
+    const restyle = { width: 0, height: 0 };
+
+    const listPading = config.attrs.padding;
+    const itemSize = config.props.column;
+    const contentWidth = config.style.width - 2 * listPading;
+    const contentHeight = config.style.height - 2 * listPading;
+
+    restyle.width = contentWidth / itemSize;
+    restyle.height = contentHeight;
+
+    config.children.forEach((item) => {
+      item.style.width = restyle.width;
+      item.style.height = restyle.height;
+      if (item.restrict && item.children.length) {
+        item.children[0].style.width = restyle.width;
+        item.children[0].style.height = restyle.height;
+      }
     });
-    return <tr>{items}</tr>;
+  }
+
+  getTableAttrs(attrs) {
+    return {
+      padding: attrs.padding + 'px',
+    };
+  }
+
+  getColumnTemplate(h, config) {
+    const items = config.children.map((item) => {
+      return this.getWidget('slot').getTemplate(h, item);
+    });
+    return items;
   }
   getTemplate(h, config) {
-    const columnHeads = config.children.map((item) => {
-      return this.getHeadTemplate(h, item);
-    });
-    const rows = [];
-    for (let index = 0; index < config.props.row; index++) {
-      rows.push(this.getRowTemplate(h, config, index));
-    }
+    const columns = this.getColumnTemplate(h, config);
     return (
-      <table border='1' style={{ ...this.getWidgetStyle(config.style, config) }}>
-        <thead>
-          <tr>{columnHeads}</tr>
-        </thead>
-        <tbody>{rows}</tbody>
-      </table>
+      <div
+        class='v-table'
+        style={{ ...this.getWidgetStyle(config.style, config), ...this.getTableAttrs(config.attrs) }}
+        v-on:mousedown={this.preventDefault}
+      >
+        {columns}
+      </div>
     );
-  }
-
-  pushColumnToChildren(obj, params) {
-    const column = this.getWidgetObj('column', params);
-    obj.children.push({ ...column, parent: obj });
-  }
-
-  popColumnFromChildren(obj) {
-    obj.children.pop();
   }
 
   getObject() {
@@ -56,9 +61,19 @@ export default class WidgetTable extends WidgetDefault {
       type: 'table',
       style: {
         ...this.commonStyle,
-        width: 400,
-        height: 300,
+        width: 500,
+        height: 250,
       },
+      attrs: {
+        padding: 10,
+      },
+      attrConfigs: [
+        {
+          label: '表格边距',
+          type: 'number',
+          model: 'padding',
+        },
+      ],
       props: {
         column: 3,
         row: 3,
@@ -88,6 +103,7 @@ export default class WidgetTable extends WidgetDefault {
     for (let index = 0; index < obj.props.column; index++) {
       this.pushSlotToChildren(obj, { restrict: true, slotType: 'column', row: obj.props.row });
     }
+    this.onStyleRepaint(obj);
     return obj;
   }
 }
