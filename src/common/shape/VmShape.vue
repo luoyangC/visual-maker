@@ -6,6 +6,11 @@
     @mousedown="handleMouseDown"
     @contextmenu="handleContextMenu"
   >
+    <i
+      v-show="active && !curWidgetIsRoot"
+      class="vm-shape-rotate el-icon-refresh"
+      @mousedown="handleRotate"
+    />
     <div
       v-for="(item, index) in showPoint ? pointList : []"
       :key="index"
@@ -19,7 +24,7 @@
 
 <script>
 import { eventBus, debounce } from '@/utils';
-import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'VmShape',
@@ -41,7 +46,10 @@ export default {
     };
   },
   computed: {
-    ...mapState(['curWidgetObj']),
+    ...mapGetters([
+      'curWidgetObj',
+      'curWidgetIsRoot',
+    ]),
     active() {
       return this.widgetObj === this.curWidgetObj;
     },
@@ -110,6 +118,37 @@ export default {
       };
 
       return style;
+    },
+
+    handleRotate(e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const pos = { ...this.widgetObj.style };
+      const startY = e.clientY;
+      const startX = e.clientX;
+      const startRotate = pos.rotate;
+
+      const rect = this.$el.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+
+      const rotateDegreeBefore = Math.atan2(startY - centerY, startX - centerX) / (Math.PI / 180);
+      const move = debounce((moveEvent) => {
+        const curX = moveEvent.clientX;
+        const curY = moveEvent.clientY;
+
+        const rotateDegreeAfter = Math.atan2(curY - centerY, curX - centerX) / (Math.PI / 180);
+
+        pos.rotate = startRotate + rotateDegreeAfter - rotateDegreeBefore;
+        this.$store.commit('setShapeStyle', pos);
+      });
+      const up = debounce(() => {
+        document.removeEventListener('mousemove', move);
+        document.removeEventListener('mouseup', up);
+      });
+      document.addEventListener('mousemove', move);
+      document.addEventListener('mouseup', up);
     },
 
     handleMouseDown(e) {
@@ -252,6 +291,21 @@ export default {
     width: 7px;
     height: 7px;
     border-radius: 50%;
+  }
+  &-rotate {
+    position: absolute;
+    top: -34px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: grab;
+    color: #59c7f9;
+    font-size: 20px;
+    font-weight: 600;
+    &:active {
+      cursor: grabbing;
+    }
   }
 }
 </style>

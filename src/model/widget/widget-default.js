@@ -61,10 +61,6 @@ export default class WidgetDefault {
       result.fontSize += 'px';
     }
 
-    if (!isNaN(result.rotate)) {
-      result.transform = 'rotate(' + result.rotate + 'deg)';
-    }
-
     result.top = 0;
     result.left = 0;
 

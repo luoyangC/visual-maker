@@ -14,6 +14,7 @@ const store = new Vuex.Store({
     rootWidgetObj: state => state.rootWidgetObj,
     curWidgetObj: state => state.curWidgetObj,
     curDeletable: state => isBoolean(state.curWidgetObj.deletable) ? state.curWidgetObj.deletable : true,
+    curWidgetIsRoot: state => state.curWidgetObj === state.rootWidgetObj,
 
     menuTop: state => state.menuTop,
     menuLeft: state => state.menuLeft,
@@ -47,11 +48,12 @@ const store = new Vuex.Store({
       state.menuShow = false;
     },
 
-    setShapeStyle({ curWidgetObj }, { top, left, width, height }) {
+    setShapeStyle({ curWidgetObj }, { top, left, width, height, rotate }) {
       if (top) curWidgetObj.style.top = top;
       if (left) curWidgetObj.style.left = left;
       if (width) curWidgetObj.style.width = width;
       if (height) curWidgetObj.style.height = height;
+      if (rotate) curWidgetObj.style.rotate = rotate;
     },
 
     setShapePosStyle({ curWidgetObj }, { key, value }) {
