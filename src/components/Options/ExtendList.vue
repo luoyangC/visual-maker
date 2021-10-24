@@ -1,18 +1,10 @@
 <template>
-  <div class="extend-list">
-    敬请期待！
-  </div>
+  <div class="extend-list"> 扩展能力敬请期待！ </div>
 </template>
 
-<script>
-export default {
-  name: 'ExtendList',
-};
-</script>
-
 <style lang="scss" scoped>
-.extend-list {
-  display: flex;
-  justify-content: center;
-}
+  .extend-list {
+    display: flex;
+    justify-content: center;
+  }
 </style>

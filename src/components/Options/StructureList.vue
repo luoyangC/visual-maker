@@ -1,18 +1,10 @@
 <template>
-  <div class="structure-list">
-    敬请期待！
-  </div>
+  <div class="structure-list"> 结构能力敬请期待！ </div>
 </template>
 
-<script>
-export default {
-  name: 'StructureList',
-};
-</script>
-
 <style lang="scss" scoped>
-.structure-list {
-  display: flex;
-  justify-content: center;
-}
+  .structure-list {
+    display: flex;
+    justify-content: center;
+  }
 </style>

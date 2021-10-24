@@ -1,16 +1,50 @@
 @for $i from 5 to 26 {
   .mt-#{$i} {
+    display: block;
     margin-top: 1px * $i;
   }
   .ml-#{$i} {
+    display: block;
     margin-left: 1px * $i;
   }
   .mr-#{$i} {
+    display: block;
     margin-right: 1px * $i;
   }
   .mb-#{$i} {
+    display: block;
     margin-bottom: 1px * $i;
   }
+}
+
+.g-flex--ac {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.g-flex--bc {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.g-flex--cc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.g-flex--sc {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.g-flex--ec {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .v-link {
@@ -44,9 +78,13 @@
 
 .v-table {
   display: flex;
+  .v-slot:first-child .v-table-column {
+    border-left: 1px solid #ccc;
+  }
   &-column {
-  border: 1px solid #ccc;
-
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
   }
   &-head {
     font-weight: bold;

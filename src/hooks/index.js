@@ -1,3 +1,0 @@
-import './dynamic';
-import './widget'
-;

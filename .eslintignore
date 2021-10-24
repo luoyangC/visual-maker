@@ -1,6 +1,2 @@
-build/*.js
-src/assets
-public
-static
-assets
+node_modules
 dist
