@@ -50,7 +50,7 @@
     if (isSlotSettled) {
       // 插槽为固定插槽，长宽设为父组件长宽，定位设为0
       if (
-        props.widget.style.height < innerWidget.style.minHeight &&
+        props.widget.style.height < innerWidget.style.minHeight ||
         props.widget.style.width < innerWidget.style.minWidth
       ) {
         return message.alert('进不去，怎么想都进不去', { confirmButtonText: '确定' })
@@ -135,6 +135,7 @@
       }
 
       const move = debounce((moveEvent) => {
+        store.dispatch('widget/setAction', true)
         createVirtualWidget()
 
         const currX = moveEvent.clientX
@@ -146,6 +147,7 @@
       })
 
       const up = debounce(() => {
+        store.dispatch('widget/setAction', false)
         document.removeEventListener('mousemove', move)
         document.removeEventListener('mouseup', up)
 

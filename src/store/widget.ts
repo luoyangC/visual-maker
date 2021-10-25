@@ -7,6 +7,7 @@ import { widgetHook } from '@/hooks/widget'
 export interface WidgetState {
   root: WidgetConfig
   current: WidgetConfig
+  action: boolean
 }
 
 const rootWidget = widgetHook.getWidgetConfig('root')
@@ -16,13 +17,15 @@ export const widget: Module<WidgetState, RootState> = {
 
   state: {
     root: rootWidget,
-    current: rootWidget
+    current: rootWidget,
+    action: false
   },
 
   getters: {
     root: (state) => state.root,
     current: (state) => state.current,
-    isSettled: (state) => Boolean(state.current.settled)
+    isSettled: (state) => Boolean(state.current.settled),
+    isAction: (state) => state.action
   },
 
   mutations: {
@@ -46,6 +49,9 @@ export const widget: Module<WidgetState, RootState> = {
       for (const key in styles) {
         styles[key] && (curWidget.style[key] = styles[key])
       }
+    },
+    SET_ACTION(state, action: boolean) {
+      state.action = action
     }
   },
 
@@ -79,6 +85,9 @@ export const widget: Module<WidgetState, RootState> = {
           commit('SET_STYLE', { widget: item, styles: { top, left, rotate } })
         })
       }
+    },
+    setAction({ commit }, action) {
+      commit('SET_ACTION', action)
     }
   }
 }
