@@ -1,5 +1,6 @@
 <template>
   <div
+    ref="VmSlot"
     :class="{
       'vm-slot': true,
       'vm-slot--root': isRoot,
@@ -19,11 +20,10 @@
 
 <script setup lang="ts">
   import type { WidgetConfig } from '@/models/widget'
-  import { computed } from 'vue'
+  import { computed, ref } from 'vue'
   import { useStore } from '@/store'
   import { widgetHook } from '@/hooks/widget'
   import { useMessage } from '@/commons/useMessage'
-  import { debounce } from '@/utils'
 
   const props = defineProps<{ widget: WidgetConfig }>()
   const store = useStore()
@@ -35,6 +35,8 @@
   const isRoot = props.widget?.parent?.type === 'root'
   const isSlotSettled = Boolean(props.widget.settled)
   const isSlotFilled = computed(() => isSlotSettled && props.widget.children?.length)
+
+  const VmSlot = ref()
 
   const handleDrop = (e: any) => {
     e.preventDefault()
@@ -82,9 +84,14 @@
 
   const handleMouseDown = (e: any) => {
     e.preventDefault()
+
     if (!isSlotSettled) {
       const startY = e.clientY
       const startX = e.clientX
+      const slotWidth = isSlotSettled ? props.widget.style.width : props.widget.parent?.style.width
+      const slotHeight = isSlotSettled
+        ? props.widget.style.height
+        : props.widget.parent?.style.height
 
       let isMove = false
 
@@ -104,6 +111,7 @@
 
       const findIntersection = () => {
         const widgets = props.widget.children || []
+
         if (widgets?.length <= 1) return false
 
         const curCoord = [
@@ -134,22 +142,29 @@
         return intersections.length
       }
 
-      const move = debounce((moveEvent) => {
+      const move = (moveEvent: any) => {
+        moveEvent.preventDefault()
+        moveEvent.stopPropagation()
+
         store.dispatch('widget/setAction', true)
         createVirtualWidget()
 
-        const currX = moveEvent.clientX
-        const currY = moveEvent.clientY
-        const height = currY - startY
-        const width = currX - startX
+        const curX = moveEvent.clientX
+        const curY = moveEvent.clientY
+        const height = curY - startY
+        const width = curX - startX
 
-        store.dispatch('widget/setStyle', { height, width })
-      })
+        if (moveEvent.offsetX >= slotWidth - 1 || moveEvent.offsetY >= slotHeight - 1) {
+          store.dispatch('widget/delete')
+        } else {
+          store.dispatch('widget/setStyle', { height, width })
+        }
+      }
 
-      const up = debounce(() => {
+      const up = () => {
         store.dispatch('widget/setAction', false)
-        document.removeEventListener('mousemove', move)
-        document.removeEventListener('mouseup', up)
+        VmSlot.value.removeEventListener('mousemove', move)
+        VmSlot.value.removeEventListener('mouseup', up)
 
         if (isMove) {
           isMove = false
@@ -157,10 +172,10 @@
           const res = findIntersection()
           !res && store.dispatch('widget/delete')
         }
-      })
+      }
 
-      document.addEventListener('mousemove', move)
-      document.addEventListener('mouseup', up)
+      VmSlot.value.addEventListener('mousemove', move)
+      VmSlot.value.addEventListener('mouseup', up)
     }
   }
 </script>

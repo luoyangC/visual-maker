@@ -134,11 +134,11 @@
       store.dispatch('widget/setStyle', pos)
     })
     const up = debounce(() => {
-      document.removeEventListener('mousemove', move)
-      document.removeEventListener('mouseup', up)
+      VmShape.value.removeEventListener('mousemove', move)
+      VmShape.value.removeEventListener('mouseup', up)
     })
-    document.addEventListener('mousemove', move)
-    document.addEventListener('mouseup', up)
+    VmShape.value.addEventListener('mousemove', move)
+    VmShape.value.addEventListener('mouseup', up)
   }
 
   const handleMouseDown = (e: any) => {
@@ -160,22 +160,22 @@
     const move = debounce((moveEvent) => {
       store.dispatch('widget/setAction', true)
 
-      const currX = moveEvent.clientX
-      const currY = moveEvent.clientY
-      pos.top = currY - startY + startTop
-      pos.left = currX - startX + startLeft
+      const curX = moveEvent.clientX
+      const curY = moveEvent.clientY
+      pos.top = curY - startY + startTop
+      pos.left = curX - startX + startLeft
 
       store.dispatch('widget/setStyle', pos)
     })
 
     const up = debounce(() => {
       store.dispatch('widget/setAction', false)
-      document.removeEventListener('mousemove', move)
-      document.removeEventListener('mouseup', up)
+      VmShape.value.removeEventListener('mousemove', move)
+      VmShape.value.removeEventListener('mouseup', up)
     })
 
-    document.addEventListener('mousemove', move)
-    document.addEventListener('mouseup', up)
+    VmShape.value.addEventListener('mousemove', move)
+    VmShape.value.addEventListener('mouseup', up)
   }
 
   const handleMouseDownOnPoint = (point: string) => {
@@ -196,10 +196,10 @@
     const move = (moveEvent: any) => {
       store.dispatch('widget/setAction', true)
 
-      const currX = moveEvent.clientX
-      const currY = moveEvent.clientY
-      const disY = currY - startY
-      const disX = currX - startX
+      const curX = moveEvent.clientX
+      const curY = moveEvent.clientY
+      const disY = curY - startY
+      const disX = curX - startX
       const hasT = /t/.test(point)
       const hasB = /b/.test(point)
       const hasL = /l/.test(point)
@@ -220,12 +220,12 @@
     const up = () => {
       store.dispatch('widget/setAction', false)
 
-      document.removeEventListener('mousemove', move)
-      document.removeEventListener('mouseup', up)
+      VmShape.value.removeEventListener('mousemove', move)
+      VmShape.value.removeEventListener('mouseup', up)
     }
 
-    document.addEventListener('mousemove', move)
-    document.addEventListener('mouseup', up)
+    VmShape.value.addEventListener('mousemove', move)
+    VmShape.value.addEventListener('mouseup', up)
   }
 
   const handleContextMenu = (e: any) => {
