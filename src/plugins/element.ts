@@ -16,9 +16,8 @@ import {
   ElDivider,
   ElInput,
   ElInputNumber,
-  ElMessageBox
+  ElDialog
 } from 'element-plus'
-import 'element-plus/dist/index.css'
 
 export default function elementPlugin(app: App) {
   app.config.globalProperties.$ELEMENT = {
@@ -41,5 +40,5 @@ export default function elementPlugin(app: App) {
   app.use(ElDivider)
   app.use(ElInput)
   app.use(ElInputNumber)
-  app.use(ElMessageBox)
+  app.use(ElDialog)
 }

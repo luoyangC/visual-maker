@@ -2,7 +2,7 @@
   <div id="editor" class="editor">
     <vm-shape :key="rootWidget.id" :widget="rootWidget" />
     <!-- 右击菜单 -->
-    <ContextMenu />
+    <VmMenu />
     <!-- 标线 -->
     <!-- <mark-line /> -->
   </div>
@@ -11,7 +11,7 @@
 <script setup lang="ts">
   import { useStore } from '@/store'
   import { computed } from 'vue'
-  import ContextMenu from './ContextMenu.vue'
+  import VmMenu from './VmMenu.vue'
   // import VmShape from './VmShape.vue'
 
   const store = useStore()

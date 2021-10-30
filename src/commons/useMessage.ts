@@ -1,15 +1,25 @@
-import { getCurrentInstance } from 'vue'
+import { ElMessageBox, ElMessage } from 'element-plus'
 
-export const useMessage = () => {
-  const vm = getCurrentInstance()
+interface MessageOption {
+  mode: 'message' | 'alert' | 'confirm' | 'prompt'
+  type: 'info' | 'success' | 'warning' | 'error'
+  message: string
+}
 
-  const alert = vm?.appContext.config.globalProperties.$alert
-  const prompt = vm?.appContext.config.globalProperties.$prompt
-  const confirm = vm?.appContext.config.globalProperties.$confirm
-
-  return {
-    alert,
-    prompt,
-    confirm
+export const useMessage = (options: MessageOption) => {
+  if (options.mode === 'message') {
+    return ElMessage({
+      type: options.type,
+      message: options.message
+    })
+  }
+  if (options.mode === 'alert') {
+    return ElMessageBox.alert(options.message)
+  }
+  if (options.mode === 'confirm') {
+    return ElMessageBox.confirm(options.message)
+  }
+  if (options.mode === 'prompt') {
+    return ElMessageBox.prompt(options.message)
   }
 }

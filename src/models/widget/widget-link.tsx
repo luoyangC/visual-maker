@@ -25,6 +25,18 @@ export class LinkWidget extends Widget {
     )
   }
 
+  getPreview(config: WidgetConfig) {
+    return h(
+      'a',
+      {
+        class: 'v-link v-preview',
+        style: this.getWidgetStyle(config.style),
+        href: config.props?.href
+      },
+      config.props?.value
+    )
+  }
+
   getConfig() {
     const config: WidgetConfig = {
       type: 'link',

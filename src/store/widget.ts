@@ -5,7 +5,6 @@ import { isDef } from '@/utils'
 import { widgetHook } from '@/hooks/widget'
 
 export interface WidgetState {
-  activeKey: number
   root: WidgetConfig
   current: WidgetConfig
   action: boolean
@@ -17,7 +16,6 @@ export const widget: Module<WidgetState, RootState> = {
   namespaced: true,
 
   state: {
-    activeKey: 0,
     root: rootWidget,
     current: rootWidget,
     action: false
@@ -43,12 +41,10 @@ export const widget: Module<WidgetState, RootState> = {
         const parentWidget = state.current.parent?.parent || state.root
         state.current.parent?.children?.splice(index as number, 1)
         state.current = parentWidget
-        state.activeKey = 0
       }
     },
     SET_CURRENT(state, current: WidgetConfig) {
       state.current = current
-      state.activeKey = current.id || 1
     },
     SET_STYLE(state, { widget, styles }: { widget?: WidgetConfig; styles: LooseOptions }) {
       const curWidget = widget || state.current
@@ -79,8 +75,6 @@ export const widget: Module<WidgetState, RootState> = {
       commit('SET_CURRENT', current)
     },
     setStyle({ state, commit }, styles) {
-      if (state.activeKey !== state.current.id) return
-
       const relativeY = styles.top - state.current.style.top
       const relativeX = styles.left - state.current.style.left
       const relativeR = styles.rotate - state.current.style.rotate

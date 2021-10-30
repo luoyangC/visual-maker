@@ -32,6 +32,18 @@ export class ImageWidget extends Widget {
     )
   }
 
+  getPreview(config: WidgetConfig) {
+    return h(
+      'img',
+      {
+        class: 'v-image v-preview',
+        style: { ...this.getWidgetStyle(config.style), ...this.getImageAttrs(config.attrs) },
+        src: config.props?.src
+      },
+      config.props?.label
+    )
+  }
+
   getConfig() {
     const config: WidgetConfig = {
       type: 'image',

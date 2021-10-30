@@ -24,6 +24,17 @@ export class ButtonWidget extends Widget {
     )
   }
 
+  getPreview(config: WidgetConfig) {
+    return h(
+      'button',
+      {
+        class: 'v-button v-preview',
+        style: this.getWidgetStyle(config.style)
+      },
+      config.props?.label
+    )
+  }
+
   getConfig() {
     const config: WidgetConfig = {
       type: 'button',

@@ -40,3 +40,19 @@ table {
 .clear {
   *zoom: 1;
 }
+
+.el-overlay {
+  display: flex;
+  justify-content: center;
+}
+
+.el-overlay-dialog {
+  top: auto;
+  left: auto;
+  right: auto;
+  bottom: auto;
+}
+
+.el-dialog {
+  width: auto;
+}

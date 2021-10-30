@@ -134,11 +134,11 @@
       store.dispatch('widget/setStyle', pos)
     })
     const up = debounce(() => {
-      VmShape.value.removeEventListener('mousemove', move)
-      VmShape.value.removeEventListener('mouseup', up)
+      window.removeEventListener('mousemove', move)
+      window.removeEventListener('mouseup', up)
     })
-    VmShape.value.addEventListener('mousemove', move)
-    VmShape.value.addEventListener('mouseup', up)
+    window.addEventListener('mousemove', move)
+    window.addEventListener('mouseup', up)
   }
 
   const handleMouseDown = (e: any) => {
@@ -170,12 +170,12 @@
 
     const up = debounce(() => {
       store.dispatch('widget/setAction', false)
-      VmShape.value.removeEventListener('mousemove', move)
-      VmShape.value.removeEventListener('mouseup', up)
+      window.removeEventListener('mousemove', move)
+      window.removeEventListener('mouseup', up)
     })
 
-    VmShape.value.addEventListener('mousemove', move)
-    VmShape.value.addEventListener('mouseup', up)
+    window.addEventListener('mousemove', move)
+    window.addEventListener('mouseup', up)
   }
 
   const handleMouseDownOnPoint = (point: string) => {
@@ -220,12 +220,12 @@
     const up = () => {
       store.dispatch('widget/setAction', false)
 
-      VmShape.value.removeEventListener('mousemove', move)
-      VmShape.value.removeEventListener('mouseup', up)
+      window.removeEventListener('mousemove', move)
+      window.removeEventListener('mouseup', up)
     }
 
-    VmShape.value.addEventListener('mousemove', move)
-    VmShape.value.addEventListener('mouseup', up)
+    window.addEventListener('mousemove', move)
+    window.addEventListener('mouseup', up)
   }
 
   const handleContextMenu = (e: any) => {

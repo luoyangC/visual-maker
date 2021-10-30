@@ -18,6 +18,8 @@ export class VirtualWidget extends Widget {
     })
   }
 
+  getPreview(config: WidgetConfig) {}
+
   getConfig() {
     const config: WidgetConfig = {
       type: 'virtual',

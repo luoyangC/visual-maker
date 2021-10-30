@@ -64,6 +64,18 @@ export class TableWidget extends Widget {
     )
   }
 
+  getPreview(config: WidgetConfig) {
+    const columns = config.children?.map((item) => this.getWidget('slot').getPreview(item))
+    return h(
+      'div',
+      {
+        class: 'v-table v-preview',
+        style: { ...this.getWidgetStyle(config.style, config), ...this.getTableAttrs(config.attrs) }
+      },
+      [columns]
+    )
+  }
+
   getConfig() {
     const config: WidgetConfig = {
       type: 'table',

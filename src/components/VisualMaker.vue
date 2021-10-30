@@ -5,7 +5,7 @@
       <vm-icon name="redo" text="重做" class="header-item" />
       <vm-icon name="delete" text="清空" class="header-item" />
       <vm-icon name="save" text="保存" class="header-item" />
-      <vm-icon name="preview" text="预览" class="header-item" />
+      <vm-icon name="preview" text="预览" class="header-item" @click="preview" />
     </el-header>
     <el-main class="vm-main">
       <div class="vm-aside" @click.stop="checkOption">
@@ -35,6 +35,9 @@
           </el-tab-pane>
         </el-tabs>
       </div>
+      <div class="vm-preview">
+        <Preview v-model="showPreview" />
+      </div>
     </el-main>
   </el-container>
 </template>
@@ -49,9 +52,11 @@
   import Editor from './Editor/index.vue'
   import AttrList from './Attrs/AttrList.vue'
   import PropList from './Attrs/PropList.vue'
+  import Preview from './Preview/index.vue'
 
   const option = ref('1')
   const active = ref('attr')
+  const showPreview = ref(false)
 
   const getItemNode = (node: any): any => {
     if (node.classList.value.includes('aside-item')) {
@@ -67,7 +72,9 @@
 
   // const undo = () => {}
   // const redo = () => {}
-  // const preview = () => {}
+  const preview = () => {
+    showPreview.value = true
+  }
   // const save = () => {}
   // const clearCanvas = () => {}
 </script>

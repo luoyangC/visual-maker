@@ -75,6 +75,28 @@ export class ColumnWidget extends Widget {
     )
   }
 
+  getItemPreview(config: WidgetConfig) {
+    const template = this.getWidget('slot').getPreview(config)
+    return h('dd', { class: 'v-table-cell v-preview', style: this.getItemStyle(config) }, [
+      template
+    ])
+  }
+
+  getPreview(config: WidgetConfig) {
+    const head = this.getHeadTemplate(config)
+    const items = config.children?.map((item) => {
+      return this.getItemPreview(item)
+    })
+    return h(
+      'dl',
+      {
+        class: 'v-table-column v-preview',
+        style: this.getWidgetStyle(config.style, config)
+      },
+      [head, items]
+    )
+  }
+
   getConfig(options: WidgetConfigOptions) {
     const config: WidgetConfig = {
       type: 'column',

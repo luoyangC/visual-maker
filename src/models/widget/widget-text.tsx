@@ -24,6 +24,17 @@ export class TextWidget extends Widget {
     )
   }
 
+  getPreview(config: WidgetConfig) {
+    return h(
+      'div',
+      {
+        class: 'v-text v-preview',
+        style: this.getWidgetStyle(config.style)
+      },
+      config.props?.value
+    )
+  }
+
   getConfig() {
     const config: WidgetConfig = {
       type: 'text',

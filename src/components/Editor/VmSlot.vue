@@ -27,7 +27,6 @@
 
   const props = defineProps<{ widget: WidgetConfig }>()
   const store = useStore()
-  const message = useMessage()
 
   const curWidget = computed(() => store.getters['widget/current'])
   const isParentActive = computed(() => props.widget.parent === curWidget.value)
@@ -55,7 +54,11 @@
         props.widget.style.height < innerWidget.style.minHeight ||
         props.widget.style.width < innerWidget.style.minWidth
       ) {
-        return message.alert('进不去，怎么想都进不去', { confirmButtonText: '确定' })
+        return useMessage({
+          mode: 'message',
+          type: 'warning',
+          message: '进不去，怎么想都进不去！！！'
+        })
       }
       innerWidget.style.height = props.widget.style.height
       innerWidget.style.width = props.widget.style.width

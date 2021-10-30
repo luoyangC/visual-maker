@@ -15,6 +15,13 @@ export class RootWidget extends Widget {
     return h('div', { class: 'v-root', style: this.getWidgetStyle(config.style) }, [template])
   }
 
+  getPreview(config: WidgetConfig) {
+    const template = this.getWidget('slot').getPreview(config?.children?.[0])
+    return h('div', { class: 'v-root v-preview', style: this.getWidgetStyle(config.style) }, [
+      template
+    ])
+  }
+
   getConfig() {
     const config: WidgetConfig = {
       type: 'root',

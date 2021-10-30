@@ -8,8 +8,15 @@ export class SlotWidget extends Widget {
     this.isDrag = false
     this.isEnum = false
   }
+
   getTemplate(config: WidgetConfig) {
     return h(resolveComponent('VmSlot'), { class: 'v-slot', widget: config })
+  }
+
+  getPreview(config: WidgetConfig) {
+    return config.children?.map((item) => {
+      return this.getWidget(item.type).getPreview(item)
+    })
   }
 
   getConfig(options: WidgetConfigOptions) {

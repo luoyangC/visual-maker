@@ -93,3 +93,11 @@
     border-top: 1px solid #ccc;
   }
 }
+
+.v-preview {
+  position: absolute;
+}
+
+.v-root.v-preview {
+  position: relative !important;
+}

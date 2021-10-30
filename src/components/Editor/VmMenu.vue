@@ -1,8 +1,10 @@
 <template>
-  <div v-show="show" class="contextmenu" :style="{ top: top + 'px', left: left + 'px' }">
+  <div v-show="show" class="vm-menu" :style="{ top: top + 'px', left: left + 'px' }">
     <ul>
-      <li @click="delWidgetObj">删除</li>
+      <li @click="delWidget">删除</li>
       <li @click="setWidgetLock">锁定</li>
+      <li @click="copyWidget">复制</li>
+      <li @click="pasteWidget">粘贴</li>
     </ul>
   </div>
 </template>
@@ -16,7 +18,7 @@
   const left = computed(() => store.getters['menu/left'])
   const show = computed(() => store.getters['menu/show'])
 
-  const delWidgetObj = () => {
+  const delWidget = () => {
     store.dispatch('widget/delete')
     store.dispatch('menu/hidden')
   }
@@ -25,10 +27,14 @@
     store.dispatch('widget/lock')
     store.dispatch('menu/hidden')
   }
+
+  const copyWidget = () => {}
+
+  const pasteWidget = () => {}
 </script>
 
 <style lang="scss" scoped>
-  .contextmenu {
+  .vm-menu {
     z-index: 1000;
     position: fixed;
     ul {

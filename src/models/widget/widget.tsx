@@ -2,7 +2,7 @@ import { widgetHook } from '@/hooks/widget'
 import { isDef } from '@/utils'
 import { LooseOptions, WidgetConfigOptions, WidgetConfig } from '.'
 
-export class Widget {
+export abstract class Widget {
   name: string
   icon?: string
   label?: string
@@ -16,13 +16,11 @@ export class Widget {
     this.isEnum = false
   }
 
-  getTemplate(config?: WidgetConfig) {}
+  abstract getTemplate(config?: WidgetConfig): void
 
-  getPreview(config?: WidgetConfig) {}
+  abstract getPreview(config?: WidgetConfig): void
 
-  getConfig(options?: WidgetConfigOptions): WidgetConfig {
-    return { type: 'default', lock: true, style: {} }
-  }
+  abstract getConfig(options?: WidgetConfigOptions): WidgetConfig
 
   getWidget(name: string) {
     return widgetHook.getWidget(name)

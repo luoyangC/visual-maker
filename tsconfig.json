@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": "./",
     "target": "esnext",
     "useDefineForClassFields": true,
     "module": "esnext",
@@ -12,7 +13,7 @@
     "noImplicitAny": true,
     "lib": ["esnext", "dom"],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["src/*"]
     },
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "src/utils/index.js"]
