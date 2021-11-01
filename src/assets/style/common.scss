@@ -47,6 +47,14 @@
   align-items: center;
 }
 
+.g-pos--a {
+  position: absolute;
+}
+
+.g-pos--r {
+  position: relative;
+}
+
 .v-link {
   display: inline-flex;
   text-decoration: none;
@@ -94,10 +102,10 @@
   }
 }
 
-.v-preview {
-  position: absolute;
+.v-slot {
+  position: relative;
 }
 
-.v-root.v-preview {
+.v-root {
   position: relative !important;
 }

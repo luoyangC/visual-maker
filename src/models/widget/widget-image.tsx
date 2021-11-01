@@ -13,6 +13,14 @@ export class ImageWidget extends Widget {
     this.isEnum = false
   }
 
+  getHtml(config: WidgetConfig) {
+    const style = this.buildStyleString({
+      ...this.getWidgetStyle(config.style),
+      ...this.getImageAttrs(config.attrs)
+    })
+    return `<img class="v-image" style="${style}" src="${config.props?.src}"></img>`
+  }
+
   getImageAttrs(attrs?: LooseOptions) {
     return {
       objectFit: attrs?.objectFit
@@ -36,7 +44,7 @@ export class ImageWidget extends Widget {
     return h(
       'img',
       {
-        class: 'v-image v-preview',
+        class: 'v-image',
         style: { ...this.getWidgetStyle(config.style), ...this.getImageAttrs(config.attrs) },
         src: config.props?.src
       },

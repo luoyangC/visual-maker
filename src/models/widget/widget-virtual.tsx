@@ -10,6 +10,10 @@ export class VirtualWidget extends Widget {
     this.isEnum = false
   }
 
+  getHtml(config: WidgetConfig) {
+    return ''
+  }
+
   getTemplate(config: WidgetConfig) {
     return h('div', {
       class: 'v-virtual',
@@ -18,7 +22,9 @@ export class VirtualWidget extends Widget {
     })
   }
 
-  getPreview(config: WidgetConfig) {}
+  getPreview(config: WidgetConfig) {
+    return h('div', { class: '' })
+  }
 
   getConfig() {
     const config: WidgetConfig = {

@@ -6,6 +6,7 @@
       <vm-icon name="delete" text="清空" class="header-item" />
       <vm-icon name="save" text="保存" class="header-item" />
       <vm-icon name="preview" text="预览" class="header-item" @click="preview" />
+      <vm-export />
     </el-header>
     <el-main class="vm-main">
       <div class="vm-aside" @click.stop="checkOption">
@@ -53,6 +54,7 @@
   import AttrList from './Attrs/AttrList.vue'
   import PropList from './Attrs/PropList.vue'
   import Preview from './Preview/index.vue'
+  import VmExport from './Action/VmExport.vue'
 
   const option = ref('1')
   const active = ref('attr')

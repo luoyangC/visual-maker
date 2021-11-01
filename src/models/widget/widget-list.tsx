@@ -53,7 +53,7 @@ export class ListWidget extends Widget {
   }
 
   getItemTemplate(config: WidgetConfig, index: number) {
-    const template = this.getWidget('slot').getTemplate(config)
+    const template = this.getWidgetTemplate('slot', config)
     return h('li', { class: 'v-li', style: this.getItemStyle(config) }, [template])
   }
 
@@ -72,9 +72,26 @@ export class ListWidget extends Widget {
     )
   }
 
+  getItemHtml(config: WidgetConfig, index: number) {
+    const style = this.buildStyleString(this.getItemStyle(config))
+    const template = this.getWidgetHtml('slot', config)
+    return `<li class="v-li" style="${style}">${template}</li>`
+  }
+
   getItemPreview(config: WidgetConfig, index: number) {
-    const template = this.getWidget('slot').getPreview(config)
+    const template = this.getWidgetPreview('slot', config)
     return h('li', { class: 'v-li', style: this.getItemStyle(config) }, [template])
+  }
+
+  getHtml(config: WidgetConfig) {
+    const style = this.buildStyleString({
+      ...this.getWidgetStyle(config.style, config),
+      ...this.getListAttrs(config.attrs)
+    })
+    const templates = config.children?.map((item, index) => {
+      return this.getItemHtml(item, index)
+    })
+    return `<ul class="v-ul" style="${style}">${templates?.join('')}</ul>`
   }
 
   getPreview(config: WidgetConfig) {
@@ -84,7 +101,7 @@ export class ListWidget extends Widget {
     return h(
       'ul',
       {
-        class: 'v-ul v-preview',
+        class: 'v-ul',
         style: { ...this.getWidgetStyle(config.style, config), ...this.getListAttrs(config.attrs) }
       },
       [items]

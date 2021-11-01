@@ -9,14 +9,20 @@ export class SlotWidget extends Widget {
     this.isEnum = false
   }
 
+  getHtml(config: WidgetConfig) {
+    const templates = config.children?.map((item) => {
+      return this.getWidgetHtml(item.type, item)
+    })
+    return templates?.join('') || ''
+  }
+
   getTemplate(config: WidgetConfig) {
     return h(resolveComponent('VmSlot'), { class: 'v-slot', widget: config })
   }
 
   getPreview(config: WidgetConfig) {
-    return config.children?.map((item) => {
-      return this.getWidget(item.type).getPreview(item)
-    })
+    const templates = config.children?.map((item) => this.getWidgetPreview(item.type, item))
+    return h('div', { class: 'v-slot' }, templates)
   }
 
   getConfig(options: WidgetConfigOptions) {

@@ -12,6 +12,11 @@ export class LinkWidget extends Widget {
     this.isEnum = false
   }
 
+  getHtml(config: WidgetConfig) {
+    const style = this.buildStyleString(this.getWidgetStyle(config.style))
+    return `<a class="v-link" style="${style}" href="${config.props?.href}">${config.props?.value}</a>`
+  }
+
   getTemplate(config: WidgetConfig) {
     return h(
       'a',
@@ -29,7 +34,7 @@ export class LinkWidget extends Widget {
     return h(
       'a',
       {
-        class: 'v-link v-preview',
+        class: 'v-link',
         style: this.getWidgetStyle(config.style),
         href: config.props?.href
       },

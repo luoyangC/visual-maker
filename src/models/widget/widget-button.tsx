@@ -12,6 +12,11 @@ export class ButtonWidget extends Widget {
     this.isEnum = false
   }
 
+  getHtml(config: WidgetConfig) {
+    const style = this.buildStyleString(this.getWidgetStyle(config.style))
+    return `<button class="v-button" style="${style}">${config.props?.label}</button>`
+  }
+
   getTemplate(config: WidgetConfig) {
     return h(
       'button',
@@ -28,7 +33,7 @@ export class ButtonWidget extends Widget {
     return h(
       'button',
       {
-        class: 'v-button v-preview',
+        class: 'v-button',
         style: this.getWidgetStyle(config.style)
       },
       config.props?.label

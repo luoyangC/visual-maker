@@ -49,7 +49,7 @@ export class TableWidget extends Widget {
   }
 
   getTemplate(config: WidgetConfig) {
-    const columns = config.children?.map((item) => this.getWidget('slot').getTemplate(item))
+    const columns = config.children?.map((item) => this.getWidgetTemplate('slot', item))
     return h(
       'div',
       {
@@ -64,12 +64,21 @@ export class TableWidget extends Widget {
     )
   }
 
+  getHtml(config: WidgetConfig) {
+    const style = this.buildStyleString({
+      ...this.getWidgetStyle(config.style, config),
+      ...this.getTableAttrs(config.attrs)
+    })
+    const templates = config.children?.map((item) => this.getWidgetHtml('slot', item))
+    return `<div class="v-table" style="${style}">${templates?.join('')}</div>`
+  }
+
   getPreview(config: WidgetConfig) {
-    const columns = config.children?.map((item) => this.getWidget('slot').getPreview(item))
+    const columns = config.children?.map((item) => this.getWidgetPreview('slot', item))
     return h(
       'div',
       {
-        class: 'v-table v-preview',
+        class: 'v-table',
         style: { ...this.getWidgetStyle(config.style, config), ...this.getTableAttrs(config.attrs) }
       },
       [columns]

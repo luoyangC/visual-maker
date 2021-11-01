@@ -12,7 +12,7 @@
       }
     },
     render() {
-      return widgetHook.getWidget(this.widget.type).getPreview(this.widget as WidgetConfig)
+      return widgetHook.getWidgetPreview(this.widget.type, this.widget as WidgetConfig)
     }
   })
 </script>

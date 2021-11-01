@@ -1,5 +1,5 @@
 <template>
-  <el-dialog :model-value="modelValue" @closed="emits('update:modelValue', false)">
+  <el-dialog :model-value="modelValue" destroy-on-close @closed="emits('update:modelValue', false)">
     <vm-preview :widget="rootWidget" />
   </el-dialog>
 </template>

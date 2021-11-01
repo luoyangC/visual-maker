@@ -1,5 +1,6 @@
 import { widgetHook } from '@/hooks/widget'
 import { isDef } from '@/utils'
+import { VNode } from 'vue'
 import { LooseOptions, WidgetConfigOptions, WidgetConfig } from '.'
 
 export abstract class Widget {
@@ -15,23 +16,32 @@ export abstract class Widget {
     this.isDrag = false
     this.isEnum = false
   }
-
-  abstract getTemplate(config?: WidgetConfig): void
-
-  abstract getPreview(config?: WidgetConfig): void
-
   abstract getConfig(options?: WidgetConfigOptions): WidgetConfig
+
+  abstract getTemplate(config?: WidgetConfig): VNode
+
+  abstract getPreview(config?: WidgetConfig): VNode
+
+  abstract getHtml(config?: WidgetConfig): string
 
   getWidget(name: string) {
     return widgetHook.getWidget(name)
   }
 
-  getWidgetTemplate(name: string, config: WidgetConfig) {
-    return this.getWidget(name).getTemplate(config)
-  }
-
   getWidgetConfig(name: string, options: WidgetConfigOptions): WidgetConfig {
     return widgetHook.getWidgetConfig(name, options)
+  }
+
+  getWidgetTemplate(name: string, config: WidgetConfig) {
+    return widgetHook.getWidgetTemplate(name, config)
+  }
+
+  getWidgetPreview(name: string, config: WidgetConfig) {
+    return widgetHook.getWidgetPreview(name, config)
+  }
+
+  getWidgetHtml(name: string, config: WidgetConfig) {
+    return widgetHook.getWidgetHtml(name, config)
   }
 
   getWidgetStyle(style?: LooseOptions, config?: WidgetConfig) {
@@ -98,5 +108,15 @@ export abstract class Widget {
 
   stopPropagation(e: Event) {
     e.stopPropagation()
+  }
+
+  buildStyleString(styles: LooseOptions): string {
+    let styleStr = ''
+    for (const key in styles) {
+      if (styles[key] && key !== 'textStyles') {
+        styleStr += `${key.replace(/([A-Z])/g, '-$1').toLowerCase()}:${styles[key]};`
+      }
+    }
+    return styleStr
   }
 }

@@ -1,9 +1,14 @@
-import type { Widget, WidgetConfigOptions } from '@/models/widget'
+import type { Widget, WidgetConfig, WidgetConfigOptions } from '@/models/widget'
 import { widgets } from '@/models/widget'
 import { generateID } from '@/utils'
 
 type WidgetKeys = keyof typeof widgets
-type WidgetModel = typeof Widget
+
+type InstantiableClass<T extends Widget> = {
+  new (): T
+}
+
+type WidgetModel = InstantiableClass<Widget>
 
 class WidgetHook {
   widgetMap: Map<string, InstanceType<WidgetModel>>
@@ -23,6 +28,27 @@ class WidgetHook {
     const config = this.getWidget(name).getConfig(options)
     config.id = id
     return config
+  }
+
+  getWidgetTemplate(name: string, config: WidgetConfig) {
+    const template = this.getWidget(name).getTemplate(config)
+    return template
+  }
+
+  getWidgetPreview(name: string, config: WidgetConfig) {
+    const preview: any = this.getWidget(name).getPreview(config)
+    if (preview.props && preview.props.class) {
+      preview.props.class += config.settled ? ' g-pos--r' : ' g-pos--a'
+    }
+    if (preview.props && preview.props.style && config.style?.rotate) {
+      preview.props.style.transform = `rotate(${config.style?.rotate}deg)`
+    }
+    return preview
+  }
+
+  getWidgetHtml(name: string, config: WidgetConfig) {
+    const html = this.getWidget(name).getHtml(config)
+    return html
   }
 
   newWidget(Widget: WidgetModel) {

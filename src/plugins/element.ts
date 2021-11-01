@@ -16,7 +16,9 @@ import {
   ElDivider,
   ElInput,
   ElInputNumber,
-  ElDialog
+  ElDialog,
+  ElDropdown,
+  ElDropdownMenu
 } from 'element-plus'
 
 export default function elementPlugin(app: App) {
@@ -41,4 +43,6 @@ export default function elementPlugin(app: App) {
   app.use(ElInput)
   app.use(ElInputNumber)
   app.use(ElDialog)
+  app.use(ElDropdown)
+  app.use(ElDropdownMenu)
 }

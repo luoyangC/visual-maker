@@ -55,7 +55,7 @@ export class ColumnWidget extends Widget {
   }
 
   getItemTemplate(config: WidgetConfig) {
-    const template = this.getWidget('slot').getTemplate(config)
+    const template = this.getWidgetTemplate('slot', config)
     return h('dd', { class: 'v-table-cell', style: this.getItemStyle(config) }, [template])
   }
 
@@ -75,11 +75,28 @@ export class ColumnWidget extends Widget {
     )
   }
 
+  getHeadHtml(config: WidgetConfig) {
+    const style = this.buildStyleString(this.getHeadStyle(config))
+    return `<div class="v-text" style="${style}">${config.props?.head}</div>`
+  }
+
+  getItemHtml(config: WidgetConfig) {
+    const style = this.buildStyleString(this.getItemStyle(config))
+    const template = this.getWidgetHtml('slot', config)
+    return `<dd class="v-table-cell" style="${style}">${template}</dd>`
+  }
+
   getItemPreview(config: WidgetConfig) {
-    const template = this.getWidget('slot').getPreview(config)
-    return h('dd', { class: 'v-table-cell v-preview', style: this.getItemStyle(config) }, [
-      template
-    ])
+    const template = this.getWidgetPreview('slot', config)
+    return h('dd', { class: 'v-table-cell', style: this.getItemStyle(config) }, [template])
+  }
+
+  getHtml(config: WidgetConfig) {
+    const style = this.buildStyleString(this.getWidgetStyle(config.style, config))
+    const templates = config.children?.map((item) => {
+      return this.getItemHtml(item)
+    })
+    return `<dl class="v-table-column" style="${style}">${templates?.join('')}</dl>`
   }
 
   getPreview(config: WidgetConfig) {
@@ -90,7 +107,7 @@ export class ColumnWidget extends Widget {
     return h(
       'dl',
       {
-        class: 'v-table-column v-preview',
+        class: 'v-table-column',
         style: this.getWidgetStyle(config.style, config)
       },
       [head, items]

@@ -70,7 +70,7 @@
       <vm-collapse title="更多属性">
         <vm-dynamic
           v-for="(item, index) in attrConfigs"
-          :key="index + item.model + item.id"
+          :key="`${String(index)}.${String(item.model)}.${String(item.id)}`"
           :config="item"
           :widget="curWidget"
           :model-type="'attrs'"

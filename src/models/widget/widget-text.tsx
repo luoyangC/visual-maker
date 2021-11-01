@@ -12,6 +12,11 @@ export class TextWidget extends Widget {
     this.isEnum = false
   }
 
+  getHtml(config: WidgetConfig) {
+    const style = this.buildStyleString(this.getWidgetStyle(config.style))
+    return `<div class="v-text" style="${style}">${config.props?.value}</div>`
+  }
+
   getTemplate(config: WidgetConfig) {
     return h(
       'div',
@@ -28,7 +33,7 @@ export class TextWidget extends Widget {
     return h(
       'div',
       {
-        class: 'v-text v-preview',
+        class: 'v-text',
         style: this.getWidgetStyle(config.style)
       },
       config.props?.value

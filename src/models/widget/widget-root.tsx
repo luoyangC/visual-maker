@@ -10,16 +10,20 @@ export class RootWidget extends Widget {
     this.isEnum = false
   }
 
+  getHtml(config: WidgetConfig) {
+    const style = this.buildStyleString(this.getWidgetStyle(config.style))
+    const template = this.getWidgetHtml('slot', config?.children?.[0] as WidgetConfig)
+    return `<div class="v-root" style="${style}">${template}</div>`
+  }
+
   getTemplate(config: WidgetConfig) {
-    const template = this.getWidget('slot').getTemplate(config?.children?.[0])
+    const template = this.getWidgetTemplate('slot', config?.children?.[0] as WidgetConfig)
     return h('div', { class: 'v-root', style: this.getWidgetStyle(config.style) }, [template])
   }
 
   getPreview(config: WidgetConfig) {
-    const template = this.getWidget('slot').getPreview(config?.children?.[0])
-    return h('div', { class: 'v-root v-preview', style: this.getWidgetStyle(config.style) }, [
-      template
-    ])
+    const template = this.getWidgetPreview('slot', config?.children?.[0] as WidgetConfig)
+    return h('div', { class: 'v-root', style: this.getWidgetStyle(config.style) }, [template])
   }
 
   getConfig() {
