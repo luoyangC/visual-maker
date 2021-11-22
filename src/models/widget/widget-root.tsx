@@ -11,9 +11,16 @@ export class RootWidget extends Widget {
   }
 
   getHtml(config: WidgetConfig) {
-    const style = this.buildStyleString(this.getWidgetStyle(config.style))
     const template = this.getWidgetHtml('slot', config?.children?.[0] as WidgetConfig)
-    return `<div class="v-root" style="${style}">${template}</div>`
+    return {
+      tag: 'div',
+      type: 'root',
+      props: {
+        class: 'v-root',
+        style: this.getWidgetStyle(config.style)
+      },
+      default: template
+    }
   }
 
   getTemplate(config: WidgetConfig) {

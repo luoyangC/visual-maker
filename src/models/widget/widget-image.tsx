@@ -14,11 +14,18 @@ export class ImageWidget extends Widget {
   }
 
   getHtml(config: WidgetConfig) {
-    const style = this.buildStyleString({
-      ...this.getWidgetStyle(config.style),
-      ...this.getImageAttrs(config.attrs)
-    })
-    return `<img class="v-image" style="${style}" src="${config.props?.src}"></img>`
+    return {
+      tag: 'img',
+      type: 'image',
+      props: {
+        class: 'v-image',
+        style: {
+          ...this.getWidgetStyle(config.style),
+          ...this.getImageAttrs(config.attrs)
+        },
+        src: config.props?.src
+      }
+    }
   }
 
   getImageAttrs(attrs?: LooseOptions) {

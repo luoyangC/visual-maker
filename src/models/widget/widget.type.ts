@@ -37,3 +37,10 @@ export interface WidgetConfigOptions {
   props?: LooseOptions
   parent?: WidgetConfig | null
 }
+
+export interface WidgetHtml {
+  tag: string
+  type: string
+  props: LooseOptions
+  default?: string | WidgetHtml | Array<WidgetHtml>
+}

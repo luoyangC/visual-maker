@@ -13,8 +13,15 @@ export class TextWidget extends Widget {
   }
 
   getHtml(config: WidgetConfig) {
-    const style = this.buildStyleString(this.getWidgetStyle(config.style))
-    return `<div class="v-text" style="${style}">${config.props?.value}</div>`
+    return {
+      tag: 'div',
+      type: 'text',
+      props: {
+        class: 'v-text',
+        style: this.getWidgetStyle(config.style)
+      },
+      default: config.props?.value
+    }
   }
 
   getTemplate(config: WidgetConfig) {

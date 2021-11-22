@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
   import { useStore } from '@/store'
-  import { widgetToJson } from '@/utils'
+  import { widgetToJson, widgetToHtml } from '@/utils'
   import { widgetHook } from '@/hooks/widget'
 
   const store = useStore()
@@ -20,26 +20,25 @@
   const exportHtml = () => {
     const rootWidget = store.getters['widget/root']
     const widgetHtml = widgetHook.getWidgetHtml('root', rootWidget)
-    const commonStyleMap: any = {
-      'v-root': 'position: absolute;',
-      'v-text': 'position: absolute;',
-      'v-image': 'position: absolute;'
-    }
+    const html = widgetToHtml(widgetHtml)
 
-    let style = ''
-    for (const key in commonStyleMap) {
-      style += `.${key}{${commonStyleMap[key]}}`
-    }
-    const str = `<!DOCTYPE html><html lang="en"><mate><style>${style}</style></mate><body>${widgetHtml}</body></html>`
-    console.log(str)
+    const blobParts = [html]
+    const blobs = new Blob(blobParts, { type: 'data:text/html;charset=utf-8' })
+    const link = document.createElement('a')
+
+    link.style.visibility = 'hidden'
+    document.body.appendChild(link)
+    link.href = URL.createObjectURL(blobs)
+    link.download = 'config.html'
+    link.click()
+    document.body.removeChild(link)
   }
   const exportJson = () => {
     const rootWidget = store.getters['widget/root']
     const widgetData = widgetToJson(rootWidget)
 
-    const blobs = new Blob([JSON.stringify(widgetData, null, 2)], {
-      type: 'data:application/json;charset=utf-8'
-    })
+    const blobParts = [JSON.stringify(widgetData, null, 2)]
+    const blobs = new Blob(blobParts, { type: 'data:application/json;charset=utf-8' })
     const link = document.createElement('a')
 
     link.style.visibility = 'hidden'

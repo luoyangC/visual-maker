@@ -10,10 +10,15 @@ export class SlotWidget extends Widget {
   }
 
   getHtml(config: WidgetConfig) {
-    const templates = config.children?.map((item) => {
-      return this.getWidgetHtml(item.type, item)
-    })
-    return templates?.join('') || ''
+    const templates = config.children?.map((item) => this.getWidgetHtml(item.type, item))
+    return {
+      tag: 'div',
+      type: 'slot',
+      props: {
+        class: 'v-slot'
+      },
+      default: templates
+    }
   }
 
   getTemplate(config: WidgetConfig) {

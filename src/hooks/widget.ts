@@ -47,8 +47,14 @@ class WidgetHook {
   }
 
   getWidgetHtml(name: string, config: WidgetConfig) {
-    const html = this.getWidget(name).getHtml(config)
-    return html
+    const widgetHtml = this.getWidget(name).getHtml(config)
+    if (widgetHtml.props && widgetHtml.props.class) {
+      widgetHtml.props.class += config.settled ? ' g-pos--r' : ' g-pos--a'
+    }
+    if (widgetHtml.props && widgetHtml.props.style && config.style?.rotate) {
+      widgetHtml.props.style.transform = `rotate(${config.style?.rotate}deg)`
+    }
+    return widgetHtml
   }
 
   newWidget(Widget: WidgetModel) {

@@ -11,7 +11,7 @@ export class VirtualWidget extends Widget {
   }
 
   getHtml(config: WidgetConfig) {
-    return ''
+    return { tag: 'div', type: 'virtual', props: {}, default: '' }
   }
 
   getTemplate(config: WidgetConfig) {

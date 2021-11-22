@@ -13,8 +13,16 @@ export class ButtonWidget extends Widget {
   }
 
   getHtml(config: WidgetConfig) {
-    const style = this.buildStyleString(this.getWidgetStyle(config.style))
-    return `<button class="v-button" style="${style}">${config.props?.label}</button>`
+    return {
+      tag: 'button',
+      type: 'button',
+      props: {
+        class: 'v-button',
+        style: this.getWidgetStyle(config.style),
+        src: config.props?.src
+      },
+      default: config.props?.label
+    }
   }
 
   getTemplate(config: WidgetConfig) {

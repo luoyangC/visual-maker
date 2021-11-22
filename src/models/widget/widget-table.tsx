@@ -65,12 +65,16 @@ export class TableWidget extends Widget {
   }
 
   getHtml(config: WidgetConfig) {
-    const style = this.buildStyleString({
-      ...this.getWidgetStyle(config.style, config),
-      ...this.getTableAttrs(config.attrs)
-    })
     const templates = config.children?.map((item) => this.getWidgetHtml('slot', item))
-    return `<div class="v-table" style="${style}">${templates?.join('')}</div>`
+    return {
+      tag: 'div',
+      type: 'table',
+      props: {
+        class: 'v-table',
+        style: { ...this.getWidgetStyle(config.style, config), ...this.getTableAttrs(config.attrs) }
+      },
+      default: templates
+    }
   }
 
   getPreview(config: WidgetConfig) {

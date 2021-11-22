@@ -76,14 +76,28 @@ export class ColumnWidget extends Widget {
   }
 
   getHeadHtml(config: WidgetConfig) {
-    const style = this.buildStyleString(this.getHeadStyle(config))
-    return `<div class="v-text" style="${style}">${config.props?.head}</div>`
+    return {
+      tag: 'dt',
+      type: 'columnHead',
+      props: {
+        class: 'v-table-head',
+        style: this.getHeadStyle(config)
+      },
+      default: config.props?.head
+    }
   }
 
   getItemHtml(config: WidgetConfig) {
-    const style = this.buildStyleString(this.getItemStyle(config))
     const template = this.getWidgetHtml('slot', config)
-    return `<dd class="v-table-cell" style="${style}">${template}</dd>`
+    return {
+      tag: 'dd',
+      type: 'columnItem',
+      props: {
+        class: 'v-table-cell',
+        style: this.getItemStyle(config)
+      },
+      default: template
+    }
   }
 
   getItemPreview(config: WidgetConfig) {
@@ -92,11 +106,17 @@ export class ColumnWidget extends Widget {
   }
 
   getHtml(config: WidgetConfig) {
-    const style = this.buildStyleString(this.getWidgetStyle(config.style, config))
-    const templates = config.children?.map((item) => {
-      return this.getItemHtml(item)
-    })
-    return `<dl class="v-table-column" style="${style}">${templates?.join('')}</dl>`
+    const head = this.getHeadHtml(config)
+    const templates = config.children?.map((item) => this.getItemHtml(item)) || []
+    return {
+      tag: 'dl',
+      type: 'column',
+      props: {
+        class: 'v-table-column',
+        style: this.getWidgetStyle(config.style, config)
+      },
+      default: [head, ...templates]
+    }
   }
 
   getPreview(config: WidgetConfig) {

@@ -1,4 +1,4 @@
-import type { WidgetConfig } from '@/models/widget'
+import type { LooseOptions, WidgetConfig, WidgetHtml } from '@/models/widget'
 
 type funcType = (...args: any) => any
 
@@ -13,3 +13,7 @@ export declare function debounce(func: funcType, wait?: number, options?: any): 
 export declare function throttle(func: funcType, wait?: number, options?: any): funcType
 
 export declare function widgetToJson(widget: WidgetConfig): any
+
+export declare function widgetToHtml(params: WidgetHtml): any
+
+export declare function styleToString(style: LooseOptions): string
