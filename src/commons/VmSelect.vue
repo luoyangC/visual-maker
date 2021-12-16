@@ -49,3 +49,9 @@
     emits('change', val)
   }
 </script>
+
+<style lang="scss" scoped>
+  .vm-select {
+    width: 100%;
+  }
+</style>

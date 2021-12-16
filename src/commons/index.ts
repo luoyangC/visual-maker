@@ -10,6 +10,7 @@ import VmInput from './VmInput.vue'
 import VmInputNumber from './VmInputNumber.vue'
 import VmSelect from './VmSelect.vue'
 import VmSlider from './VmSlider.vue'
+import VmChart from './VmChart.vue'
 
 import VmSlot from '@/components/Editor/VmSlot.vue'
 import VmShape from '@/components/Editor/VmShape.vue'
@@ -29,6 +30,7 @@ export default {
     app.component('VmInputNumber', VmInputNumber)
     app.component('VmSelect', VmSelect)
     app.component('VmSlider', VmSlider)
+    app.component('VmChart', VmChart)
 
     app.component('VmSlot', VmSlot)
     app.component('VmShape', VmShape)

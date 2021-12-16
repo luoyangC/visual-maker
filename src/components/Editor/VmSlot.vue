@@ -43,7 +43,8 @@
 
     // 获取组件配置
     const widgetName = e.dataTransfer.getData('type')
-    const innerWidget = widgetHook.getWidgetConfig(widgetName)
+    const subtype = e.dataTransfer.getData('subtype')
+    const innerWidget = widgetHook.getWidgetConfig(widgetName, { subtype })
 
     // 设置父组件
     innerWidget.parent = props.widget

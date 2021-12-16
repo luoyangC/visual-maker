@@ -3,6 +3,7 @@
     <vm-form-label :label="label" />
     <el-input-number
       :model-value="modelValue"
+      class="vm-input-number"
       size="small"
       :disabled="isDisabled"
       @input="handleInput"
@@ -35,7 +36,7 @@
 </script>
 
 <style lang="scss" scoped>
-  .el-input-number--small {
-    width: 180px;
+  .vm-input-number {
+    width: 100%;
   }
 </style>

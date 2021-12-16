@@ -10,6 +10,7 @@ import { ListWidget } from './widget-list'
 import { ColumnWidget } from './widget-column'
 import { TableWidget } from './widget-table'
 import { VirtualWidget } from './widget-virtual'
+import { ChartWidget } from './widget-chart'
 
 export const widgets = {
   TextWidget,
@@ -21,5 +22,6 @@ export const widgets = {
   ListWidget,
   ColumnWidget,
   TableWidget,
-  VirtualWidget
+  VirtualWidget,
+  ChartWidget
 }

@@ -1,14 +1,12 @@
 <template>
   <div class="prop-list">
-    <div class="prop-conponent">
-      <vm-dynamic
-        v-for="(item, index) in propConfigs"
-        :key="index"
-        :config="item"
-        :widget="curWidget"
-        class="mt-10"
-      />
-    </div>
+    <vm-dynamic
+      v-for="(item, index) in propConfigs"
+      :key="index"
+      :config="item"
+      :widget="curWidget"
+      class="mt-10"
+    />
   </div>
 </template>
 
@@ -21,10 +19,3 @@
   const curWidget = computed(() => store.getters['widget/current'])
   const propConfigs = computed(() => curWidget.value.propConfigs)
 </script>
-
-<style lang="scss" scoped>
-  .prop-conponent {
-    display: flex;
-    flex-direction: column;
-  }
-</style>

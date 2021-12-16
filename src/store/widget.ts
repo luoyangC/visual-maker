@@ -25,7 +25,8 @@ export const widget: Module<WidgetState, RootState> = {
     root: (state) => state.root,
     current: (state) => state.current,
     isSettled: (state) => Boolean(state.current.settled),
-    isAction: (state) => state.action
+    isAction: (state) => state.action,
+    iaActive: (state) => state.root.props?.schema === '2'
   },
 
   mutations: {

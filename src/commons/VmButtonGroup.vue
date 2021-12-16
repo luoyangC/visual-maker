@@ -89,28 +89,28 @@
       display: flex;
     }
     &-item {
-      padding: 6px 7px;
-      border: 1px solid #dcdfe6;
+      padding: 6px 10px;
+      border: 1px solid var(--el-border-color-base);
       border-left: 0;
       cursor: pointer;
       &--active {
-        background-color: #ebeef5;
+        background-color: var(--el-border-color-lighter);
       }
       &--disabled {
         cursor: not-allowed;
         background-image: none;
-        background-color: var(--el-disabled-fill-base);
-        border-color: var(--el-disabled-border-base);
-        color: var(--el-disabled-color-base);
+        background-color: var(--el-disabled-bg-color);
+        border-color: var(--el-disabled-border-color);
+        color: var(--el-disabled-text-color);
         &:hover {
-          background-color: var(--el-disabled-fill-base) !important;
+          background-color: var(--el-disabled-bg-color) !important;
         }
       }
       &:hover {
         background-color: #e1e4e7;
       }
       &:first-child {
-        border-left: 1px solid #dcdfe6;
+        border-left: 1px solid var(--el-border-color-base);
         border-radius: 4px 0 0 4px;
       }
       &:last-child {

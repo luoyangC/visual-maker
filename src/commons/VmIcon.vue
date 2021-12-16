@@ -66,11 +66,11 @@
     &--disabled {
       cursor: not-allowed;
       background-image: none;
-      background-color: var(--el-disabled-fill-base);
-      border-color: var(--el-disabled-border-base);
-      color: var(--el-disabled-color-base);
+      background-color: var(--el-disabled-bg-color);
+      border-color: var(--el-disabled-border-color);
+      color: var(--el-disabled-text-color);
       &:hover {
-        background-color: var(--el-disabled-fill-base) !important;
+        background-color: var(--el-disabled-bg-color) !important;
       }
     }
   }

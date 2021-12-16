@@ -62,7 +62,8 @@ export class RootWidget extends Widget {
         {
           label: '数据接口',
           type: 'input',
-          model: 'dataUrl'
+          model: 'dataUrl',
+          show: (props: any) => props.schema === '2'
         }
       ],
       parent: null,

@@ -6,6 +6,7 @@ export interface WidgetDynamicConfig {
   label: string
   type: string
   model: string
+  show?: Function
   func?: Function
   items?: Array<any>
 }
@@ -26,11 +27,15 @@ export interface WidgetConfig {
 
   parent?: WidgetConfig | null
   children?: Array<WidgetConfig>
+
+  subtype?: string
+  subConfig?: any
 }
 
 export interface WidgetConfigOptions {
   slotType?: string
   settled?: boolean
+  subtype?: string
 
   style?: LooseOptions
   attrs?: LooseOptions

@@ -5,7 +5,7 @@ export const useFormItem = () => {
   const vmForm = inject<{ disabled?: boolean; size?: number }>('vmForm', {})
 
   const label = attrs.label || ''
-  const width = attrs.width || 260
+  const width = attrs.width || 340
   const vmDisabled = computed(() => vmForm.disabled)
 
   return { label, width, vmDisabled }

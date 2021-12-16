@@ -116,7 +116,7 @@
     padding: 10px;
   }
   .vm-attribute {
-    width: 280px;
+    width: 360px;
     background-color: #ffffff;
     padding: 10px;
     box-shadow: 0 2px 10px rgb(0 0 0 / 5%);

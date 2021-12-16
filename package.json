@@ -9,13 +9,15 @@
     "deploy": "bash ./deploy.sh"
   },
   "dependencies": {
-    "element-plus": "^1.1.0",
+    "echarts": "^5.2.2",
+    "element-plus": "^1.2.0-beta.6",
     "vue": "^3.2.6",
     "vue-router": "^4.0.0",
     "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@types/node": "^16.10.2",
+    "@types/echarts": "^4.9.12",
     "@typescript-eslint/eslint-plugin": "^4.31.2",
     "@typescript-eslint/parser": "^4.31.2",
     "@vitejs/plugin-vue": "^1.6.1",

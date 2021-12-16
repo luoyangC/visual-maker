@@ -9,6 +9,9 @@ export class NumberDynamic extends Dynamic {
   }
 
   getTemplate(config: WidgetDynamicConfig, props: LooseOptions, widget: WidgetConfig) {
+    if (!this.checkDisplay(config, props, widget)) {
+      return ''
+    }
     return h(resolveComponent('vmInputNumber'), {
       modelValue: props[this.getModel(config) as string],
       label: config.label,

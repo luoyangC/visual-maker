@@ -27,7 +27,7 @@
           this.widget[this.modelType],
           this.widget as WidgetConfig
         )
-      return h('deiv', { class: 'vm-dynamic' }, [template])
+      return h('div', { class: 'vm-dynamic' }, [template])
     }
   })
 </script>

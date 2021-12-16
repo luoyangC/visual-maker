@@ -2,7 +2,7 @@
   <vm-form-item :width="width">
     <vm-form-label :label="label" />
     <el-slider v-model="innerData" class="vm-slider" :show-tooltip="false" :disabled="isDisabled" />
-    <vm-input v-model="innerData" width="58" type="number" class="ml-20" :disabled="isDisabled" />
+    <vm-input v-model="innerData" width="65" type="number" class="ml-20" :disabled="isDisabled" />
   </vm-form-item>
 </template>
 

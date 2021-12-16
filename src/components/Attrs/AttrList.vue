@@ -15,13 +15,13 @@
     <!-- 位置和长宽 -->
     <div class="attr-position">
       <div class="attr-cell g-flex--bc mt-10">
-        <vm-input v-model="curStyle.left" type="number" width="80" title="X" />
-        <vm-input v-model="curStyle.top" type="number" width="80" title="Y" />
-        <vm-input v-model="curStyle.rotate" type="number" width="80" icon="rote" />
+        <vm-input v-model="curStyle.left" type="number" width="100" title="X" />
+        <vm-input v-model="curStyle.top" type="number" width="100" title="Y" />
+        <vm-input v-model="curStyle.rotate" type="number" width="100" icon="rote" />
       </div>
       <div class="attr-cell g-flex--bc mt-10">
-        <vm-input v-model="curStyle.width" type="number" width="80" title="W" />
-        <vm-input v-model="curStyle.height" type="number" width="80" title="H" />
+        <vm-input v-model="curStyle.width" type="number" width="100" title="W" />
+        <vm-input v-model="curStyle.height" type="number" width="100" title="H" />
         <div class="attr-position__lock g-flex--sc">
           <vm-icon class="attr-icon" :name="lockIcon" @click="handleSwitchLock" />
         </div>
@@ -31,10 +31,15 @@
     <!-- 显示和隐藏 -->
     <div class="attr-display">
       <div class="attr-cell g-flex--bc mt-10">
-        <vm-slider v-model="curStyle.opacity" :convert="100" label="不透明度" />
+        <vm-slider v-model="curStyle.opacity" width="340" :convert="100" label="不透明度" />
       </div>
       <div class="attr-cell g-flex--bc mt-10">
-        <vm-select v-model="curStyle.overflow" :items="OVERFLOW_TYPES" label="超出范围" />
+        <vm-select
+          v-model="curStyle.overflow"
+          :items="OVERFLOW_TYPES"
+          label="超出范围"
+          width="340"
+        />
       </div>
     </div>
     <el-divider class="attr-divider" />
@@ -43,8 +48,8 @@
       <vm-collapse title="文本">
         <div class="attr-text__body">
           <div class="attr-cell g-flex--bc mt-10">
-            <vm-input v-model="curStyle.fontSize" icon="font-size" type="number" width="80" />
-            <vm-input v-model="curStyle.lineHeight" icon="height" type="number" width="80" />
+            <vm-input v-model="curStyle.fontSize" icon="font-size" type="number" width="100" />
+            <vm-input v-model="curStyle.lineHeight" icon="height" type="number" width="100" />
             <div class="attr-color__picker g-flex--bc">
               <vm-color-picker v-model="curStyle.color" width="28" />
               <vm-icon name="switch" :disabled="curWidget.lock" @click="handleSwitchColor" />
@@ -52,14 +57,14 @@
             </div>
           </div>
           <div class="attr-cell g-flex--bc mt-10">
-            <vm-select v-model="curStyle.fontFamily" :items="FONT_FAMILY_TYPES" width="94" />
+            <vm-select v-model="curStyle.fontFamily" :items="FONT_FAMILY_TYPES" width="114" />
             <el-divider direction="vertical" />
-            <vm-button-group v-model="curStyle.textStyles" :items="TEXT_STYLE_TYPES" width="125" />
+            <vm-button-group v-model="curStyle.textStyles" :items="TEXT_STYLE_TYPES" width="152" />
           </div>
           <div class="attr-cell g-flex--bc mt-10">
-            <vm-button-group v-model="curStyle.textAlign" :items="ALIGN_TYPES" width="125" />
+            <vm-button-group v-model="curStyle.textAlign" :items="ALIGN_TYPES" width="152" />
             <el-divider direction="vertical" />
-            <vm-button-group v-model="curStyle.verticalAlign" :items="VERTICAL_TYPES" width="94" />
+            <vm-button-group v-model="curStyle.verticalAlign" :items="VERTICAL_TYPES" width="114" />
           </div>
         </div>
       </vm-collapse>
@@ -122,10 +127,10 @@
     margin: 10px 0;
   }
   .attr-color__picker {
-    width: 80px;
+    width: 100px;
   }
   .attr-position__lock {
-    width: 80px;
+    width: 100px;
     padding-left: 4px;
   }
 </style>

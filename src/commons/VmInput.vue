@@ -1,24 +1,23 @@
 <template>
   <vm-form-item :width="width">
     <vm-form-label :label="label" />
-    <div :class="{ 'vm-input': true, 'vm-input--disabled': isDisabled }">
-      <el-input
-        :type="type"
-        :model-value="modelValue"
-        :disabled="isDisabled"
-        size="small"
-        @input="handleInput"
-      >
-        <template v-if="showPrefix" #prefix>
-          <div class="vm-input__prefix">
-            <span>{{ title }}</span>
-            <svg class="vm-icon_svg" aria-hidden="true" style="font-size: 16px">
-              <use :xlink:href="iconName" />
-            </svg>
-          </div>
-        </template>
-      </el-input>
-    </div>
+    <el-input
+      :model-value="modelValue"
+      :type="type"
+      :disabled="isDisabled"
+      class="vm-input"
+      size="small"
+      @input="handleInput"
+    >
+      <template v-if="showPrefix" #prefix>
+        <div class="vm-input__prefix">
+          <span>{{ title }}</span>
+          <svg class="vm-icon_svg" aria-hidden="true" style="font-size: 16px">
+            <use :xlink:href="iconName" />
+          </svg>
+        </div>
+      </template>
+    </el-input>
   </vm-form-item>
 </template>
 
@@ -69,6 +68,7 @@
 
 <style lang="scss" scoped>
   .vm-input {
+    width: 100%;
     &__prefix {
       display: flex;
       align-items: center;

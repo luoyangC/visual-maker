@@ -23,4 +23,11 @@ export class Dynamic {
     }
     return func
   }
+
+  checkDisplay(config: WidgetDynamicConfig, props: LooseOptions, widget?: WidgetConfig) {
+    if (config.show) {
+      return config.show(props, widget)
+    }
+    return true
+  }
 }

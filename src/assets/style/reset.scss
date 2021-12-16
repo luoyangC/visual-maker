@@ -1,10 +1,9 @@
+/** 重置文本格式元素 **/
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
-/** 重置文本格式元素 **/
 a {
   text-decoration: none;
 }
@@ -27,25 +26,13 @@ table {
   border-spacing: 0;
 }
 
-/* 清除浮动 */
-.ks-clear:after,
-.clear:after {
-  content: '\20';
-  display: block;
-  height: 0;
-  clear: both;
-}
-
-.ks-clear,
-.clear {
-  *zoom: 1;
-}
-
+/** 重置表格元素 **/
 .el-overlay {
   display: flex;
   justify-content: center;
 }
 
+/** 覆盖全局el样式 **/
 .el-overlay-dialog {
   top: auto;
   left: auto;
