@@ -4,7 +4,6 @@
     <el-input-number
       :model-value="modelValue"
       class="vm-input-number"
-      size="small"
       :disabled="isDisabled"
       @input="handleInput"
     />

@@ -1,5 +1,6 @@
 import { h, resolveComponent } from 'vue'
-import { Chart } from './index'
+import { WidgetConfig } from '../widget'
+import { Chart, ChartOption } from './index'
 
 export class PieChart extends Chart {
   constructor() {
@@ -12,39 +13,41 @@ export class PieChart extends Chart {
     this.isEnum = false
   }
 
-  getHtml(config: any) {}
-
-  getTemplate(config: any) {
-    return h(resolveComponent('VmChart'), { class: 'v-chart', option: config })
+  getTemplate(config: WidgetConfig) {
+    return h(resolveComponent('VmChart'), { class: 'v-chart', option: config.subConfig })
   }
 
-  getPreview(config?: any) {
-    return h(resolveComponent('VmChart'), { class: 'v-chart', option: config })
+  getPreview(config: WidgetConfig) {
+    return h(resolveComponent('VmChart'), { class: 'v-chart', option: config.subConfig })
   }
 
   getConfig() {
     return {
-      title: { text: '访问量' },
-      tooltip: {},
+      title: {
+        show: true,
+        text: '销售占比'
+      },
+      legend: {
+        show: true
+      },
+      tooltip: {
+        show: true,
+        trigger: 'item'
+      },
       series: [
         {
-          type: 'pie',
-          data: [
-            {
-              value: 335,
-              name: '直接访问'
-            },
-            {
-              value: 234,
-              name: '联盟广告'
-            },
-            {
-              value: 1548,
-              name: '搜索引擎'
-            }
-          ]
+          type: 'pie'
         }
-      ]
+      ],
+      dataset: {
+        // 提供一份数据。
+        source: [
+          ['类型', '销量'],
+          ['Milk', 73.4],
+          ['Cocoa', 69.2],
+          ['Brownie', 83.9]
+        ]
+      }
     }
   }
 }

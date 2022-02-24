@@ -6,7 +6,6 @@
       :type="type"
       :disabled="isDisabled"
       class="vm-input"
-      size="small"
       @input="handleInput"
     >
       <template v-if="showPrefix" #prefix>

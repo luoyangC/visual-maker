@@ -1,5 +1,7 @@
 import { charts } from '@/models/chart'
-import type { Chart } from '@/models/chart'
+import type { Chart, ChartOption } from '@/models/chart'
+import type { VNode } from 'vue'
+import type { WidgetConfig } from '@/models/widget'
 
 type ChartKeys = keyof typeof charts
 
@@ -22,15 +24,15 @@ class ChartHook {
     return this.modelMap.get(name) as InstanceType<ChartModel>
   }
 
-  getChartConfig(name: string) {
+  getChartConfig(name: string): ChartOption {
     return this.getChart(name).getConfig()
   }
 
-  getChartTemplate(name: string, config: any) {
+  getChartTemplate(name: string, config: WidgetConfig): VNode {
     return this.getChart(name).getTemplate(config)
   }
 
-  getChartPreview(name: string, config: any) {
+  getChartPreview(name: string, config: WidgetConfig): VNode {
     return this.getChart(name).getPreview(config)
   }
 

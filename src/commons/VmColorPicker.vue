@@ -5,7 +5,6 @@
       :model-value="modelValue"
       :show-alpha="showAlpha"
       :predefine="predefine"
-      :size="'mini'"
       :disabled="isDisabled"
       @change="handleChange"
     />

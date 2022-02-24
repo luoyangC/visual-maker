@@ -8,9 +8,12 @@ import VmFormLabel from './VmFormLabel.vue'
 import VmIcon from './VmIcon.vue'
 import VmInput from './VmInput.vue'
 import VmInputNumber from './VmInputNumber.vue'
+import VmInputArray from './VmInputArray.vue'
 import VmSelect from './VmSelect.vue'
 import VmSlider from './VmSlider.vue'
 import VmChart from './VmChart.vue'
+import VmCodeMirror from './VmCodeMirror.vue'
+import VmJsonEditor from './VmJsonEditor.vue'
 
 import VmSlot from '@/components/Editor/VmSlot.vue'
 import VmShape from '@/components/Editor/VmShape.vue'
@@ -28,9 +31,12 @@ export default {
     app.component('VmIcon', VmIcon)
     app.component('VmInput', VmInput)
     app.component('VmInputNumber', VmInputNumber)
+    app.component('VmInputArray', VmInputArray)
     app.component('VmSelect', VmSelect)
     app.component('VmSlider', VmSlider)
     app.component('VmChart', VmChart)
+    app.component('VmCodeMirror', VmCodeMirror)
+    app.component('VmJsonEditor', VmJsonEditor)
 
     app.component('VmSlot', VmSlot)
     app.component('VmShape', VmShape)

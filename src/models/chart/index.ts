@@ -1,3 +1,4 @@
+export * from './chart.type'
 export { Chart } from './chart'
 import { BarChart } from './chart-bar'
 import { PieChart } from './chart-pie'

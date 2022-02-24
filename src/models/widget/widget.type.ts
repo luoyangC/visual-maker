@@ -1,3 +1,5 @@
+import type { ChartOption } from '../chart'
+
 export interface LooseOptions {
   [x: string]: any
 }
@@ -29,7 +31,7 @@ export interface WidgetConfig {
   children?: Array<WidgetConfig>
 
   subtype?: string
-  subConfig?: any
+  subConfig?: ChartOption
 }
 
 export interface WidgetConfigOptions {

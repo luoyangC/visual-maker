@@ -15,6 +15,5 @@
   .vm-form-item {
     display: flex;
     align-items: center;
-    height: 32px;
   }
 </style>

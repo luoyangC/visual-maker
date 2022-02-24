@@ -1,5 +1,6 @@
 import { h, resolveComponent } from 'vue'
-import { Chart } from './index'
+import { WidgetConfig } from '../widget'
+import { Chart, ChartOption } from './index'
 
 export class LineChart extends Chart {
   constructor() {
@@ -12,31 +13,50 @@ export class LineChart extends Chart {
     this.isEnum = false
   }
 
-  getHtml(config: any) {}
-
-  getTemplate(config: any) {
-    return h(resolveComponent('VmChart'), { class: 'v-chart', option: config })
+  getTemplate(config: WidgetConfig) {
+    return h(resolveComponent('VmChart'), { class: 'v-chart', option: config.subConfig })
   }
 
-  getPreview(config?: any) {
-    return h(resolveComponent('VmChart'), { class: 'v-chart', option: config })
+  getPreview(config: WidgetConfig) {
+    return h(resolveComponent('VmChart'), { class: 'v-chart', option: config.subConfig })
   }
 
   getConfig() {
     return {
-      title: { text: '用户增量' },
-      tooltip: {},
-      xAxis: {
-        data: ['12-3', '12-4', '12-5', '12-6', '12-7', '12-8']
+      title: {
+        show: true,
+        text: '销售额'
       },
-      yAxis: {},
+      legend: {
+        show: true,
+        data: ['2021', '2022']
+      },
+      tooltip: {
+        show: true,
+        trigger: 'axis'
+      },
+      xAxis: {
+        show: true,
+        type: 'category',
+        name: '类型'
+      },
+      yAxis: {
+        show: true,
+        type: 'value'
+      },
       series: [
-        {
-          name: '用户量',
-          type: 'line',
-          data: [5, 20, 36, 10, 10, 20]
-        }
-      ]
+        { name: '2021', type: 'line' },
+        { name: '2022', type: 'line' }
+      ],
+      dataset: {
+        // 提供一份数据。
+        source: [
+          ['销售额', '2021', '2022'],
+          ['Milk', 63.1, 73.4],
+          ['Cocoa', 66.4, 69.2],
+          ['Brownie', 52.4, 83.9]
+        ]
+      }
     }
   }
 }

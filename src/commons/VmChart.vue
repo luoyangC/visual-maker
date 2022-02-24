@@ -1,12 +1,12 @@
 <template>
   <div class="vm-chart">
-    <div id="vmChartInner" ref="vmChartInner" style="height: 200px; width: 300px"></div>
+    <div id="vmChartInner" ref="vmChartInner" :style="chartStyle"></div>
   </div>
 </template>
 
 <script setup lang="ts">
   import * as echarts from 'echarts'
-  import { ref, onMounted } from 'vue'
+  import { ref, onMounted, computed, watch } from 'vue'
 
   interface Props {
     option: any
@@ -15,8 +15,34 @@
 
   const vmChartInner = ref()
 
+  let vmChart: any
+
+  const chartStyle = computed(() => ({
+    height: `${props.option.style.height}px`,
+    width: `${props.option.style.width}px`,
+    opacity: props.option.style.opacity,
+    overflow: props.option.style.overflow
+  }))
+
+  watch(
+    () => chartStyle.value,
+    () => {
+      vmChart.resize({ height: props.option.style.height, width: props.option.style.width })
+    }
+  )
+
+  watch(
+    () => props.option,
+    () => {
+      vmChart.setOption(props.option)
+    },
+    {
+      deep: true
+    }
+  )
+
   onMounted(() => {
-    const vmChart = echarts.init(vmChartInner.value)
+    vmChart = echarts.init(vmChartInner.value)
     vmChart.setOption(props.option)
   })
 </script>

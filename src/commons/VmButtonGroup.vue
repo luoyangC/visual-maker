@@ -70,8 +70,8 @@
       emits('change', props.modelValue || '')
     } else if (isArray(props.modelValue)) {
       if (isActive) {
-        const index = props.modelValue?.indexOf(item.value)
-        index && (props.modelValue as Array<string>).splice(index, 1)
+        const index = (props.modelValue as Array<string>).indexOf(item.value)
+        index !== -1 && (props.modelValue as Array<string>).splice(index, 1)
       } else {
         item.value && (props.modelValue as Array<string>)?.push(item.value)
       }

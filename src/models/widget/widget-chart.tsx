@@ -1,5 +1,6 @@
 import { Widget, WidgetConfig, WidgetConfigOptions } from './index'
 import { chartHook } from '@/hooks/chart'
+import { ChartOption } from '../chart'
 
 export class ChartWidget extends Widget {
   constructor() {
@@ -25,11 +26,11 @@ export class ChartWidget extends Widget {
   }
 
   getTemplate(config: WidgetConfig) {
-    return config.subtype && chartHook.getChartTemplate(config.subtype, config.subConfig)
+    return chartHook.getChartTemplate(config.subtype as string, config)
   }
 
   getPreview(config: WidgetConfig) {
-    return config.subtype && chartHook.getChartPreview(config.subtype, config.subConfig)
+    return chartHook.getChartPreview(config.subtype as string, config)
   }
 
   getConfig(options: WidgetConfigOptions) {
@@ -37,8 +38,8 @@ export class ChartWidget extends Widget {
       type: 'chart',
       lock: false,
       style: {
-        width: 300,
-        height: 200,
+        width: 400,
+        height: 400,
         minWidth: 50,
         minHeight: 50,
         opacity: 1,
@@ -48,11 +49,20 @@ export class ChartWidget extends Widget {
         color: '',
         backgroundColor: '#fff'
       },
-      props: {},
-      propConfigs: [],
+      props: {
+        dataset: {}
+      },
+      propConfigs: [
+        {
+          label: '数据集',
+          type: 'dataset',
+          model: 'dataset'
+        }
+      ],
       subtype: options.subtype,
       subConfig: chartHook.getChartConfig(options.subtype as string)
     }
+    config.subConfig && (config.subConfig.style = config.style)
     return config
   }
 }

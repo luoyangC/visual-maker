@@ -11,7 +11,11 @@
     @mousedown="handleMouseDown"
     @contextmenu="handleContextMenu"
   >
-    <i v-if="showRotate" class="vm-shape-rotate el-icon-refresh" @mousedown="handleRotate" />
+    <i
+      v-if="showRotate"
+      class="vm-shape-rotate iconfont icon-refresh"
+      @mousedown="handleRotate"
+    ></i>
     <i
       v-for="(item, index) in showPoint ? pointList : []"
       :key="index"

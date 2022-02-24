@@ -64,4 +64,7 @@
       height: 3px;
     }
   }
+  .vm-form-item {
+    flex-shrink: 0;
+  }
 </style>

@@ -4,7 +4,6 @@
     <el-select
       :model-value="modelValue"
       class="vm-select"
-      size="small"
       placeholder="请选择"
       :disabled="isDisabled"
       @change="handleChange"

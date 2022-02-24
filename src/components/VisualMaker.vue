@@ -9,12 +9,12 @@
       <vm-export />
     </el-header>
     <el-main class="vm-main">
-      <div class="vm-aside" @click.stop="checkOption">
-        <vm-icon data-option="1" name="widget" tip="组件" size="24" class="aside-item" />
-        <vm-icon data-option="2" name="pillar" tip="图表" size="24" class="aside-item" />
-        <vm-icon data-option="3" name="custom" tip="工具" size="24" class="aside-item" />
-        <vm-icon data-option="4" name="application" tip="扩展" size="24" class="aside-item" />
-        <vm-icon data-option="5" name="tree" tip="结构" size="24" class="aside-item" />
+      <div class="vm-aside">
+        <vm-icon name="widget" tip="组件" size="24" class="aside-item" @click="checkOption('1')" />
+        <vm-icon name="pillar" tip="图表" size="24" class="aside-item" @click="checkOption('2')" />
+        <vm-icon name="custom" tip="工具" size="24" class="aside-item" @click="checkOption('3')" />
+        <vm-icon name="app" tip="扩展" size="24" class="aside-item" @click="checkOption('4')" />
+        <vm-icon name="tree" tip="结构" size="24" class="aside-item" @click="checkOption('5')" />
       </div>
       <div class="vm-option">
         <widget-list v-if="option === '1'" />
@@ -60,16 +60,8 @@
   const active = ref('attr')
   const showPreview = ref(false)
 
-  const getItemNode = (node: any): any => {
-    if (node.classList.value.includes('aside-item')) {
-      return node
-    } else {
-      return getItemNode(node.parentNode)
-    }
-  }
-  const checkOption = (e: Event) => {
-    const node = getItemNode(e.target)
-    option.value = node.dataset.option
+  const checkOption = (val: string) => {
+    option.value = val
   }
 
   // const undo = () => {}

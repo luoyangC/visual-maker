@@ -1,3 +1,7 @@
+import { VNode } from 'vue'
+import { ChartOption } from '.'
+import { WidgetConfig } from '../widget'
+
 export abstract class Chart {
   name: string
   icon?: string
@@ -12,11 +16,9 @@ export abstract class Chart {
     this.isEnum = false
   }
 
-  abstract getConfig(options?: any): any
+  abstract getConfig(): ChartOption
 
-  abstract getTemplate(config?: any): any
+  abstract getTemplate(config?: WidgetConfig): VNode
 
-  abstract getPreview(config?: any): any
-
-  abstract getHtml(config?: any): any
+  abstract getPreview(config?: WidgetConfig): VNode
 }

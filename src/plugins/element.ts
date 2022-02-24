@@ -1,10 +1,13 @@
 import type { App } from 'vue'
 import {
   ElIcon,
+  ElTag,
   ElButton,
   ElColorPicker,
   ElTooltip,
   ElSelect,
+  ElSwitch,
+  ElRadio,
   ElOption,
   ElSlider,
   ElContainer,
@@ -27,10 +30,13 @@ export default function elementPlugin(app: App) {
     zIndex: 3000
   }
   app.use(ElIcon)
+  app.use(ElTag)
   app.use(ElButton)
   app.use(ElColorPicker)
   app.use(ElTooltip)
   app.use(ElSelect)
+  app.use(ElSwitch)
+  app.use(ElRadio)
   app.use(ElOption)
   app.use(ElSlider)
   app.use(ElContainer)

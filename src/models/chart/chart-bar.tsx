@@ -1,5 +1,6 @@
 import { h, resolveComponent } from 'vue'
-import { Chart } from './index'
+import { WidgetConfig } from '../widget'
+import { Chart, ChartOption } from './index'
 
 export class BarChart extends Chart {
   constructor() {
@@ -12,29 +13,47 @@ export class BarChart extends Chart {
     this.isEnum = false
   }
 
-  getHtml(config: any) {}
-
-  getTemplate(config: any) {
-    return h(resolveComponent('VmChart'), { class: 'v-chart', option: config })
+  getTemplate(config: WidgetConfig) {
+    return h(resolveComponent('VmChart'), { class: 'v-chart', option: config.subConfig })
   }
 
-  getPreview(config?: any) {
-    return h(resolveComponent('VmChart'), { class: 'v-chart', option: config })
+  getPreview(config: WidgetConfig) {
+    return h(resolveComponent('VmChart'), { class: 'v-chart', option: config.subConfig })
   }
 
   getConfig() {
     return {
-      title: { text: '销售量' },
-      xAxis: {
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
+      title: {
+        show: true,
+        text: '销售额'
       },
-      yAxis: {},
-      series: [
-        {
-          type: 'bar',
-          data: [23, 24, 18, 25, 27]
-        }
-      ]
+      legend: {
+        show: true,
+        data: ['2021', '2022']
+      },
+      tooltip: {
+        show: true,
+        trigger: 'axis'
+      },
+      xAxis: {
+        show: true,
+        type: 'category',
+        name: '类型'
+      },
+      yAxis: {
+        show: true,
+        type: 'value'
+      },
+      series: [{ type: 'bar' }, { type: 'bar' }],
+      dataset: {
+        // 提供一份数据。
+        source: [
+          ['销售额', '2021', '2022'],
+          ['Milk', 63.1, 73.4],
+          ['Cocoa', 66.4, 69.2],
+          ['Brownie', 52.4, 83.9]
+        ]
+      }
     }
   }
 }

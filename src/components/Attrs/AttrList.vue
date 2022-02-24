@@ -44,16 +44,16 @@
     </div>
     <el-divider class="attr-divider" />
     <!-- 内容文本 -->
-    <div class="attr-text">
+    <div v-if="showText" class="attr-text">
       <vm-collapse title="文本">
         <div class="attr-text__body">
           <div class="attr-cell g-flex--bc mt-10">
             <vm-input v-model="curStyle.fontSize" icon="font-size" type="number" width="100" />
             <vm-input v-model="curStyle.lineHeight" icon="height" type="number" width="100" />
             <div class="attr-color__picker g-flex--bc">
-              <vm-color-picker v-model="curStyle.color" width="28" />
+              <vm-color-picker v-model="curStyle.color" width="32" />
               <vm-icon name="switch" :disabled="curWidget.lock" @click="handleSwitchColor" />
-              <vm-color-picker v-model="curStyle.backgroundColor" width="28" />
+              <vm-color-picker v-model="curStyle.backgroundColor" width="32" />
             </div>
           </div>
           <div class="attr-cell g-flex--bc mt-10">
@@ -69,7 +69,89 @@
         </div>
       </vm-collapse>
     </div>
-    <el-divider class="attr-divider" />
+    <el-divider v-if="showText" class="attr-divider" />
+    <!-- 图表标题 -->
+    <div v-if="showChartOption" class="attr-chart-option">
+      <vm-collapse title="图表标题">
+        <template #left>
+          <el-switch v-model="curChart.title.show" size="small"></el-switch>
+        </template>
+        <div class="title-option__body">
+          <div class="attr-cell g-flex--bc mt-10">
+            <vm-input v-model="curChart.title.text" label="标题文本" />
+          </div>
+        </div>
+      </vm-collapse>
+    </div>
+    <el-divider v-if="showChartOption" class="attr-divider" />
+    <!-- 图表图例 -->
+    <div v-if="showChartOption" class="attr-chart-option">
+      <vm-collapse title="图表图例">
+        <template #left>
+          <el-switch v-model="curChart.legend.show" size="small"></el-switch>
+        </template>
+        <div class="legend-option__body">
+          <div class="attr-cell g-flex--bc mt-10">
+            <vm-input v-model="curChart.legend.left" type="number" width="80" title="L" />
+            <vm-input v-model="curChart.legend.top" type="number" width="80" title="T" />
+            <vm-input v-model="curChart.legend.right" type="number" width="80" title="R" />
+            <vm-input v-model="curChart.legend.bottom" type="number" width="80" title="B" />
+          </div>
+          <div class="attr-cell g-flex--bc mt-10">
+            <vm-input-array v-model="curChart.legend.data" label="图例文本" />
+          </div>
+        </div>
+      </vm-collapse>
+    </div>
+    <el-divider v-if="showChartOption" class="attr-divider" />
+    <!-- 图表提示 -->
+    <div v-if="showChartOption" class="attr-chart-option">
+      <vm-collapse title="图表提示">
+        <template #left>
+          <el-switch v-model="curChart.tooltip.show" size="small"></el-switch>
+        </template>
+        <div class="tooltip-option__body">
+          <div class="attr-cell g-flex--bc mt-10">
+            <vm-input v-model="curChart.tooltip.trigger" label="触发类型" />
+          </div>
+        </div>
+      </vm-collapse>
+    </div>
+    <el-divider v-if="showChartOption" class="attr-divider" />
+    <!-- 图表X轴 -->
+    <div v-if="showChartOption && curChart.xAxis" class="attr-chart-option">
+      <vm-collapse title="图表X轴">
+        <template #left>
+          <el-switch v-model="curChart.xAxis.show" size="small"></el-switch>
+        </template>
+        <div class="xAxis-option__body">
+          <div class="attr-cell g-flex--bc mt-10">
+            <vm-input v-model="curChart.xAxis.type" label="坐标类型" />
+          </div>
+          <div class="attr-cell g-flex--bc mt-10">
+            <vm-input v-model="curChart.xAxis.name" label="坐标名称" />
+          </div>
+        </div>
+      </vm-collapse>
+    </div>
+    <el-divider v-if="showChartOption && curChart.xAxis" class="attr-divider" />
+    <!-- 图表Y轴 -->
+    <div v-if="showChartOption && curChart.yAxis" class="attr-chart-option">
+      <vm-collapse title="图表Y轴">
+        <template #left>
+          <el-switch v-model="curChart.yAxis.show" size="small"></el-switch>
+        </template>
+        <div class="yAxis-option__body">
+          <div class="attr-cell g-flex--bc mt-10">
+            <vm-input v-model="curChart.yAxis.type" label="坐标类型" />
+          </div>
+          <div class="attr-cell g-flex--bc mt-10">
+            <vm-input v-model="curChart.yAxis.name" label="坐标名称" />
+          </div>
+        </div>
+      </vm-collapse>
+    </div>
+    <el-divider v-if="showChartOption && curChart.yAxis" class="attr-divider" />
     <!-- 其他属性 -->
     <div v-if="attrConfigs.length" class="attr-more">
       <vm-collapse title="更多属性">
@@ -104,6 +186,9 @@
   const curStyle = computed(() => curWidget.value.style)
   const attrConfigs = computed(() => curWidget.value.attrConfigs || [])
   const lockIcon = computed(() => (curWidget.value.lock ? 'lock' : 'unlock'))
+  const showText = computed(() => curWidget.value.type !== 'chart')
+  const showChartOption = computed(() => curWidget.value.type === 'chart')
+  const curChart = computed(() => curWidget.value.subConfig)
 
   const handleSwitchColor = () => {
     const color = curWidget.value.style.color
