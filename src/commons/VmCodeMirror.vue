@@ -1,5 +1,7 @@
 <template>
-  <div ref="codemirror" class="codemirror"></div>
+  <div class="vm-codemirror">
+    <textarea ref="cm" />
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -7,13 +9,19 @@
   import CodeMirror from 'codemirror'
   // css
   import 'codemirror/lib/codemirror.css'
+
   import 'codemirror/theme/idea.css'
+
+  import 'codemirror/addon/lint/lint'
   import 'codemirror/addon/lint/lint.css'
+  import 'codemirror/addon/lint/json-lint'
   // modes
   import 'codemirror/mode/javascript/javascript'
   // addon
-  import 'codemirror/addon/lint/lint'
-  import 'codemirror/addon/lint/json-lint'
+  import 'codemirror/addon/comment/comment'
+  import 'codemirror/addon/fold/brace-fold'
+  import 'codemirror/addon/fold/indent-fold'
+  import 'codemirror/addon/fold/comment-fold'
 
   const props = defineProps<{
     modelValue: string
@@ -25,7 +33,7 @@
     (e: 'change', value: string): void
   }>()
 
-  const codemirror = ref()
+  const cm = ref()
   let editor: CodeMirror.Editor | null
 
   watch(
@@ -35,32 +43,30 @@
         // 触发v-model的双向绑定
         editor.setValue(props.modelValue)
       }
-    },
-    { flush: 'post' }
+    }
   )
 
   const init = () => {
-    const addonOptions = {
-      // autoCloseBrackets: true,
-      // autoCloseTags: true,
-      // foldGutter: true,
-      // gutters: ['CodeMirror-linenumbers']
-    }
-    editor = CodeMirror(codemirror.value!, {
+    editor = CodeMirror.fromTextArea(cm.value, {
       value: '',
       readOnly: props.readonly,
       tabSize: 2,
       theme: 'idea',
-      lineWrapping: true,
       lineNumbers: true,
       mode: props.mode,
-      ...addonOptions
+      lint: false,
+      smartIndent: true, // 是否智能缩进
+      gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter', 'CodeMirror-lint-markers'],
+      lineWrapping: true // 自动换行
     })
-    editor?.setValue(props.modelValue)
-    editor?.on('change', () => {
+    editor.setValue(props.modelValue)
+    editor.on('change', () => {
       emits('update:modelValue', (editor as CodeMirror.Editor).getValue())
       emits('change', (editor as CodeMirror.Editor).getValue())
     })
+    setTimeout(() => {
+      editor?.refresh()
+    }, 0)
   }
   onMounted(() => {
     init()
@@ -69,3 +75,32 @@
     editor = null
   })
 </script>
+
+<style>
+  .vm-codemirror {
+    height: 100%;
+    position: relative;
+  }
+
+  .vm-codemirror .CodeMirror {
+    height: auto;
+  }
+
+  .vm-codemirror .CodeMirror-scroll {
+    height: auto;
+    overflow-y: hidden;
+    overflow-x: auto;
+  }
+
+  .CodeMirror-lines {
+    text-align: left;
+  }
+
+  .cm-keyword-error {
+    color: red !important;
+  }
+
+  .cm-keyword-debug {
+    color: yellow !important;
+  }
+</style>

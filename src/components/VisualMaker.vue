@@ -31,8 +31,11 @@
           <el-tab-pane label="外观" name="attr">
             <attr-list />
           </el-tab-pane>
-          <el-tab-pane label="属性" name="prop">
+          <el-tab-pane v-if="curWidget.propConfigs?.length" label="属性" name="prop">
             <prop-list />
+          </el-tab-pane>
+          <el-tab-pane v-if="curWidget.type === 'chart'" label="数据集" name="data">
+            <data-list />
           </el-tab-pane>
         </el-tabs>
       </div>
@@ -44,7 +47,8 @@
 </template>
 
 <script setup lang="ts">
-  import { ref } from 'vue'
+  import { useStore } from '@/store'
+  import { ref, computed } from 'vue'
   import WidgetList from './Options/WidgetList.vue'
   import ChartList from './Options/ChartList.vue'
   import ExtendList from './Options/ExtendList.vue'
@@ -53,6 +57,7 @@
   import Editor from './Editor/index.vue'
   import AttrList from './Attrs/AttrList.vue'
   import PropList from './Attrs/PropList.vue'
+  import DataList from './Attrs/DataList.vue'
   import Preview from './Preview/index.vue'
   import VmExport from './Action/VmExport.vue'
 
@@ -71,6 +76,10 @@
   }
   // const save = () => {}
   // const clearCanvas = () => {}
+
+  const store = useStore()
+
+  const curWidget = computed(() => store.getters['widget/current'])
 </script>
 
 <style lang="scss" scoped>

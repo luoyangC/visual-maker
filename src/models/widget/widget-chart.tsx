@@ -49,16 +49,6 @@ export class ChartWidget extends Widget {
         color: '',
         backgroundColor: '#fff'
       },
-      props: {
-        dataset: {}
-      },
-      propConfigs: [
-        {
-          label: '数据集',
-          type: 'dataset',
-          model: 'dataset'
-        }
-      ],
       subtype: options.subtype,
       subConfig: chartHook.getChartConfig(options.subtype as string)
     }
