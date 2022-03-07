@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { ref, onMounted, onUnmounted, watch } from 'vue'
+  import { ref, onMounted, onUnmounted, watch, markRaw } from 'vue'
   import CodeMirror from 'codemirror'
   // css
   import 'codemirror/lib/codemirror.css'
@@ -47,18 +47,20 @@
   )
 
   const init = () => {
-    editor = CodeMirror.fromTextArea(cm.value, {
-      value: '',
-      readOnly: props.readonly,
-      tabSize: 2,
-      theme: 'idea',
-      lineNumbers: true,
-      mode: props.mode,
-      lint: false,
-      smartIndent: true, // 是否智能缩进
-      gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter', 'CodeMirror-lint-markers'],
-      lineWrapping: true // 自动换行
-    })
+    editor = markRaw(
+      CodeMirror.fromTextArea(cm.value, {
+        value: '{}',
+        mode: props.mode,
+        readOnly: props.readonly,
+        theme: 'idea',
+        lint: false,
+        tabSize: 2,
+        lineNumbers: true,
+        smartIndent: true, // 是否智能缩进
+        lineWrapping: true, // 自动换行
+        gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter', 'CodeMirror-lint-markers']
+      })
+    )
     editor.setValue(props.modelValue)
     editor.on('change', () => {
       emits('update:modelValue', (editor as CodeMirror.Editor).getValue())
@@ -68,6 +70,7 @@
       editor?.refresh()
     }, 0)
   }
+
   onMounted(() => {
     init()
   })

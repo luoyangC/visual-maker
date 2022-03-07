@@ -28,13 +28,13 @@
       </div>
       <div class="vm-attribute">
         <el-tabs v-model="active" stretch>
-          <el-tab-pane label="外观" name="attr">
+          <el-tab-pane label="外观" name="attr" lazy>
             <attr-list />
           </el-tab-pane>
-          <el-tab-pane v-if="curWidget.propConfigs?.length" label="属性" name="prop">
+          <el-tab-pane v-if="curWidget.propConfigs?.length" label="属性" name="prop" lazy>
             <prop-list />
           </el-tab-pane>
-          <el-tab-pane v-if="curWidget.type === 'chart'" label="数据集" name="data">
+          <el-tab-pane v-if="curWidget.type === 'chart'" label="数据集" name="data" lazy>
             <data-list />
           </el-tab-pane>
         </el-tabs>
@@ -48,7 +48,7 @@
 
 <script setup lang="ts">
   import { useStore } from '@/store'
-  import { ref, computed } from 'vue'
+  import { ref, computed, watch } from 'vue'
   import WidgetList from './Options/WidgetList.vue'
   import ChartList from './Options/ChartList.vue'
   import ExtendList from './Options/ExtendList.vue'
@@ -80,6 +80,13 @@
   const store = useStore()
 
   const curWidget = computed(() => store.getters['widget/current'])
+
+  watch(
+    () => curWidget.value,
+    () => {
+      active.value = 'attr'
+    }
+  )
 </script>
 
 <style lang="scss" scoped>

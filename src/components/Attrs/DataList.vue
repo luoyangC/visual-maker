@@ -1,6 +1,11 @@
 <template>
   <div class="data-list">
-    <vm-code-mirror v-model="jsonData" mode="application/json" :readonly="false" />
+    <vm-code-mirror
+      :key="curWidget.id"
+      v-model="jsonData"
+      :readonly="false"
+      mode="application/json"
+    />
   </div>
 </template>
 
@@ -10,10 +15,26 @@
 
   const store = useStore()
 
+  const getJsonData = () => {
+    if (curWidget.value.type === 'chart' && curWidget.value.subConfig) {
+      return JSON.stringify(curWidget.value.subConfig.dataset, null, 2)
+    }
+    return ''
+  }
+
   const curWidget = computed(() => store.getters['widget/current'])
 
-  const jsonData = ref('')
-  jsonData.value = JSON.stringify(curWidget.value.subConfig.dataset, null, 2)
+  const jsonData = ref(getJsonData())
+
+  watch(
+    () => curWidget.value,
+    () => {
+      if (getJsonData() !== jsonData.value) {
+        jsonData.value = getJsonData()
+      }
+    },
+    { deep: true }
+  )
 
   watch(
     () => jsonData.value,
