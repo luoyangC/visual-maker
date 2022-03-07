@@ -64,19 +64,6 @@ export class TableWidget extends Widget {
     )
   }
 
-  getHtml(config: WidgetConfig) {
-    const templates = config.children?.map((item) => this.getWidgetHtml('slot', item))
-    return {
-      tag: 'div',
-      type: 'table',
-      props: {
-        class: 'v-table',
-        style: { ...this.getWidgetStyle(config.style, config), ...this.getTableAttrs(config.attrs) }
-      },
-      default: templates
-    }
-  }
-
   getPreview(config: WidgetConfig) {
     const columns = config.children?.map((item) => this.getWidgetPreview('slot', item))
     return h(

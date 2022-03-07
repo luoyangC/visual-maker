@@ -72,38 +72,9 @@ export class ListWidget extends Widget {
     )
   }
 
-  getItemHtml(config: WidgetConfig) {
-    const template = this.getWidgetHtml('slot', config)
-    return {
-      tag: 'li',
-      type: 'listItem',
-      props: {
-        class: 'v-li',
-        style: this.getItemStyle(config)
-      },
-      default: template
-    }
-  }
-
   getItemPreview(config: WidgetConfig, index: number) {
     const template = this.getWidgetPreview('slot', config)
     return h('li', { class: 'v-li', style: this.getItemStyle(config) }, [template])
-  }
-
-  getHtml(config: WidgetConfig) {
-    const templates = config.children?.map((item) => this.getItemHtml(item))
-    return {
-      tag: 'ul',
-      type: 'list',
-      props: {
-        class: 'v-ul',
-        style: {
-          ...this.getWidgetStyle(config.style, config),
-          ...this.getListAttrs(config.attrs)
-        }
-      },
-      default: templates
-    }
   }
 
   getPreview(config: WidgetConfig) {

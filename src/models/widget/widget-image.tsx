@@ -13,21 +13,6 @@ export class ImageWidget extends Widget {
     this.isEnum = false
   }
 
-  getHtml(config: WidgetConfig) {
-    return {
-      tag: 'img',
-      type: 'image',
-      props: {
-        class: 'v-image',
-        style: {
-          ...this.getWidgetStyle(config.style),
-          ...this.getImageAttrs(config.attrs)
-        },
-        src: config.props?.src
-      }
-    }
-  }
-
   getImageAttrs(attrs?: LooseOptions) {
     return {
       objectFit: attrs?.objectFit

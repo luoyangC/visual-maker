@@ -12,19 +12,6 @@ export class ButtonWidget extends Widget {
     this.isEnum = false
   }
 
-  getHtml(config: WidgetConfig) {
-    return {
-      tag: 'button',
-      type: 'button',
-      props: {
-        class: 'v-button',
-        style: this.getWidgetStyle(config.style),
-        src: config.props?.src
-      },
-      default: config.props?.label
-    }
-  }
-
   getTemplate(config: WidgetConfig) {
     return h(
       'button',

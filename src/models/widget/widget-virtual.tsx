@@ -10,10 +10,6 @@ export class VirtualWidget extends Widget {
     this.isEnum = false
   }
 
-  getHtml(config: WidgetConfig) {
-    return { tag: 'div', type: 'virtual', props: {}, default: '' }
-  }
-
   getTemplate(config: WidgetConfig) {
     return h('div', {
       class: 'v-virtual',

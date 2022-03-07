@@ -1,7 +1,7 @@
 import { widgetHook } from '@/hooks/widget'
 import { isDef } from '@/utils'
 import { VNode } from 'vue'
-import { LooseOptions, WidgetConfigOptions, WidgetConfig, WidgetHtml } from '.'
+import { LooseOptions, WidgetConfigOptions, WidgetConfig } from '.'
 
 export abstract class Widget {
   name: string
@@ -22,8 +22,6 @@ export abstract class Widget {
 
   abstract getPreview(config?: WidgetConfig): VNode
 
-  abstract getHtml(config?: WidgetConfig): WidgetHtml
-
   getWidget(name: string) {
     return widgetHook.getWidget(name)
   }
@@ -38,10 +36,6 @@ export abstract class Widget {
 
   getWidgetPreview(name: string, config: WidgetConfig) {
     return widgetHook.getWidgetPreview(name, config)
-  }
-
-  getWidgetHtml(name: string, config: WidgetConfig) {
-    return widgetHook.getWidgetHtml(name, config)
   }
 
   getWidgetStyle(style?: LooseOptions, config?: WidgetConfig) {

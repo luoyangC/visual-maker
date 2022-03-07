@@ -12,19 +12,6 @@ export class LinkWidget extends Widget {
     this.isEnum = false
   }
 
-  getHtml(config: WidgetConfig) {
-    return {
-      tag: 'a',
-      type: 'link',
-      props: {
-        class: 'v-link',
-        style: this.getWidgetStyle(config.style),
-        href: config.props?.href
-      },
-      default: config.props?.value
-    }
-  }
-
   getTemplate(config: WidgetConfig) {
     return h(
       'a',

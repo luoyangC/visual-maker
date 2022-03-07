@@ -3,7 +3,6 @@
     <vm-icon name="export" text="导出" />
     <template #dropdown>
       <el-dropdown-menu>
-        <el-dropdown-item @click="exportHtml">导出 HTML</el-dropdown-item>
         <el-dropdown-item @click="exportJson">导出 JSON</el-dropdown-item>
       </el-dropdown-menu>
     </template>
@@ -12,27 +11,10 @@
 
 <script setup lang="ts">
   import { useStore } from '@/store'
-  import { widgetToJson, widgetToHtml } from '@/utils'
-  import { widgetHook } from '@/hooks/widget'
+  import { widgetToJson } from '@/utils'
 
   const store = useStore()
 
-  const exportHtml = () => {
-    const rootWidget = store.getters['widget/root']
-    const widgetHtml = widgetHook.getWidgetHtml('root', rootWidget)
-    const html = widgetToHtml(widgetHtml)
-
-    const blobParts = [html]
-    const blobs = new Blob(blobParts, { type: 'data:text/html;charset=utf-8' })
-    const link = document.createElement('a')
-
-    link.style.visibility = 'hidden'
-    document.body.appendChild(link)
-    link.href = URL.createObjectURL(blobs)
-    link.download = 'config.html'
-    link.click()
-    document.body.removeChild(link)
-  }
   const exportJson = () => {
     const rootWidget = store.getters['widget/root']
     const widgetData = widgetToJson(rootWidget)

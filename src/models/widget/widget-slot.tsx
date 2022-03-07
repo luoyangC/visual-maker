@@ -9,18 +9,6 @@ export class SlotWidget extends Widget {
     this.isEnum = false
   }
 
-  getHtml(config: WidgetConfig) {
-    const templates = config.children?.map((item) => this.getWidgetHtml(item.type, item))
-    return {
-      tag: 'div',
-      type: 'slot',
-      props: {
-        class: 'v-slot'
-      },
-      default: templates
-    }
-  }
-
   getTemplate(config: WidgetConfig) {
     return h(resolveComponent('VmSlot'), { class: 'v-slot', widget: config })
   }

@@ -12,18 +12,6 @@ export class TextWidget extends Widget {
     this.isEnum = false
   }
 
-  getHtml(config: WidgetConfig) {
-    return {
-      tag: 'div',
-      type: 'text',
-      props: {
-        class: 'v-text',
-        style: this.getWidgetStyle(config.style)
-      },
-      default: config.props?.value
-    }
-  }
-
   getTemplate(config: WidgetConfig) {
     return h(
       'div',

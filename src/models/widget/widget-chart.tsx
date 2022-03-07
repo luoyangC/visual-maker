@@ -13,18 +13,6 @@ export class ChartWidget extends Widget {
     this.isEnum = false
   }
 
-  getHtml(config: WidgetConfig) {
-    return {
-      tag: 'div',
-      type: 'chart',
-      props: {
-        class: 'v-chart',
-        style: this.getWidgetStyle(config.style)
-      },
-      default: config.props?.value
-    }
-  }
-
   getTemplate(config: WidgetConfig) {
     return chartHook.getChartTemplate(config.subtype as string, config)
   }

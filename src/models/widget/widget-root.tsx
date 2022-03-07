@@ -10,19 +10,6 @@ export class RootWidget extends Widget {
     this.isEnum = false
   }
 
-  getHtml(config: WidgetConfig) {
-    const template = this.getWidgetHtml('slot', config?.children?.[0] as WidgetConfig)
-    return {
-      tag: 'div',
-      type: 'root',
-      props: {
-        class: 'v-root',
-        style: this.getWidgetStyle(config.style)
-      },
-      default: template
-    }
-  }
-
   getTemplate(config: WidgetConfig) {
     const template = this.getWidgetTemplate('slot', config?.children?.[0] as WidgetConfig)
     return h('div', { class: 'v-root', style: this.getWidgetStyle(config.style) }, [template])

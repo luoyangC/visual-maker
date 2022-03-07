@@ -75,48 +75,9 @@ export class ColumnWidget extends Widget {
     )
   }
 
-  getHeadHtml(config: WidgetConfig) {
-    return {
-      tag: 'dt',
-      type: 'columnHead',
-      props: {
-        class: 'v-table-head',
-        style: this.getHeadStyle(config)
-      },
-      default: config.props?.head
-    }
-  }
-
-  getItemHtml(config: WidgetConfig) {
-    const template = this.getWidgetHtml('slot', config)
-    return {
-      tag: 'dd',
-      type: 'columnItem',
-      props: {
-        class: 'v-table-cell',
-        style: this.getItemStyle(config)
-      },
-      default: template
-    }
-  }
-
   getItemPreview(config: WidgetConfig) {
     const template = this.getWidgetPreview('slot', config)
     return h('dd', { class: 'v-table-cell', style: this.getItemStyle(config) }, [template])
-  }
-
-  getHtml(config: WidgetConfig) {
-    const head = this.getHeadHtml(config)
-    const templates = config.children?.map((item) => this.getItemHtml(item)) || []
-    return {
-      tag: 'dl',
-      type: 'column',
-      props: {
-        class: 'v-table-column',
-        style: this.getWidgetStyle(config.style, config)
-      },
-      default: [head, ...templates]
-    }
   }
 
   getPreview(config: WidgetConfig) {
