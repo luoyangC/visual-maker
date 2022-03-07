@@ -19,9 +19,7 @@
 
   const chartStyle = computed(() => ({
     height: `${props.option.style.height}px`,
-    width: `${props.option.style.width}px`,
-    opacity: props.option.style.opacity,
-    overflow: props.option.style.overflow
+    width: `${props.option.style.width}px`
   }))
 
   watch(

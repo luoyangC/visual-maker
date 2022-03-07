@@ -1,6 +1,6 @@
+import { h } from 'vue'
 import { Widget, WidgetConfig, WidgetConfigOptions } from './index'
 import { chartHook } from '@/hooks/chart'
-import { ChartOption } from '../chart'
 
 export class ChartWidget extends Widget {
   constructor() {
@@ -14,11 +14,27 @@ export class ChartWidget extends Widget {
   }
 
   getTemplate(config: WidgetConfig) {
-    return chartHook.getChartTemplate(config.subtype as string, config)
+    return h(
+      'div',
+      {
+        class: 'v-chart',
+        style: { ...this.getWidgetStyle(config.style) },
+        src: config.props?.src
+      },
+      chartHook.getChartTemplate(config.subtype as string, config)
+    )
   }
 
   getPreview(config: WidgetConfig) {
-    return chartHook.getChartPreview(config.subtype as string, config)
+    return h(
+      'div',
+      {
+        class: 'v-chart',
+        style: { ...this.getWidgetStyle(config.style) },
+        src: config.props?.src
+      },
+      chartHook.getChartPreview(config.subtype as string, config)
+    )
   }
 
   getConfig(options: WidgetConfigOptions) {
