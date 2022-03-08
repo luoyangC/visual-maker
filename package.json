@@ -2,12 +2,21 @@
   "name": "visual-maker",
   "version": "0.2.0",
   "homepage": "https://luoyangc.github.io/visual-maker/",
+  "description": "A visual page building project",
+  "author": "luoyang <luoyangc2233@gmail.com>",
   "scripts": {
     "start": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "serve": "vite preview",
     "deploy": "bash ./deploy.sh"
   },
+  "keywords": [
+    "vue",
+    "typescript",
+    "visual",
+    "chart",
+    "low code"
+  ],
   "dependencies": {
     "codemirror": "^5.65.2",
     "echarts": "^5.2.2",
