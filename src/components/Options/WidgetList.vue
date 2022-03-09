@@ -1,16 +1,18 @@
 <template>
-  <div class="widget-list" @dragstart="handleDragStart">
-    <vm-icon
-      v-for="(item, index) in widgetList"
-      :key="index"
-      :name="item.icon"
-      :text="item.label"
-      :data-type="item.type"
-      draggable="true"
-      size="24"
-      class="widget-item"
-    />
-  </div>
+  <vm-collapse title="基础组件">
+    <div class="widget-list mt-10" @dragstart="handleDragStart">
+      <vm-icon
+        v-for="(item, index) in widgetList"
+        :key="index"
+        :name="item.icon"
+        :text="item.label"
+        :data-type="item.type"
+        draggable="true"
+        size="24"
+        class="widget-item"
+      />
+    </div>
+  </vm-collapse>
 </template>
 
 <script setup lang="ts">

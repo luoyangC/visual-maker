@@ -10,6 +10,8 @@
 
   interface Props {
     option: any
+    width: number | string
+    height: number | string
   }
   const props = defineProps<Props>()
 
@@ -18,14 +20,14 @@
   let vmChart: any
 
   const chartStyle = computed(() => ({
-    height: `${props.option.style.height}px`,
-    width: `${props.option.style.width}px`
+    height: `${props.height}px`,
+    width: `${props.width}px`
   }))
 
   watch(
     () => chartStyle.value,
     () => {
-      vmChart.resize({ height: props.option.style.height, width: props.option.style.width })
+      vmChart.resize({ height: props.height, width: props.width })
     }
   )
 

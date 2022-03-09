@@ -43,5 +43,4 @@ export interface ChartOption {
   yAxis?: AxisOption
   dataset?: DatasetOption
   series?: Array<SeriesOption>
-  style?: LooseOptions
 }

@@ -71,7 +71,7 @@
     </div>
     <el-divider v-if="showText" class="attr-divider" />
     <!-- 图表标题 -->
-    <div v-if="showChartOption" class="attr-chart-option">
+    <div v-if="showChartOption && curChart.title" class="attr-chart-option">
       <vm-collapse title="图表标题">
         <template #left>
           <el-switch v-model="curChart.title.show" size="small"></el-switch>
@@ -83,9 +83,9 @@
         </div>
       </vm-collapse>
     </div>
-    <el-divider v-if="showChartOption" class="attr-divider" />
+    <el-divider v-if="showChartOption && curChart.title" class="attr-divider" />
     <!-- 图表图例 -->
-    <div v-if="showChartOption" class="attr-chart-option">
+    <div v-if="showChartOption && curChart.legend" class="attr-chart-option">
       <vm-collapse title="图表图例">
         <template #left>
           <el-switch v-model="curChart.legend.show" size="small"></el-switch>
@@ -103,9 +103,9 @@
         </div>
       </vm-collapse>
     </div>
-    <el-divider v-if="showChartOption" class="attr-divider" />
+    <el-divider v-if="showChartOption && curChart.legend" class="attr-divider" />
     <!-- 图表提示 -->
-    <div v-if="showChartOption" class="attr-chart-option">
+    <div v-if="showChartOption && curChart.tooltip" class="attr-chart-option">
       <vm-collapse title="图表提示">
         <template #left>
           <el-switch v-model="curChart.tooltip.show" size="small"></el-switch>
@@ -117,7 +117,7 @@
         </div>
       </vm-collapse>
     </div>
-    <el-divider v-if="showChartOption" class="attr-divider" />
+    <el-divider v-if="showChartOption && curChart.tooltip" class="attr-divider" />
     <!-- 图表X轴 -->
     <div v-if="showChartOption && curChart.xAxis" class="attr-chart-option">
       <vm-collapse title="图表X轴">
@@ -152,6 +152,20 @@
       </vm-collapse>
     </div>
     <el-divider v-if="showChartOption && curChart.yAxis" class="attr-divider" />
+    <!-- 图表配置 -->
+    <div v-if="showChartOption" class="attr-chart-option">
+      <vm-collapse v-model="showMoreChartOption" title="图表更多配置">
+        <template #left>
+          <el-switch v-model="showMoreChartOption" size="small"></el-switch>
+        </template>
+        <div class="more-option__body">
+          <div class="mt-10">
+            <vm-code-mirror v-model="chartOptionJson" :readonly="false" mode="application/json" />
+          </div>
+        </div>
+      </vm-collapse>
+    </div>
+    <el-divider v-if="showChartOption" class="attr-divider" />
     <!-- 其他属性 -->
     <div v-if="attrConfigs.length" class="attr-more">
       <vm-collapse title="更多属性">
@@ -169,7 +183,7 @@
 </template>
 
 <script setup lang="ts">
-  import { computed } from 'vue'
+  import { computed, ref, watch } from 'vue'
   import { useStore } from '@/store'
   import {
     OVERFLOW_TYPES,
@@ -200,9 +214,43 @@
   const handleSwitchLock = () => {
     curWidget.value.lock = !curWidget.value.lock
   }
+
+  const getJsonData = () => {
+    if (curWidget.value.type === 'chart' && curWidget.value.subConfig) {
+      return JSON.stringify(curWidget.value.subConfig, null, 2)
+    }
+    return ''
+  }
+
+  const showMoreChartOption = ref(false)
+  const chartOptionJson = ref(getJsonData())
+
+  watch(
+    () => curWidget.value,
+    () => {
+      if (getJsonData() !== chartOptionJson.value) {
+        chartOptionJson.value = getJsonData()
+      }
+    },
+    { deep: true }
+  )
+
+  watch(
+    () => chartOptionJson.value,
+    () => {
+      try {
+        curWidget.value.subConfig = JSON.parse(chartOptionJson.value)
+      } catch (error) {
+        // console.log(error)
+      }
+    }
+  )
 </script>
 
 <style lang="scss" scoped>
+  .attr-list {
+    height: calc(100vh - 130px);
+  }
   .attr-icon {
     width: 26px;
     height: 26px;

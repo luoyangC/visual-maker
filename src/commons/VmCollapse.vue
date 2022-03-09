@@ -17,14 +17,31 @@
 </template>
 
 <script setup lang="ts">
-  import { ref } from 'vue'
+  import { ref, watch } from 'vue'
 
-  defineProps<{ title: string }>()
+  const props = withDefaults(defineProps<{ title: string; modelValue?: boolean }>(), {
+    modelValue: true
+  })
+
+  const emits = defineEmits<{
+    (e: 'update:modelValue', value: boolean): void
+    (e: 'change', value: boolean): void
+  }>()
 
   const active = ref(true)
 
+  watch(
+    () => props.modelValue,
+    () => {
+      active.value = props.modelValue
+    },
+    { immediate: true }
+  )
+
   const handleHead = () => {
     active.value = !active.value
+    emits('update:modelValue', active.value)
+    emits('change', active.value)
   }
 </script>
 

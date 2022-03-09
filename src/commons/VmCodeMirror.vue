@@ -85,16 +85,6 @@
     position: relative;
   }
 
-  .vm-codemirror .CodeMirror {
-    height: auto;
-  }
-
-  .vm-codemirror .CodeMirror-scroll {
-    height: auto;
-    overflow-y: hidden;
-    overflow-x: auto;
-  }
-
   .CodeMirror-lines {
     text-align: left;
   }

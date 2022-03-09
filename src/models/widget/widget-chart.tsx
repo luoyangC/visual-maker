@@ -56,7 +56,6 @@ export class ChartWidget extends Widget {
       subtype: options.subtype,
       subConfig: chartHook.getChartConfig(options.subtype as string)
     }
-    config.subConfig && (config.subConfig.style = config.style)
     return config
   }
 }

@@ -1,16 +1,21 @@
 <template>
-  <div class="chart-list" @dragstart="handleDragStart">
-    <vm-icon
-      v-for="(item, index) in chartList"
-      :key="index"
-      :name="item.icon"
-      :text="item.label"
-      :data-type="item.type"
-      draggable="true"
-      size="24"
-      class="chart-item"
-    />
-  </div>
+  <vm-collapse title="基础图表">
+    <div class="chart-list mt-10" @dragstart="handleDragStart">
+      <vm-icon
+        v-for="(item, index) in chartList"
+        :key="index"
+        :name="item.icon"
+        :text="item.label"
+        :data-type="item.type"
+        draggable="true"
+        size="24"
+        class="chart-item"
+      />
+    </div>
+  </vm-collapse>
+  <vm-collapse title="图表样例">
+    <div>样例</div>
+  </vm-collapse>
 </template>
 
 <script setup lang="ts">

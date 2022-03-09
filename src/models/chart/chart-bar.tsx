@@ -1,6 +1,6 @@
 import { h, resolveComponent } from 'vue'
 import { WidgetConfig } from '../widget'
-import { Chart, ChartOption } from './index'
+import { Chart } from './index'
 
 export class BarChart extends Chart {
   constructor() {
@@ -14,11 +14,21 @@ export class BarChart extends Chart {
   }
 
   getTemplate(config: WidgetConfig) {
-    return h(resolveComponent('VmChart'), { class: 'v-chart', option: config.subConfig })
+    return h(resolveComponent('VmChart'), {
+      class: 'v-chart',
+      option: config.subConfig,
+      height: config.style.height,
+      width: config.style.width
+    })
   }
 
   getPreview(config: WidgetConfig) {
-    return h(resolveComponent('VmChart'), { class: 'v-chart', option: config.subConfig })
+    return h(resolveComponent('VmChart'), {
+      class: 'v-chart',
+      option: config.subConfig,
+      height: config.style.height,
+      width: config.style.width
+    })
   }
 
   getConfig() {
