@@ -33,7 +33,11 @@ export class RootWidget extends Widget {
         lineHeight: 1.5,
         fontFamily: 'sans-serif',
         color: '',
-        backgroundColor: '#fff'
+        backgroundColor: '#fff',
+        backgroundImage: '',
+        backgroundPosition: '',
+        backgroundSize: 'auto',
+        backgroundRepeat: 'repeat'
       },
       props: {
         schema: '1',

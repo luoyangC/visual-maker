@@ -189,3 +189,26 @@ export const VERTICAL_TYPES = [
     icon: 'bottom-align'
   }
 ]
+
+export const IMAGE_REPEAT_TYPES = [
+  {
+    index: 1,
+    value: 'repeat',
+    label: '重复'
+  },
+  {
+    index: 2,
+    value: 'repeat-x',
+    label: '水平重复'
+  },
+  {
+    index: 3,
+    value: 'repeat-y',
+    label: '垂直重复'
+  },
+  {
+    index: 4,
+    value: 'no-repeat',
+    label: '不重复'
+  }
+]

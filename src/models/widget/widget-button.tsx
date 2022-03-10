@@ -55,7 +55,11 @@ export class ButtonWidget extends Widget {
         lineHeight: 1,
         letterSpacing: 0,
         color: '',
-        backgroundColor: '#fff'
+        backgroundColor: '#fff',
+        backgroundImage: '',
+        backgroundPosition: '',
+        backgroundSize: 'auto',
+        backgroundRepeat: 'repeat'
       },
       props: {
         label: '按钮文本'

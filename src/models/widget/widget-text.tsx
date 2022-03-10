@@ -55,7 +55,11 @@ export class TextWidget extends Widget {
         lineHeight: 1.5,
         letterSpacing: 0,
         color: '',
-        backgroundColor: '#fff'
+        backgroundColor: '#fff',
+        backgroundImage: '',
+        backgroundPosition: '',
+        backgroundSize: 'auto',
+        backgroundRepeat: 'repeat'
       },
       props: {
         value: '文本占位'

@@ -70,6 +70,31 @@
       </vm-collapse>
     </div>
     <el-divider v-if="showText" class="attr-divider" />
+    <!-- 背景图片 -->
+    <div v-if="showBackground" class="attr-background">
+      <vm-collapse title="背景">
+        <div class="attr-text__body">
+          <div class="attr-cell g-flex--bc mt-10">
+            <vm-input v-model="curStyle.backgroundImage" label="背景图片" width="340" />
+          </div>
+          <div class="attr-cell g-flex--bc mt-10">
+            <vm-input v-model="curStyle.backgroundPosition" label="背景位置" width="340" />
+          </div>
+          <div class="attr-cell g-flex--bc mt-10">
+            <vm-input v-model="curStyle.backgroundSize" label="背景尺寸" width="340" />
+          </div>
+          <div class="attr-cell g-flex--bc mt-10">
+            <vm-select
+              v-model="curStyle.backgroundRepeat"
+              label="背景复制"
+              :items="IMAGE_REPEAT_TYPES"
+              width="340"
+            />
+          </div>
+        </div>
+      </vm-collapse>
+    </div>
+    <el-divider v-if="showBackground" class="attr-divider" />
     <!-- 图表标题 -->
     <div v-if="showChartOption && curChart.title" class="attr-chart-option">
       <vm-collapse title="图表标题">
@@ -190,8 +215,10 @@
     FONT_FAMILY_TYPES,
     TEXT_STYLE_TYPES,
     ALIGN_TYPES,
-    VERTICAL_TYPES
+    VERTICAL_TYPES,
+    IMAGE_REPEAT_TYPES
   } from '@/constant/dict'
+  import { isDef } from '@/utils'
 
   const store = useStore()
 
@@ -201,6 +228,9 @@
   const attrConfigs = computed(() => curWidget.value.attrConfigs || [])
   const lockIcon = computed(() => (curWidget.value.lock ? 'lock' : 'unlock'))
   const showText = computed(() => curWidget.value.type !== 'chart')
+  const showBackground = computed(
+    () => curWidget.value.type !== 'chart' && isDef(curStyle.value.backgroundImage)
+  )
   const showChartOption = computed(() => curWidget.value.type === 'chart')
   const curChart = computed(() => curWidget.value.subConfig)
 
