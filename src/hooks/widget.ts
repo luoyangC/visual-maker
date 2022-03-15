@@ -1,6 +1,7 @@
 import type { Widget, WidgetConfig, WidgetConfigOptions } from '@/models/widget'
 import { widgets } from '@/models/widget'
 import { generateID } from '@/utils'
+import { getExampleInfo } from '@/api'
 
 type WidgetKeys = keyof typeof widgets
 
@@ -44,6 +45,11 @@ class WidgetHook {
       preview.props.style.transform = `rotate(${config.style?.rotate}deg)`
     }
     return preview
+  }
+
+  async getWidgetExample(exampleId: string) {
+    const exampleInfo = await getExampleInfo(exampleId)
+    return exampleInfo?.option
   }
 
   newWidget(Widget: WidgetModel) {

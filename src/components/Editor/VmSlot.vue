@@ -37,14 +37,19 @@
 
   const VmSlot = ref()
 
-  const handleDrop = (e: any) => {
+  const handleDrop = async (e: any) => {
     e.preventDefault()
     e.stopPropagation()
 
     // 获取组件配置
-    const widgetName = e.dataTransfer.getData('type')
+    const widgetName = e.dataTransfer.getData('widgetType')
     const subtype = e.dataTransfer.getData('subtype')
-    const innerWidget = widgetHook.getWidgetConfig(widgetName, { subtype })
+    const async = e.dataTransfer.getData('async')
+    const exampleId = e.dataTransfer.getData('exampleId')
+
+    const innerWidget = async
+      ? await widgetHook.getWidgetExample(exampleId)
+      : widgetHook.getWidgetConfig(widgetName, { subtype })
 
     // 设置父组件
     innerWidget.parent = props.widget

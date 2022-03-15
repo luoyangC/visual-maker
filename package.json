@@ -18,6 +18,7 @@
     "low code"
   ],
   "dependencies": {
+    "axios": "^0.26.1",
     "codemirror": "^5.65.2",
     "echarts": "^5.2.2",
     "element-plus": "^2.0",

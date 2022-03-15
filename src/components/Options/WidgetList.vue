@@ -21,7 +21,7 @@
   const widgetList = widgetHook.getDragTypeList()
 
   const handleDragStart = (e: any) => {
-    e.dataTransfer.setData('type', e.target.dataset.type)
+    e.dataTransfer.setData('widgetType', e.target.dataset.type)
   }
 </script>
 
