@@ -1,5 +1,5 @@
 <template>
-  <el-dropdown :hide-on-click="false" class="vm-export">
+  <el-dropdown :hide-on-click="false" class="head-export">
     <vm-icon name="export" text="导出" />
     <template #dropdown>
       <el-dropdown-menu>
@@ -33,7 +33,7 @@
 </script>
 
 <style lang="scss">
-  .vm-export {
+  .head-export {
     font-size: 18px !important;
     .vm-icon {
       height: 50px;

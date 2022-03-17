@@ -6,7 +6,8 @@
       <vm-icon name="delete" text="清空" class="header-item" />
       <vm-icon name="save" text="保存" class="header-item" />
       <vm-icon name="preview" text="预览" class="header-item" @click="preview" />
-      <vm-export />
+      <head-export />
+      <head-avatar />
     </el-header>
     <el-main class="vm-main">
       <div class="vm-aside">
@@ -15,6 +16,13 @@
         <vm-icon name="custom" tip="工具" size="24" class="aside-item" @click="checkOption('3')" />
         <vm-icon name="app" tip="扩展" size="24" class="aside-item" @click="checkOption('4')" />
         <vm-icon name="tree" tip="结构" size="24" class="aside-item" @click="checkOption('5')" />
+        <vm-icon
+          name="github"
+          tip="源码"
+          size="24"
+          class="aside-item aside-bottom"
+          @click="toGitHub"
+        />
       </div>
       <div class="vm-option">
         <widget-list v-if="option === '1'" />
@@ -59,7 +67,8 @@
   import PropList from './Attrs/PropList.vue'
   import DataList from './Attrs/DataList.vue'
   import Preview from './Preview/index.vue'
-  import VmExport from './Action/VmExport.vue'
+  import HeadExport from './Action/HeadExport.vue'
+  import HeadAvatar from './Action/HeadAvatar.vue'
 
   const option = ref('1')
   const active = ref('attr')
@@ -67,6 +76,10 @@
 
   const checkOption = (val: string) => {
     option.value = val
+  }
+
+  const toGitHub = () => {
+    window.open('https://github.com/luoyangC/visual-maker')
   }
 
   // const undo = () => {}
@@ -147,5 +160,9 @@
     padding: 5px;
     margin-bottom: 10px;
     border-radius: 4px;
+  }
+  .aside-bottom {
+    position: absolute;
+    bottom: 10px;
   }
 </style>

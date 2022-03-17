@@ -5,7 +5,7 @@
     {
       "id": 0,
       "type": 2,
-      "icon": "/thumb/area-stack.png",
+      "icon": "/visual-maker/thumb/area-stack.png",
       "option": {
         "type": "chart",
         "lock": false,
@@ -132,7 +132,7 @@
     {
       "id": 1,
       "type": 2,
-      "icon": "/thumb/bar-stack.png",
+      "icon": "/visual-maker/thumb/bar-stack.png",
       "option": {
         "type": "chart",
         "lock": false,
@@ -284,7 +284,7 @@
     {
       "id": 2,
       "type": 2,
-      "icon": "/thumb/bar-polar-label-tangential.png",
+      "icon": "/visual-maker/thumb/bar-polar-label-tangential.png",
       "option": {
         "type": "chart",
         "lock": false,
@@ -342,7 +342,7 @@
     {
       "id": 3,
       "type": 2,
-      "icon": "/thumb/pie-borderRadius.png",
+      "icon": "/visual-maker/thumb/pie-borderRadius.png",
       "option": {
         "type": "chart",
         "lock": false,
@@ -411,7 +411,7 @@
     {
       "id": 4,
       "type": 2,
-      "icon": "/thumb/pie-roseType-simple.png",
+      "icon": "/visual-maker/thumb/pie-roseType-simple.png",
       "option": {
         "type": "chart",
         "lock": false,
@@ -474,7 +474,7 @@
     {
       "id": 5,
       "type": 2,
-      "icon": "/thumb/scatter-weight.png",
+      "icon": "/visual-maker/thumb/scatter-weight.png",
       "option": {
         "type": "chart",
         "lock": false,

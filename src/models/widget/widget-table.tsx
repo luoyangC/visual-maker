@@ -124,7 +124,9 @@ export class TableWidget extends Widget {
           label: '行数',
           model: 'row',
           type: 'number',
-          func: () => {}
+          func: (val: number, old: number, widget: WidgetConfig) => {
+            widget.children?.forEach((slot) => {})
+          }
         }
       ],
       children: [],

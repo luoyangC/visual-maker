@@ -2,7 +2,7 @@ import type { AxiosInstance, AxiosResponse } from 'axios'
 import axios from 'axios'
 
 export const api: AxiosInstance = axios.create({
-  baseURL: '/mock/',
+  baseURL: '/visual-maker/mock/',
   headers: {
     Accept: 'application/json'
   }

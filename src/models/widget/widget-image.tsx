@@ -64,7 +64,7 @@ export class ImageWidget extends Widget {
         objectFit: 'fill'
       },
       props: {
-        src: 'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg'
+        src: '/visual-maker/thumb/image-example.png'
       },
       attrConfigs: [
         {

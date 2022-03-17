@@ -2,6 +2,7 @@ import type { App } from 'vue'
 import {
   ElIcon,
   ElTag,
+  ElAvatar,
   ElButton,
   ElColorPicker,
   ElTooltip,
@@ -31,6 +32,7 @@ export default function elementPlugin(app: App) {
   }
   app.use(ElIcon)
   app.use(ElTag)
+  app.use(ElAvatar)
   app.use(ElButton)
   app.use(ElColorPicker)
   app.use(ElTooltip)
