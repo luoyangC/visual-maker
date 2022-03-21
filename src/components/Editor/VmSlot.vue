@@ -41,6 +41,11 @@
     e.preventDefault()
     e.stopPropagation()
 
+    // 固定插槽内容不可拖动更新
+    if (isSlotFilled.value) {
+      return
+    }
+
     // 获取组件配置
     const widgetName = e.dataTransfer.getData('widgetType')
     const subtype = e.dataTransfer.getData('subtype')

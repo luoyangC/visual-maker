@@ -114,7 +114,11 @@ export class TableWidget extends Widget {
           type: 'number',
           func: (val: number, old: number, widget: WidgetConfig) => {
             if (val > old) {
-              this.pushSlotToChildren(widget)
+              this.pushSlotToChildren(widget, {
+                settled: true,
+                slotType: 'column',
+                props: { row: config.props?.row }
+              })
             } else if (val < old) {
               this.popSlotFromChildren(widget)
             }
@@ -125,7 +129,18 @@ export class TableWidget extends Widget {
           model: 'row',
           type: 'number',
           func: (val: number, old: number, widget: WidgetConfig) => {
-            widget.children?.forEach((slot) => {})
+            widget.children?.forEach((slotItem) => {
+              const columnItem = slotItem.children?.[0]
+              if (columnItem) {
+                if (val > old) {
+                  this.pushSlotToChildren(columnItem, { settled: true })
+                  columnItem.props && columnItem.props.row++
+                } else if (val < old) {
+                  this.popSlotFromChildren(columnItem)
+                  columnItem.props && columnItem.props.row--
+                }
+              }
+            })
           }
         }
       ],
