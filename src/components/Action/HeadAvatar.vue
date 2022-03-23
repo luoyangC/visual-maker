@@ -41,9 +41,9 @@
     font-size: 0;
     ::v-deep(.el-avatar) {
       img {
-        transition: 0.3s ease-in-out;
+        transition: 0.5s ease-in-out;
         &:hover {
-          transform: scale(1.4);
+          transform: scale(1.4) rotate(360deg);
         }
       }
     }
