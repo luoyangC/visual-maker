@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-  import { computed } from 'vue'
+  import { computed, watch } from 'vue'
   import { isDef } from '@/utils'
   import { useFormItem } from './useFormItem'
 
@@ -43,6 +43,16 @@
   const iconName = computed(() => `#icon-${props.icon}`)
   const showPrefix = computed(() => props.title || props.icon)
   const isDisabled = computed(() => props.disabled || vmDisabled.value || !isDef(props.modelValue))
+
+  watch(
+    () => props.modelValue,
+    (val) => {
+      if (props.type === 'number') {
+        val && emits('update:modelValue', Math.floor((val as number) * 100 + 0.01) / 100)
+      }
+    },
+    { immediate: true }
+  )
 
   const handleInput = (val: string | number) => {
     emits('update:modelValue', val)

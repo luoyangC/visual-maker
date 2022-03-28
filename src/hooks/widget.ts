@@ -49,7 +49,7 @@ class WidgetHook {
 
   async getWidgetExample(exampleId: string) {
     const exampleInfo = await getExampleInfo(exampleId)
-    return exampleInfo?.option
+    return this.jsonToWidget(exampleInfo?.option)
   }
 
   newWidget(Widget: WidgetModel) {
@@ -68,6 +68,25 @@ class WidgetHook {
 
   getDragTypeList() {
     return this.dragTypeList
+  }
+
+  jsonToWidget(json: any, parent?: any) {
+    const result: any = {}
+    for (const key in json) {
+      if (Object.prototype.hasOwnProperty.call(json, key)) {
+        if (key === 'children') {
+          result[key] = json.children?.map((item: any) => this.jsonToWidget(item, json))
+        } else {
+          result[key] = json[key as WidgetKeys]
+        }
+      }
+    }
+    if (parent) {
+      result.parent = parent
+    }
+    result.propConfigs = this.getWidgetConfig(json.type).propConfigs
+    result.attrConfigs = this.getWidgetConfig(json.type).attrConfigs
+    return result
   }
 }
 

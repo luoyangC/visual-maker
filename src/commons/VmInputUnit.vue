@@ -3,13 +3,12 @@
     <vm-form-label :label="label" />
     <el-input
       :model-value="innerValue"
-      :type="type"
       :disabled="isDisabled"
       class="vm-input-unit"
       @input="handleInput"
     >
       <template v-if="showPrefix" #prefix>
-        <div class="vm-input__prefix">
+        <div class="vm-input-unit__prefix">
           <span>{{ title }}</span>
           <svg class="vm-icon_svg" aria-hidden="true" style="font-size: 16px">
             <use :xlink:href="iconName" />
@@ -25,9 +24,6 @@
         >
           <el-option label="px" value="px" />
           <el-option label="%" value="%" />
-          <el-option label="em" value="em" />
-          <el-option label="vh" value="vh" />
-          <el-option label="vw" value="vw" />
         </el-select>
       </template>
     </el-input>
@@ -41,15 +37,13 @@
 
   const { width, label, vmDisabled } = useFormItem()
 
-  const unitType = ['px', '%', 'em', 'vh', 'vw']
+  const unitType = ['px', '%']
 
   interface Props {
-    modelValue?: string
+    modelValue?: string | number
     title?: string
     icon?: string
-    type?: string
     disabled?: boolean
-    decimal?: number
   }
   const props = defineProps<Props>()
   const emits = defineEmits<{
@@ -63,20 +57,8 @@
   const showPrefix = computed(() => props.title || props.icon)
   const isDisabled = computed(() => props.disabled || vmDisabled.value || !isDef(props.modelValue))
 
-  watch(
-    () => props.modelValue,
-    (val) => {
-      if (props.type === 'length' && val) {
-        passUnit(val)
-      } else {
-        innerValue.value = props.modelValue
-      }
-    },
-    { immediate: true }
-  )
-
-  const passUnit = (val: string | number) => {
-    const strValue = String(val)
+  const initData = () => {
+    const strValue = String(props.modelValue)
     if (!isNaN(Number(strValue))) {
       unitModel.value = 'px'
       innerValue.value = strValue
@@ -90,8 +72,17 @@
     emits('update:modelValue', innerValue.value + unitModel.value)
   }
 
+  watch(
+    () => props.modelValue,
+    () => {
+      initData()
+    },
+    { immediate: true }
+  )
+
   const handleInput = (val: string) => {
-    emits('update:modelValue', val)
+    innerValue.value = val
+    emits('update:modelValue', innerValue.value + unitModel.value)
   }
 
   const handleChangeUnit = () => {
@@ -99,27 +90,15 @@
   }
 </script>
 
-<style>
-  .el-input__prefix {
-    left: 8px;
-  }
-  .el-input__inner {
-    padding: 0 5px;
-  }
-  .el-input--prefix .el-input__inner {
-    padding-left: 25px;
-  }
-  .el-input__inner::-webkit-inner-spin-button {
-    margin: 0 -15px;
-  }
-  .el-input-group__append {
-    padding: 0 14px;
-  }
-</style>
-
 <style lang="scss" scoped>
-  .vm-input {
+  .vm-input-unit {
     width: 100%;
+    ::v-deep(.el-input-group__append) {
+      padding: 0 14px;
+    }
+    ::v-deep(.el-input__inner) {
+      padding-right: 5px;
+    }
     &__prefix {
       display: flex;
       align-items: center;
@@ -130,7 +109,7 @@
       user-select: none;
       color: rgb(141, 158, 167);
     }
-    &-unit__select {
+    &__select {
       width: 28px;
       ::v-deep(.el-input__inner) {
         padding: 0 5px;

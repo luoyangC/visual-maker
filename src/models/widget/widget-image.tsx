@@ -51,8 +51,8 @@ export class ImageWidget extends Widget {
       style: {
         width: 300,
         height: 200,
-        minWidth: 50,
-        minHeight: 50,
+        minWidth: 40,
+        minHeight: 40,
         opacity: 1,
         rotate: 0,
         overflow: 'hidden',

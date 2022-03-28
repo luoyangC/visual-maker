@@ -7,6 +7,12 @@ export interface Example {
   option: any
 }
 
+export const getCustomExampleList = () => {
+  return api.get<Array<Example>>('exampleList.json').then((res) => {
+    return res.data.filter((item) => item.type === 1)
+  })
+}
+
 export const getChartExampleList = () => {
   return api.get<Array<Example>>('exampleList.json').then((res) => {
     return res.data.filter((item) => item.type === 2)

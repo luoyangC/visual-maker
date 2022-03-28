@@ -1156,6 +1156,90 @@
           ]
         }
       }
+    },
+    {
+      "id": 6,
+      "type": 1,
+      "icon": "/visual-maker/thumb/custom-widget-1.png",
+      "option": {
+        "type": "custom",
+        "lock": false,
+        "style": {
+          "width": 200,
+          "height": 42,
+          "minWidth": 200,
+          "minHeight": 42,
+          "opacity": 1,
+          "rotate": 0,
+          "overflow": "hidden",
+          "textAlign": "",
+          "color": "",
+          "backgroundColor": "#fff",
+          "top": 0,
+          "left": 0
+        },
+        "attrs": {},
+        "props": {},
+        "children": [
+          {
+            "type": "image",
+            "lock": false,
+            "settled": true,
+            "style": {
+              "width": 42,
+              "height": 42,
+              "minWidth": 40,
+              "minHeight": 40,
+              "opacity": 1,
+              "rotate": 0,
+              "overflow": "hidden",
+              "textAlign": "",
+              "color": "",
+              "backgroundColor": "#fff",
+              "top": 0,
+              "left": 0
+            },
+            "attrs": {
+              "objectFit": "fill"
+            },
+            "props": {
+              "src": "/visual-maker/thumb/avatar-1.png"
+            }
+          },
+          {
+            "type": "text",
+            "lock": false,
+            "settled": true,
+            "style": {
+              "width": 152,
+              "height": 42,
+              "minWidth": 100,
+              "minHeight": 30,
+              "opacity": 1,
+              "rotate": 0,
+              "overflow": "hidden",
+              "fontSize": 18,
+              "fontFamily": "sans-serif",
+              "textStyles": [],
+              "textAlign": "left",
+              "verticalAlign": "middle",
+              "lineHeight": 1.5,
+              "letterSpacing": 0,
+              "color": "",
+              "backgroundColor": "#fff",
+              "backgroundImage": "",
+              "backgroundPosition": "",
+              "backgroundSize": "auto",
+              "backgroundRepeat": "repeat",
+              "top": 0,
+              "left": 48
+            },
+            "props": {
+              "value": "文本占位"
+            }
+          }
+        ]
+      }
     }
   ]
 }

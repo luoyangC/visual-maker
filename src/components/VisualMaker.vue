@@ -104,19 +104,30 @@
 
 <style lang="scss" scoped>
   .vm-header {
+    z-index: 100;
     display: flex;
     justify-content: center;
     align-items: center;
     border-bottom: 1px solid #e6e6e6;
   }
   .vm-main {
+    z-index: 10;
     display: flex;
     justify-content: space-between;
     background-color: #f5f5f5;
     height: calc(100vh - 60px);
     padding: 0;
   }
+  .vm-canvas {
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    padding: 10px;
+  }
   .vm-aside {
+    z-index: 30;
     z-index: 1;
     width: 55px;
     padding: 10px;
@@ -124,19 +135,14 @@
     border-right: 1px solid #e6e6e6;
   }
   .vm-option {
+    z-index: 40;
     width: 250px;
     background-color: #ffffff;
     padding: 10px;
     box-shadow: 0 2px 10px rgb(0 0 0 / 5%);
   }
-  .vm-canvas {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-grow: 1;
-    padding: 10px;
-  }
   .vm-attribute {
+    z-index: 50;
     width: 360px;
     background-color: #ffffff;
     padding: 10px;
