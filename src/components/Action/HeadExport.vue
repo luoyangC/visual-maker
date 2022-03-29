@@ -11,13 +11,13 @@
 
 <script setup lang="ts">
   import { useStore } from '@/store'
-  import { widgetToJson } from '@/utils'
+  import { widgetHook } from '@/hooks/widget'
 
   const store = useStore()
 
   const exportJson = () => {
     const rootWidget = store.getters['widget/root']
-    const widgetData = widgetToJson(rootWidget)
+    const widgetData = widgetHook.widgetToJson(rootWidget)
 
     const blobParts = [JSON.stringify(widgetData, null, 2)]
     const blobs = new Blob(blobParts, { type: 'data:application/json;charset=utf-8' })

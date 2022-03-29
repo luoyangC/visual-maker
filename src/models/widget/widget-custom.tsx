@@ -18,7 +18,14 @@ export class CustomWidget extends Widget {
 
   getTemplate(config: WidgetConfig) {
     const children = config.children?.map((item) => this.getChildren(item))
-    return h('div', { class: 'v-custom' }, children)
+    return h(
+      'div',
+      {
+        class: 'v-custom',
+        style: { width: config.style.width + 'px', height: config.style.height + 'px' }
+      },
+      children
+    )
   }
 
   getPreview(config: WidgetConfig) {
@@ -55,7 +62,7 @@ export class CustomWidget extends Widget {
       props: {},
       propConfigs: [],
       children: [],
-      settled: true
+      settled: false
     }
     return config
   }

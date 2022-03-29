@@ -11,6 +11,10 @@ type InstantiableClass<T extends Widget> = {
 
 type WidgetModel = InstantiableClass<Widget>
 
+type WidgetConfigKeys = keyof WidgetConfig
+
+const excKeys: Array<WidgetConfigKeys> = ['parent', 'propConfigs', 'attrConfigs']
+
 class WidgetHook {
   widgetMap: Map<string, InstanceType<WidgetModel>>
   dragTypeList: Array<{ type: string; icon?: string; label?: string }>
@@ -39,7 +43,8 @@ class WidgetHook {
   getWidgetPreview(name: string, config: WidgetConfig) {
     const preview: any = this.getWidget(name).getPreview(config)
     if (preview.props && preview.props.class) {
-      preview.props.class += config.settled ? ' g-pos--r' : ' g-pos--a'
+      preview.props.class +=
+        config.parent?.type === 'custom' ? ' g-pos--a' : config.settled ? ' g-pos--r' : ' g-pos--a'
     }
     if (preview.props && preview.props.style && config.style?.rotate) {
       preview.props.style.transform = `rotate(${config.style?.rotate}deg)`
@@ -71,21 +76,36 @@ class WidgetHook {
   }
 
   jsonToWidget(json: any, parent?: any) {
-    const result: any = {}
+    const result: any = this.getWidgetConfig(json.type, json)
+
     for (const key in json) {
       if (Object.prototype.hasOwnProperty.call(json, key)) {
         if (key === 'children') {
           result[key] = json.children?.map((item: any) => this.jsonToWidget(item, json))
         } else {
-          result[key] = json[key as WidgetKeys]
+          result[key] = json[key]
         }
       }
     }
-    if (parent) {
-      result.parent = parent
+
+    result.id = generateID()
+    result.parent = parent
+    return result
+  }
+
+  widgetToJson(widget: WidgetConfig, excludes: Array<WidgetConfigKeys> = excKeys) {
+    const result: any = {}
+    for (const key in widget) {
+      if (Object.prototype.hasOwnProperty.call(widget, key)) {
+        if (excludes.includes(key as WidgetConfigKeys)) {
+          continue
+        } else if (key === 'children') {
+          result[key] = widget.children?.map((item) => this.widgetToJson(item))
+        } else {
+          result[key] = widget[key as WidgetConfigKeys]
+        }
+      }
     }
-    result.propConfigs = this.getWidgetConfig(json.type).propConfigs
-    result.attrConfigs = this.getWidgetConfig(json.type).attrConfigs
     return result
   }
 }

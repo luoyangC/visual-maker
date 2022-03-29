@@ -11,11 +11,7 @@
     @mousedown="handleMouseDown"
     @contextmenu="handleContextMenu"
   >
-    <i
-      v-if="showRotate"
-      class="vm-shape-rotate iconfont icon-refresh"
-      @mousedown="handleRotate"
-    ></i>
+    <i v-if="showRotate" class="vm-shape-rotate iconfont icon-refresh" @mousedown="handleRotate" />
     <i
       v-for="(item, index) in showPoint ? pointList : []"
       :key="index"
@@ -61,6 +57,7 @@
 
   const getShapeStyle = (style?: LooseOptions) => {
     const restyle = {
+      zIndex: props.widget.id,
       top: `${style?.top}px`,
       left: `${style?.left}px`,
       transform: `rotate(${style?.rotate}deg)`

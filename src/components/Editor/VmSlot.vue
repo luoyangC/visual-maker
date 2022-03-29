@@ -55,7 +55,7 @@
     const innerWidget = async
       ? await widgetHook.getWidgetExample(exampleId)
       : widgetHook.getWidgetConfig(widgetName, { subtype })
-    console.log(innerWidget)
+
     // 设置父组件
     innerWidget.parent = props.widget
 
