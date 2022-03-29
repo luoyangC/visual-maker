@@ -6,7 +6,7 @@
 }
 
 .v-button {
-  display: inline-block;
+  display: inline-flex;
   cursor: pointer;
   background-color: #ffffff;
   border: 1px solid var(--el-border-color-base);
@@ -18,7 +18,7 @@
 }
 
 .v-text {
-  display: table-cell;
+  display: inline-flex;
 }
 
 .v-ul {

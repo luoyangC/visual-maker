@@ -49,7 +49,7 @@ export class ChartWidget extends Widget {
         opacity: 1,
         rotate: 0,
         overflow: 'hidden',
-        textAlign: '',
+        justifyContent: '',
         color: '',
         backgroundColor: '#fff'
       },

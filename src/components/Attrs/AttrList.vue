@@ -62,9 +62,9 @@
             <vm-button-group v-model="curStyle.textStyles" :items="TEXT_STYLE_TYPES" width="152" />
           </div>
           <div class="attr-cell g-flex--bc mt-10">
-            <vm-button-group v-model="curStyle.textAlign" :items="ALIGN_TYPES" width="152" />
+            <vm-button-group v-model="curStyle.justifyContent" :items="ALIGN_TYPES" width="152" />
             <el-divider direction="vertical" />
-            <vm-button-group v-model="curStyle.verticalAlign" :items="VERTICAL_TYPES" width="114" />
+            <vm-button-group v-model="curStyle.alignItems" :items="VERTICAL_TYPES" width="114" />
           </div>
         </div>
       </vm-collapse>

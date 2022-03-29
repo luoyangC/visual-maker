@@ -152,7 +152,7 @@ export const TEXT_STYLE_TYPES = [
 export const ALIGN_TYPES = [
   {
     index: 1,
-    value: 'left',
+    value: 'flex-start',
     icon: 'left-align'
   },
   {
@@ -162,12 +162,12 @@ export const ALIGN_TYPES = [
   },
   {
     index: 3,
-    value: 'right',
+    value: 'flex-end',
     icon: 'right-align'
   },
   {
     index: 4,
-    value: 'justify',
+    value: 'space-between',
     icon: 'all-align'
   }
 ]
@@ -175,17 +175,17 @@ export const ALIGN_TYPES = [
 export const VERTICAL_TYPES = [
   {
     index: 1,
-    value: 'top',
+    value: 'flex-start',
     icon: 'top-align'
   },
   {
     index: 2,
-    value: 'middle',
+    value: 'center',
     icon: 'vertical-center'
   },
   {
     index: 3,
-    value: 'bottom',
+    value: 'flex-end',
     icon: 'bottom-align'
   }
 ]
