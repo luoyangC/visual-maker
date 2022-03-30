@@ -243,7 +243,7 @@
     position: absolute;
     font-size: 0;
     &::after {
-      pointer-events: auto;
+      pointer-events: none;
       font-size: 0;
       position: absolute;
       content: '';
@@ -257,12 +257,8 @@
     }
     &--active {
       &::after {
+        z-index: 9999;
         border: 1px solid #70c0ff;
-      }
-    }
-    &--drop {
-      &::after {
-        z-index: -1;
       }
     }
     &--root {
@@ -273,7 +269,7 @@
       }
     }
     &-point {
-      z-index: 100;
+      z-index: 10000;
       position: absolute;
       background: #fff;
       border: 1px solid #59c7f9;

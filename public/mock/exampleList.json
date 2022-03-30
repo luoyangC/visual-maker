@@ -1203,7 +1203,8 @@
             },
             "props": {
               "src": "/visual-maker/thumb/avatar-1.png"
-            }
+            },
+            "settled": true
           },
           {
             "type": "text",
@@ -1234,7 +1235,8 @@
             },
             "props": {
               "value": "文本占位"
-            }
+            },
+            "settled": true
           }
         ]
       }

@@ -30,7 +30,14 @@ export class CustomWidget extends Widget {
 
   getPreview(config: WidgetConfig) {
     const children = config.children?.map((item) => this.getWidgetPreview(item.type, item))
-    return h('div', { class: 'v-custom' }, children)
+    return h(
+      'div',
+      {
+        class: 'v-custom',
+        style: this.getWidgetStyle(config.style)
+      },
+      children
+    )
   }
 
   getConfig() {

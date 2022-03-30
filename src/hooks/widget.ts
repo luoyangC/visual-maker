@@ -24,6 +24,10 @@ class WidgetHook {
     this.dragTypeList = []
   }
 
+  getDragTypeList() {
+    return this.dragTypeList
+  }
+
   getWidget(name: string) {
     return this.widgetMap.get(name) as InstanceType<WidgetModel>
   }
@@ -43,8 +47,8 @@ class WidgetHook {
   getWidgetPreview(name: string, config: WidgetConfig) {
     const preview: any = this.getWidget(name).getPreview(config)
     if (preview.props && preview.props.class) {
-      preview.props.class +=
-        config.parent?.type === 'custom' ? ' g-pos--a' : config.settled ? ' g-pos--r' : ' g-pos--a'
+      const isAbsolute = config.parent?.type === 'custom' || !config.settled
+      preview.props.class += isAbsolute ? ' g-pos--a' : ' g-pos--r'
     }
     if (preview.props && preview.props.style && config.style?.rotate) {
       preview.props.style.transform = `rotate(${config.style?.rotate}deg)`
@@ -71,17 +75,13 @@ class WidgetHook {
     return el
   }
 
-  getDragTypeList() {
-    return this.dragTypeList
-  }
-
   jsonToWidget(json: any, parent?: any) {
     const result: any = this.getWidgetConfig(json.type, json)
 
     for (const key in json) {
       if (Object.prototype.hasOwnProperty.call(json, key)) {
         if (key === 'children') {
-          result[key] = json.children?.map((item: any) => this.jsonToWidget(item, json))
+          result[key] = json.children?.map((item: any) => this.jsonToWidget(item, result))
         } else {
           result[key] = json[key]
         }
