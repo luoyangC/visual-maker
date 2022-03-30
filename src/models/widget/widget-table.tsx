@@ -16,7 +16,7 @@ export class TableWidget extends Widget {
     const restyle = { width: 0, height: 0 }
 
     const listPadding = config.attrs?.padding
-    const itemSize = config.props?.column
+    const itemSize = config.attrs?.column
     const contentWidth = config.style.width - 2 * listPadding
     const contentHeight = config.style.height - 2 * listPadding
 
@@ -94,20 +94,28 @@ export class TableWidget extends Widget {
         backgroundColor: '#fff'
       },
       attrs: {
-        padding: 10
+        padding: 10,
+        column: 3,
+        row: 3,
+        headHeight: 48,
+        rowHeight: 60
       },
       attrConfigs: [
         {
           label: '表格边距',
           type: 'number',
           model: 'padding'
-        }
-      ],
-      props: {
-        column: 3,
-        row: 3
-      },
-      propConfigs: [
+        },
+        {
+          label: '表头高度',
+          type: 'number',
+          model: 'headHeight'
+        },
+        {
+          label: '行高',
+          type: 'number',
+          model: 'rowHeight'
+        },
         {
           label: '列数',
           model: 'column',
@@ -117,7 +125,7 @@ export class TableWidget extends Widget {
               this.pushSlotToChildren(widget, {
                 settled: true,
                 slotType: 'column',
-                props: { row: config.props?.row }
+                attrs: { row: config.attrs?.row, headHeight: config.attrs?.headHeight }
               })
             } else if (val < old) {
               this.popSlotFromChildren(widget)
@@ -134,24 +142,26 @@ export class TableWidget extends Widget {
               if (columnItem) {
                 if (val > old) {
                   this.pushSlotToChildren(columnItem, { settled: true })
-                  columnItem.props && columnItem.props.row++
+                  columnItem.attrs && columnItem.attrs.row++
                 } else if (val < old) {
                   this.popSlotFromChildren(columnItem)
-                  columnItem.props && columnItem.props.row--
+                  columnItem.attrs && columnItem.attrs.row--
                 }
               }
             })
           }
         }
       ],
+      props: {},
+      propConfigs: [],
       children: [],
       settled: false
     }
-    for (let index = 0; index < config.props?.column; index++) {
+    for (let index = 0; index < config.attrs?.column; index++) {
       this.pushSlotToChildren(config, {
         settled: true,
         slotType: 'column',
-        props: { row: config.props?.row }
+        attrs: { row: config.attrs?.row, headHeight: config.attrs?.headHeight }
       })
     }
     this.onStyleRepaint(config)

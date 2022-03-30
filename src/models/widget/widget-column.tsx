@@ -14,7 +14,7 @@ export class ColumnWidget extends Widget {
     const restyle = { width: 0, height: 0 }
 
     const itemPadding = config.attrs?.padding
-    const itemSize = config.props?.row
+    const itemSize = config.attrs?.row
 
     const contentWidth = config.style.width
     const contentHeight = config.style.height - config.attrs?.headHeight
@@ -117,24 +117,25 @@ export class ColumnWidget extends Widget {
         backgroundColor: '#fff'
       },
       attrs: {
-        headHeight: 48,
-        padding: 10
+        padding: 10,
+        width: 'auto',
+        headHeight: options.attrs?.headHeight,
+        row: options.attrs?.row
       },
       attrConfigs: [
-        {
-          label: '表头高度',
-          type: 'number',
-          model: 'headHeight'
-        },
         {
           label: '内容边距',
           type: 'number',
           model: 'padding'
+        },
+        {
+          label: '列宽',
+          type: 'input',
+          model: 'width'
         }
       ],
       props: {
-        head: '表头',
-        row: options.props?.row
+        head: '表头'
       },
       propConfigs: [
         {
@@ -147,7 +148,7 @@ export class ColumnWidget extends Widget {
       children: [],
       settled: true
     }
-    for (let index = 0; index < options.props?.row; index++) {
+    for (let index = 0; index < options.attrs?.row; index++) {
       this.pushSlotToChildren(config, { settled: true })
     }
     this.onStyleRepaint(config)

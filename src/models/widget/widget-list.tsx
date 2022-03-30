@@ -18,7 +18,7 @@ export class ListWidget extends Widget {
 
     const listPadding = config.attrs?.padding
     const itemGap = config.attrs?.itemGap
-    const itemSize = config.props?.size
+    const itemSize = config.attrs?.size
     const contentWidth = config.style.width - 2 * listPadding
     const contentHeight = config.style.height - 2 * listPadding
 
@@ -116,7 +116,8 @@ export class ListWidget extends Widget {
         flexDirection: 'column',
         listStyle: 'none',
         itemGap: 10,
-        padding: 10
+        padding: 10,
+        size: 3
       },
       attrConfigs: [
         {
@@ -140,12 +141,7 @@ export class ListWidget extends Widget {
           label: '元素间距',
           type: 'number',
           model: 'itemGap'
-        }
-      ],
-      props: {
-        size: 3
-      },
-      propConfigs: [
+        },
         {
           label: '列数',
           model: 'size',
@@ -159,10 +155,12 @@ export class ListWidget extends Widget {
           }
         }
       ],
+      props: {},
+      propConfigs: [],
       children: [],
       settled: false
     }
-    for (let index = 0; index < config.props?.size; index++) {
+    for (let index = 0; index < config.attrs?.size; index++) {
       this.pushSlotToChildren(config, { settled: true })
     }
     this.onStyleRepaint(config)
