@@ -19,7 +19,7 @@
   const { width, label, vmDisabled } = useFormItem()
 
   interface Props {
-    modelValue: string
+    modelValue?: string
     showAlpha?: boolean
     predefine?: Array<string>
     disabled?: boolean

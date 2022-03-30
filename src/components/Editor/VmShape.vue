@@ -55,6 +55,16 @@
     () => isActive.value && !isRoot && !isSettled && !isLock.value && !isAction.value
   )
 
+  const getWidgetParent = (widget: WidgetConfig): any => {
+    if (widget.parent?.type === 'root') {
+      return widget
+    }
+    if (widget.parent?.type === 'slot') {
+      return getWidgetParent(widget.parent)
+    }
+    return widget.parent
+  }
+
   const getShapeStyle = (style?: LooseOptions) => {
     const restyle = {
       zIndex: props.widget.id,
@@ -146,13 +156,21 @@
     e.preventDefault()
     e.stopPropagation()
 
-    store.dispatch('widget/setCurrent', props.widget)
+    const isHandelEdge = e.offsetY < 5 || e.offsetX < 5
+    const parent = getWidgetParent(props.widget)
 
-    if (props.widget.settled) return
+    if (isHandelEdge) {
+      store.dispatch('widget/setCurrent', parent)
+      if (parent?.settled) return
+      if (parent?.lock) return
+    } else {
+      store.dispatch('widget/setCurrent', props.widget)
+      if (props.widget.settled) return
+      if (props.widget.lock) return
+    }
 
-    if (props.widget.lock) return
+    const pos = isHandelEdge ? { ...parent?.style } : { ...props.widget.style }
 
-    const pos = { ...props.widget.style }
     const startY = e.clientY
     const startX = e.clientX
     const startTop = Number(pos.top)

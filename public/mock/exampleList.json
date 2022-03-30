@@ -1171,10 +1171,6 @@
           "minHeight": 42,
           "opacity": 1,
           "rotate": 0,
-          "overflow": "hidden",
-          "justifyContent": "",
-          "color": "",
-          "backgroundColor": "#fff",
           "top": 0,
           "left": 0
         },
