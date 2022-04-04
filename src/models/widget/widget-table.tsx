@@ -141,6 +141,7 @@ export class TableWidget extends Widget {
           label: '列数',
           model: 'columnNum',
           type: 'number',
+          min: 1,
           func: (val: number, old: number, config: WidgetConfig) => {
             if (val > old) {
               this.pushSlotToChildren(config, {
@@ -157,6 +158,7 @@ export class TableWidget extends Widget {
           label: '行数',
           model: 'rowNum',
           type: 'number',
+          min: 1,
           func: (val: number, old: number, config: WidgetConfig) => {
             if (config.style) {
               const diff = toPxNum(config.attrs?.rowHeight) * (val - old)

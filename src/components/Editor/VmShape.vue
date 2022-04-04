@@ -212,7 +212,7 @@
     const startX = dowEvent.clientX
     const startY = dowEvent.clientY
 
-    const move = (moveEvent: any) => {
+    const move = debounce((moveEvent: any) => {
       store.dispatch('widget/setAction', true)
 
       const curX = moveEvent.clientX
@@ -234,7 +234,7 @@
       pos.top = top + (hasT ? disY : 0)
 
       store.dispatch('widget/setStyle', pos)
-    }
+    })
 
     const up = () => {
       store.dispatch('widget/setAction', false)

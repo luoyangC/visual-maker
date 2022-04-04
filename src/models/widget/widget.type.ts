@@ -7,6 +7,8 @@ export interface LooseOptions {
 export interface WidgetDynamicConfig {
   label: string
   type: string
+  min?: number
+  max?: number
   model: string
   show?: Function
   func?: Function

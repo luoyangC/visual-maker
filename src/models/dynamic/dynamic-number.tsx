@@ -16,6 +16,8 @@ export class NumberDynamic extends Dynamic {
       modelValue: props[this.getModel(config) as string],
       label: config.label,
       border: true,
+      min: config.min,
+      max: config.max,
       'onUpdate:modelValue': this.setModelValue(config, props, widget)
     })
   }

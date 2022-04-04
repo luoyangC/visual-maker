@@ -5,6 +5,8 @@
       :model-value="modelValue"
       class="vm-input-number"
       :disabled="isDisabled"
+      :min="min"
+      :max="max"
       @input="handleInput"
     />
   </vm-form-item>
@@ -20,6 +22,8 @@
   const props = defineProps<{
     modelValue?: number
     disabled?: boolean
+    min?: number
+    max?: number
   }>()
   const emits = defineEmits<{
     (e: 'update:modelValue', modelValue: number): void
