@@ -73,3 +73,31 @@ export function isRegExp(val: unknown) {
 export function isArguments(val: unknown) {
   return isObjectLike(val) && getTag(val) === '[object Arguments]'
 }
+
+export function toTwoDecimals(val: number) {
+  return Math.floor((val as number) * 100 + 0.01) / 100
+}
+
+export function toPxNum(val: unknown, parent?: unknown): number {
+  let res = 0
+  const strVal = String(val)
+
+  if (!isNaN(Number(strVal))) {
+    res = Number(strVal)
+  }
+  if (strVal.endsWith('px')) {
+    const tempVal = strVal.replace('px', '')
+    if (!isNaN(Number(tempVal))) {
+      res = Number(tempVal)
+    }
+  }
+  if (strVal.endsWith('%')) {
+    const tempVal = strVal.replace('%', '')
+    const parentVal = toPxNum(parent)
+    if (!isNaN(Number(tempVal)) && !isNaN(Number(parentVal))) {
+      res = (Number(parentVal) * Number(tempVal)) / 100
+    }
+  }
+
+  return toTwoDecimals(res)
+}

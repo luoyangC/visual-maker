@@ -15,8 +15,8 @@
         </el-tag>
       </span>
       <input
-        ref="innerInput"
-        v-model="innerValue"
+        ref="inputInner"
+        v-model="innerData"
         class="vm-input-array__inner"
         type="text"
         :disabled="isDisabled"
@@ -42,25 +42,25 @@
     (e: 'update:modelValue', modelValue: Array<string>): void
   }>()
 
-  const innerValue = ref('')
+  const innerData = ref('')
   const isFocus = ref(false)
-  const innerInput = ref()
+  const inputInner = ref()
 
   const isDisabled = computed(() => props.disabled || vmDisabled.value || !isDef(props.modelValue))
   const tags = computed(() => props.modelValue)
 
   const handleActive = () => {
     isFocus.value = true
-    innerInput.value.focus()
+    inputInner.value.focus()
   }
   const handleBlur = () => {
     isFocus.value = false
-    if (!innerValue.value) return false
+    if (!innerData.value) return false
 
     const _tags = [...(props.modelValue || [])]
-    _tags.push(innerValue.value)
+    _tags.push(innerData.value)
     emits('update:modelValue', _tags)
-    innerValue.value = ''
+    innerData.value = ''
   }
 
   const handleClose = (index: number) => {

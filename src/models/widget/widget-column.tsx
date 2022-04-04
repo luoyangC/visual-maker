@@ -1,3 +1,4 @@
+import { toPxNum } from '@/utils'
 import { h } from 'vue'
 import { WidgetConfigOptions, Widget, WidgetConfig } from './index'
 
@@ -13,18 +14,20 @@ export class ColumnWidget extends Widget {
   onStyleRepaint(config: WidgetConfig) {
     const restyle = { width: 0, height: 0 }
 
-    const itemPadding = config.attrs?.padding
-    const itemSize = config.attrs?.row
+    const tableConfig = this.getTableConfig(config)
+    const itemNum = tableConfig?.attrs?.rowNum
+    const headHeight = toPxNum(tableConfig?.attrs?.headHeight)
+    const itemPadding = toPxNum(tableConfig?.attrs?.rowPadding)
 
-    const contentWidth = config.style.width
-    const contentHeight = config.style.height - config.attrs?.headHeight
+    const columnWidth = config.style.width
+    const columnHeight = config.style.height
 
-    restyle.width = contentWidth
-    restyle.height = contentHeight / itemSize
+    restyle.width = columnWidth
+    restyle.height = (columnHeight - headHeight) / itemNum
 
     config.children?.forEach((item) => {
-      item.style.width = restyle.width
-      item.style.height = restyle.height
+      item.style.width = restyle.width - 2 * itemPadding
+      item.style.height = restyle.height - 2 * itemPadding
       if (item.settled && item.children?.length) {
         item.children[0].style.width = restyle.width - 2 * itemPadding
         item.children[0].style.height = restyle.height - 2 * itemPadding
@@ -32,20 +35,32 @@ export class ColumnWidget extends Widget {
     })
   }
 
+  getTableConfig(config: WidgetConfig): WidgetConfig {
+    if (config.type === 'table') {
+      return config
+    }
+    return this.getTableConfig(config.parent as WidgetConfig)
+  }
+
   getHeadStyle(config: WidgetConfig) {
+    const tableConfig = this.getTableConfig(config)
+
     const style = {
       width: config.style.width + 'px',
-      height: config.attrs?.headHeight + 'px',
-      padding: config.attrs?.padding + 'px'
+      height: toPxNum(tableConfig?.attrs?.headHeight) + 'px',
+      padding: toPxNum(tableConfig?.attrs?.rowPadding) + 'px'
     }
     return style
   }
 
   getItemStyle(config: WidgetConfig) {
+    const tableConfig = this.getTableConfig(config)
+    const itemPadding = toPxNum(tableConfig?.attrs?.rowPadding)
+
     const style = {
-      width: config.style.width + 'px',
-      height: config.style.height + 'px',
-      padding: config.parent?.attrs?.padding + 'px'
+      width: config.style.width + 2 * itemPadding + 'px',
+      height: config.style.height + 2 * itemPadding + 'px',
+      padding: itemPadding + 'px'
     }
     return style
   }
@@ -117,20 +132,14 @@ export class ColumnWidget extends Widget {
         backgroundColor: '#fff'
       },
       attrs: {
-        padding: 10,
-        width: 'auto',
-        headHeight: options.attrs?.headHeight,
-        row: options.attrs?.row
+        width: '',
+        headHeight: '',
+        rowPadding: ''
       },
       attrConfigs: [
         {
-          label: '内容边距',
-          type: 'number',
-          model: 'padding'
-        },
-        {
-          label: '列宽',
-          type: 'input',
+          label: '当前列宽',
+          type: 'unit',
           model: 'width'
         }
       ],
@@ -148,7 +157,7 @@ export class ColumnWidget extends Widget {
       children: [],
       settled: true
     }
-    for (let index = 0; index < options.attrs?.row; index++) {
+    for (let index = 0; index < options.attrs?.rowNum; index++) {
       this.pushSlotToChildren(config, { settled: true })
     }
     this.onStyleRepaint(config)

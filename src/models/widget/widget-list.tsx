@@ -1,4 +1,5 @@
 import { LIST_DIRECTION_TYPES, LIST_STYLE_TYPES } from '@/constant/dict'
+import { toPxNum } from '@/utils'
 import { h } from 'vue'
 import { LooseOptions, Widget, WidgetConfig } from './index'
 
@@ -16,17 +17,17 @@ export class ListWidget extends Widget {
   onStyleRepaint(config: WidgetConfig) {
     const restyle = { width: 0, height: 0 }
 
-    const listPadding = config.attrs?.padding
-    const itemGap = config.attrs?.itemGap
-    const itemSize = config.attrs?.size
-    const contentWidth = config.style.width - 2 * listPadding
-    const contentHeight = config.style.height - 2 * listPadding
+    const itemNum = config.attrs?.itemNum
+    const contentWidth = config.style.width
+    const contentHeight = config.style.height
 
     if (config.attrs?.flexDirection === 'column') {
+      const itemGap = toPxNum(config.attrs?.itemGap, contentHeight)
       restyle.width = contentWidth
-      restyle.height = (contentHeight - (itemSize - 1) * itemGap) / itemSize
+      restyle.height = (contentHeight - (itemNum + 1) * itemGap) / itemNum
     } else {
-      restyle.width = (contentWidth - (itemSize - 1) * itemGap) / itemSize
+      const itemGap = toPxNum(config.attrs?.itemGap, contentWidth)
+      restyle.width = (contentWidth - (itemNum + 1) * itemGap) / itemNum
       restyle.height = contentHeight
     }
 
@@ -40,8 +41,12 @@ export class ListWidget extends Widget {
     })
   }
 
-  getListAttrs(attrs?: LooseOptions) {
-    return { ...attrs }
+  getCustomStyle(style?: LooseOptions, config?: WidgetConfig) {
+    return {
+      ...style,
+      flexDirection: config?.attrs?.flexDirection,
+      listStyle: config?.attrs?.listStyle
+    }
   }
 
   getItemStyle(config: WidgetConfig) {
@@ -65,7 +70,7 @@ export class ListWidget extends Widget {
       'ul',
       {
         class: 'v-ul',
-        style: { ...this.getWidgetStyle(config.style, config), ...this.getListAttrs(config.attrs) },
+        style: this.getWidgetStyle(config.style, config),
         onMousedown: this.preventDefault
       },
       [items]
@@ -85,7 +90,7 @@ export class ListWidget extends Widget {
       'ul',
       {
         class: 'v-ul',
-        style: { ...this.getWidgetStyle(config.style, config), ...this.getListAttrs(config.attrs) }
+        style: this.getWidgetStyle(config.style, config)
       },
       [items]
     )
@@ -116,8 +121,7 @@ export class ListWidget extends Widget {
         flexDirection: 'column',
         listStyle: 'none',
         itemGap: 10,
-        padding: 10,
-        size: 3
+        itemNum: 4
       },
       attrConfigs: [
         {
@@ -133,18 +137,16 @@ export class ListWidget extends Widget {
           items: LIST_STYLE_TYPES
         },
         {
-          label: '列表边距',
-          type: 'number',
-          model: 'padding'
-        },
-        {
           label: '元素间距',
-          type: 'number',
-          model: 'itemGap'
+          type: 'unit',
+          model: 'itemGap',
+          func: (val: number, old: number, widget: WidgetConfig) => {
+            this.onStyleRepaint(widget)
+          }
         },
         {
-          label: '列数',
-          model: 'size',
+          label: '元素个数',
+          model: 'itemNum',
           type: 'number',
           func: (val: number, old: number, widget: WidgetConfig) => {
             if (val > old) {
@@ -160,7 +162,7 @@ export class ListWidget extends Widget {
       children: [],
       settled: false
     }
-    for (let index = 0; index < config.attrs?.size; index++) {
+    for (let index = 0; index < config.attrs?.itemNum; index++) {
       this.pushSlotToChildren(config, { settled: true })
     }
     this.onStyleRepaint(config)

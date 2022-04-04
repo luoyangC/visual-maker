@@ -1,3 +1,4 @@
+import { toPxNum } from '@/utils'
 import { h } from 'vue'
 import { Widget, WidgetConfig, LooseOptions } from './index'
 
@@ -13,39 +14,50 @@ export class TableWidget extends Widget {
   }
 
   onStyleRepaint(config: WidgetConfig) {
-    const restyle = { width: 0, height: 0 }
-
-    const listPadding = config.attrs?.padding
-    const itemSize = config.attrs?.column
-    const contentWidth = config.style.width - 2 * listPadding
-    const contentHeight = config.style.height - 2 * listPadding
-
-    restyle.width = contentWidth / itemSize
-    restyle.height = contentHeight
+    const tableWidth = config.style.width
+    const tableHeight = config.style.height
 
     config.children?.forEach((item) => {
-      item.style.width = restyle.width
-      item.style.height = restyle.height
       if (item.settled && item.children?.length) {
-        item.children[0].style.width = restyle.width
-        item.children[0].style.height = restyle.height
+        const attrWidth = toPxNum(item.children[0].attrs?.width, tableWidth)
+        if (attrWidth > 0) {
+          item.style.width = attrWidth
+          item.children[0].style.width = attrWidth
+        } else {
+          const realWidth = this.getAutoColumnWidth(config)
+          item.style.width = realWidth
+          item.children[0].style.width = realWidth
+        }
+
+        item.style.height = tableHeight
+        item.children[0].style.height = tableHeight
       }
     })
+
+    this.setHeadHeight(config)
   }
 
-  getTableAttrs(attrs?: LooseOptions) {
-    return {
-      padding: attrs?.padding + 'px'
+  setHeadHeight(config: WidgetConfig) {
+    const headHeight = toPxNum(config.attrs?.headHeight)
+    if (config.attrs) {
+      config.attrs['rowHeight'] = toPxNum((config.style.height - headHeight) / config.attrs?.rowNum)
     }
   }
 
-  getItemStyle(config: WidgetConfig) {
-    const style = {
-      width: config.style.width + 'px',
-      height: config.style.height + 'px',
-      padding: config.parent?.attrs?.padding + 'px'
-    }
-    return style
+  getAutoColumnWidth(config: WidgetConfig) {
+    let columnNum = 0
+    let remWidth = config.style.width
+    config.children?.forEach((item) => {
+      if (item.settled && item.children?.length) {
+        const attrWidth = toPxNum(item.children[0].attrs?.width, config.style.width)
+        if (attrWidth > 0) {
+          remWidth = remWidth - attrWidth
+        } else {
+          columnNum++
+        }
+      }
+    })
+    return remWidth / columnNum
   }
 
   getTemplate(config: WidgetConfig) {
@@ -54,10 +66,7 @@ export class TableWidget extends Widget {
       'div',
       {
         class: 'v-table',
-        style: {
-          ...this.getWidgetStyle(config.style, config),
-          ...this.getTableAttrs(config.attrs)
-        },
+        style: this.getWidgetStyle(config.style, config),
         onMousedown: this.preventDefault
       },
       [columns]
@@ -70,7 +79,7 @@ export class TableWidget extends Widget {
       'div',
       {
         class: 'v-table',
-        style: { ...this.getWidgetStyle(config.style, config), ...this.getTableAttrs(config.attrs) }
+        style: this.getWidgetStyle(config.style, config)
       },
       [columns]
     )
@@ -94,58 +103,74 @@ export class TableWidget extends Widget {
         backgroundColor: '#fff'
       },
       attrs: {
-        padding: 10,
-        column: 3,
-        row: 3,
-        headHeight: 48,
-        rowHeight: 60
+        columnNum: 3,
+        rowNum: 3,
+        headHeight: 64,
+        rowHeight: 62,
+        rowPadding: 10
       },
       attrConfigs: [
         {
-          label: '表格边距',
-          type: 'number',
-          model: 'padding'
-        },
-        {
           label: '表头高度',
-          type: 'number',
-          model: 'headHeight'
+          type: 'unit',
+          model: 'headHeight',
+          func: (val: string, old: string, config: WidgetConfig) => {
+            const diff = toPxNum(val) - toPxNum(old)
+            if (config.style) {
+              config.style['height'] = config.style['height'] + diff
+            }
+          }
         },
         {
-          label: '行高',
-          type: 'number',
-          model: 'rowHeight'
+          label: '内容高度',
+          type: 'unit',
+          model: 'rowHeight',
+          func: (val: string, old: string, config: WidgetConfig) => {
+            const diff = (toPxNum(val) - toPxNum(old)) * config.attrs?.rowNum
+            if (config.style) {
+              config.style['height'] = config.style['height'] + diff
+            }
+          }
+        },
+        {
+          label: '内容边距',
+          type: 'unit',
+          model: 'rowPadding'
         },
         {
           label: '列数',
-          model: 'column',
+          model: 'columnNum',
           type: 'number',
-          func: (val: number, old: number, widget: WidgetConfig) => {
+          func: (val: number, old: number, config: WidgetConfig) => {
             if (val > old) {
-              this.pushSlotToChildren(widget, {
+              this.pushSlotToChildren(config, {
                 settled: true,
                 slotType: 'column',
-                attrs: { row: config.attrs?.row, headHeight: config.attrs?.headHeight }
+                attrs: { rowNum: config.attrs?.rowNum }
               })
             } else if (val < old) {
-              this.popSlotFromChildren(widget)
+              this.popSlotFromChildren(config)
             }
           }
         },
         {
           label: '行数',
-          model: 'row',
+          model: 'rowNum',
           type: 'number',
-          func: (val: number, old: number, widget: WidgetConfig) => {
-            widget.children?.forEach((slotItem) => {
+          func: (val: number, old: number, config: WidgetConfig) => {
+            if (config.style) {
+              const diff = toPxNum(config.attrs?.rowHeight) * (val - old)
+              config.style['height'] = config.style['height'] + diff
+            }
+            config.children?.forEach((slotItem) => {
               const columnItem = slotItem.children?.[0]
               if (columnItem) {
                 if (val > old) {
                   this.pushSlotToChildren(columnItem, { settled: true })
-                  columnItem.attrs && columnItem.attrs.row++
+                  columnItem.attrs && columnItem.attrs.rowNum++
                 } else if (val < old) {
                   this.popSlotFromChildren(columnItem)
-                  columnItem.attrs && columnItem.attrs.row--
+                  columnItem.attrs && columnItem.attrs.rowNum--
                 }
               }
             })
@@ -157,11 +182,11 @@ export class TableWidget extends Widget {
       children: [],
       settled: false
     }
-    for (let index = 0; index < config.attrs?.column; index++) {
+    for (let index = 0; index < config.attrs?.columnNum; index++) {
       this.pushSlotToChildren(config, {
         settled: true,
         slotType: 'column',
-        attrs: { row: config.attrs?.row, headHeight: config.attrs?.headHeight }
+        attrs: { rowNum: config.attrs?.rowNum }
       })
     }
     this.onStyleRepaint(config)

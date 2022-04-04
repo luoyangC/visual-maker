@@ -9,8 +9,19 @@ export class SlotWidget extends Widget {
     this.isEnum = false
   }
 
+  getSlotStyle(config: WidgetConfig) {
+    return {
+      width: config.style.width + 'px',
+      height: config.style.height + 'px'
+    }
+  }
+
   getTemplate(config: WidgetConfig) {
-    return h(resolveComponent('VmSlot'), { class: 'v-slot', widget: config })
+    return h(resolveComponent('VmSlot'), {
+      class: 'v-slot',
+      widget: config,
+      style: this.getSlotStyle(config)
+    })
   }
 
   getPreview(config: WidgetConfig) {

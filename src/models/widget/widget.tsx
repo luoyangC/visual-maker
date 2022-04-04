@@ -81,7 +81,11 @@ export abstract class Widget {
 
     this.onStyleRepaint(config)
 
-    return result
+    return this.getCustomStyle(result, config)
+  }
+
+  getCustomStyle(style?: LooseOptions, config?: WidgetConfig) {
+    return style
   }
 
   onStyleRepaint(config?: WidgetConfig) {}
