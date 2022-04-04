@@ -160,7 +160,6 @@ export class ColumnWidget extends Widget {
     for (let index = 0; index < options.attrs?.rowNum; index++) {
       this.pushSlotToChildren(config, { settled: true })
     }
-    this.onStyleRepaint(config)
     return config
   }
 }

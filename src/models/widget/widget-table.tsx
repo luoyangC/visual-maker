@@ -191,7 +191,6 @@ export class TableWidget extends Widget {
         attrs: { rowNum: config.attrs?.rowNum }
       })
     }
-    this.onStyleRepaint(config)
     return config
   }
 }

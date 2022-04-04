@@ -165,7 +165,6 @@ export class ListWidget extends Widget {
     for (let index = 0; index < config.attrs?.itemNum; index++) {
       this.pushSlotToChildren(config, { settled: true })
     }
-    this.onStyleRepaint(config)
     return config
   }
 }

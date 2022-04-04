@@ -1236,6 +1236,737 @@
           }
         ]
       }
+    },
+    {
+      "id": 7,
+      "type": 1,
+      "icon": "/visual-maker/thumb/custom-widget-2.png",
+      "option": {
+        "type": "custom",
+        "lock": false,
+        "style": {
+          "width": 565,
+          "height": 270,
+          "minWidth": 200,
+          "minHeight": 42,
+          "opacity": 1,
+          "rotate": 0,
+          "top": 0,
+          "left": 0
+        },
+        "attrs": {},
+        "props": {},
+        "children": [
+          {
+            "type": "table",
+            "lock": false,
+            "style": {
+              "width": 545,
+              "height": 250,
+              "minWidth": 100,
+              "minHeight": 100,
+              "opacity": 1,
+              "rotate": 0,
+              "overflow": "hidden",
+              "fontSize": 20,
+              "fontFamily": "sans-serif",
+              "color": "",
+              "backgroundColor": "#fff",
+              "top": 10,
+              "left": 10
+            },
+            "attrs": {
+              "columnNum": 3,
+              "rowNum": 3,
+              "headHeight": "64px",
+              "rowHeight": 62,
+              "rowPadding": "10px"
+            },
+            "props": {},
+            "children": [
+              {
+                "type": "slot",
+                "lock": true,
+                "settled": true,
+                "style": {
+                  "width": 220,
+                  "height": 250
+                },
+                "attrs": {
+                  "rowNum": 3
+                },
+                "props": {},
+                "children": [
+                  {
+                    "type": "column",
+                    "lock": false,
+                    "style": {
+                      "width": 220,
+                      "height": 250,
+                      "minWidth": 50,
+                      "minHeight": 50,
+                      "opacity": 1,
+                      "rotate": 0,
+                      "overflow": "hidden",
+                      "fontSize": 20,
+                      "fontFamily": "sans-serif",
+                      "justifyContent": "",
+                      "alignItems": "",
+                      "lineHeight": 1.5,
+                      "letterSpacing": 0,
+                      "color": "",
+                      "backgroundColor": "#fff"
+                    },
+                    "attrs": {
+                      "width": "220px",
+                      "headHeight": "",
+                      "rowPadding": ""
+                    },
+                    "props": {
+                      "head": "名称"
+                    },
+                    "children": [
+                      {
+                        "type": "slot",
+                        "lock": true,
+                        "settled": true,
+                        "style": {
+                          "width": 200,
+                          "height": 42
+                        },
+                        "attrs": {},
+                        "props": {},
+                        "children": [
+                          {
+                            "type": "custom",
+                            "lock": false,
+                            "style": {
+                              "width": 200,
+                              "height": 42,
+                              "minWidth": 200,
+                              "minHeight": 42,
+                              "opacity": 1,
+                              "rotate": 0,
+                              "top": 0,
+                              "left": 0
+                            },
+                            "props": {},
+                            "children": [
+                              {
+                                "type": "image",
+                                "lock": false,
+                                "style": {
+                                  "width": 42,
+                                  "height": 42,
+                                  "minWidth": 40,
+                                  "minHeight": 40,
+                                  "opacity": 1,
+                                  "rotate": 0,
+                                  "overflow": "hidden",
+                                  "justifyContent": "",
+                                  "color": "",
+                                  "backgroundColor": "#fff",
+                                  "top": 0,
+                                  "left": 0
+                                },
+                                "attrs": {
+                                  "objectFit": "fill"
+                                },
+                                "props": {
+                                  "src": "/visual-maker/thumb/avatar-1.png"
+                                },
+                                "settled": true
+                              },
+                              {
+                                "type": "text",
+                                "lock": false,
+                                "style": {
+                                  "width": 152,
+                                  "height": 42,
+                                  "minWidth": 100,
+                                  "minHeight": 30,
+                                  "opacity": 1,
+                                  "rotate": 0,
+                                  "overflow": "hidden",
+                                  "fontSize": 18,
+                                  "fontFamily": "sans-serif",
+                                  "textStyles": [],
+                                  "justifyContent": "flex-start",
+                                  "alignItems": "center",
+                                  "lineHeight": 1.5,
+                                  "letterSpacing": 0,
+                                  "color": "",
+                                  "backgroundColor": "#fff",
+                                  "backgroundImage": "",
+                                  "backgroundPosition": "",
+                                  "backgroundSize": "auto",
+                                  "backgroundRepeat": "repeat",
+                                  "top": 0,
+                                  "left": 48
+                                },
+                                "props": {
+                                  "value": "warma"
+                                },
+                                "settled": true
+                              }
+                            ],
+                            "settled": true,
+                            "attrs": {}
+                          }
+                        ]
+                      },
+                      {
+                        "type": "slot",
+                        "lock": true,
+                        "settled": true,
+                        "style": {
+                          "width": 200,
+                          "height": 42
+                        },
+                        "attrs": {},
+                        "props": {},
+                        "children": [
+                          {
+                            "type": "custom",
+                            "lock": false,
+                            "style": {
+                              "width": 200,
+                              "height": 42,
+                              "minWidth": 200,
+                              "minHeight": 42,
+                              "opacity": 1,
+                              "rotate": 0,
+                              "top": 0,
+                              "left": 0
+                            },
+                            "props": {},
+                            "children": [
+                              {
+                                "type": "image",
+                                "lock": false,
+                                "style": {
+                                  "width": 42,
+                                  "height": 42,
+                                  "minWidth": 40,
+                                  "minHeight": 40,
+                                  "opacity": 1,
+                                  "rotate": 0,
+                                  "overflow": "hidden",
+                                  "justifyContent": "",
+                                  "color": "",
+                                  "backgroundColor": "#fff",
+                                  "top": 0,
+                                  "left": 0
+                                },
+                                "attrs": {
+                                  "objectFit": "fill"
+                                },
+                                "props": {
+                                  "src": "/visual-maker/thumb/avatar-6.png"
+                                },
+                                "settled": true
+                              },
+                              {
+                                "type": "text",
+                                "lock": false,
+                                "style": {
+                                  "width": 152,
+                                  "height": 42,
+                                  "minWidth": 100,
+                                  "minHeight": 30,
+                                  "opacity": 1,
+                                  "rotate": 0,
+                                  "overflow": "hidden",
+                                  "fontSize": 18,
+                                  "fontFamily": "sans-serif",
+                                  "textStyles": [],
+                                  "justifyContent": "flex-start",
+                                  "alignItems": "center",
+                                  "lineHeight": 1.5,
+                                  "letterSpacing": 0,
+                                  "color": "",
+                                  "backgroundColor": "#fff",
+                                  "backgroundImage": "",
+                                  "backgroundPosition": "",
+                                  "backgroundSize": "auto",
+                                  "backgroundRepeat": "repeat",
+                                  "top": 0,
+                                  "left": 48
+                                },
+                                "props": {
+                                  "value": "忆雨"
+                                },
+                                "settled": true
+                              }
+                            ],
+                            "settled": true,
+                            "attrs": {}
+                          }
+                        ]
+                      },
+                      {
+                        "type": "slot",
+                        "lock": true,
+                        "settled": true,
+                        "style": {
+                          "width": 200,
+                          "height": 42
+                        },
+                        "attrs": {},
+                        "props": {},
+                        "children": [
+                          {
+                            "type": "custom",
+                            "lock": false,
+                            "style": {
+                              "width": 200,
+                              "height": 42,
+                              "minWidth": 200,
+                              "minHeight": 42,
+                              "opacity": 1,
+                              "rotate": 0,
+                              "top": 0,
+                              "left": 0
+                            },
+                            "props": {},
+                            "children": [
+                              {
+                                "type": "image",
+                                "lock": false,
+                                "style": {
+                                  "width": 42,
+                                  "height": 42,
+                                  "minWidth": 40,
+                                  "minHeight": 40,
+                                  "opacity": 1,
+                                  "rotate": 0,
+                                  "overflow": "hidden",
+                                  "justifyContent": "",
+                                  "color": "",
+                                  "backgroundColor": "#fff",
+                                  "top": 0,
+                                  "left": 0
+                                },
+                                "attrs": {
+                                  "objectFit": "fill"
+                                },
+                                "props": {
+                                  "src": "/visual-maker/thumb/avatar-5.png"
+                                },
+                                "settled": true
+                              },
+                              {
+                                "type": "text",
+                                "lock": false,
+                                "style": {
+                                  "width": 152,
+                                  "height": 42,
+                                  "minWidth": 100,
+                                  "minHeight": 30,
+                                  "opacity": 1,
+                                  "rotate": 0,
+                                  "overflow": "hidden",
+                                  "fontSize": 18,
+                                  "fontFamily": "sans-serif",
+                                  "textStyles": [],
+                                  "justifyContent": "flex-start",
+                                  "alignItems": "center",
+                                  "lineHeight": 1.5,
+                                  "letterSpacing": 0,
+                                  "color": "",
+                                  "backgroundColor": "#fff",
+                                  "backgroundImage": "",
+                                  "backgroundPosition": "",
+                                  "backgroundSize": "auto",
+                                  "backgroundRepeat": "repeat",
+                                  "top": 0,
+                                  "left": 48
+                                },
+                                "props": {
+                                  "value": "店员"
+                                },
+                                "settled": true
+                              }
+                            ],
+                            "settled": true,
+                            "attrs": {}
+                          }
+                        ]
+                      }
+                    ],
+                    "settled": true
+                  }
+                ]
+              },
+              {
+                "type": "slot",
+                "lock": true,
+                "settled": true,
+                "style": {
+                  "width": 120,
+                  "height": 250
+                },
+                "attrs": {
+                  "rowNum": 3
+                },
+                "props": {},
+                "children": [
+                  {
+                    "type": "column",
+                    "lock": false,
+                    "style": {
+                      "width": 120,
+                      "height": 250,
+                      "minWidth": 50,
+                      "minHeight": 50,
+                      "opacity": 1,
+                      "rotate": 0,
+                      "overflow": "hidden",
+                      "fontSize": 20,
+                      "fontFamily": "sans-serif",
+                      "justifyContent": "",
+                      "alignItems": "",
+                      "lineHeight": 1.5,
+                      "letterSpacing": 0,
+                      "color": "",
+                      "backgroundColor": "#fff"
+                    },
+                    "attrs": {
+                      "width": "120px",
+                      "headHeight": "",
+                      "rowPadding": ""
+                    },
+                    "props": {
+                      "head": "年龄"
+                    },
+                    "children": [
+                      {
+                        "type": "slot",
+                        "lock": true,
+                        "settled": true,
+                        "style": {
+                          "width": 100,
+                          "height": 42
+                        },
+                        "attrs": {},
+                        "props": {},
+                        "children": [
+                          {
+                            "type": "text",
+                            "lock": false,
+                            "style": {
+                              "width": 100,
+                              "height": 42,
+                              "minWidth": 100,
+                              "minHeight": 30,
+                              "opacity": 1,
+                              "rotate": 0,
+                              "overflow": "hidden",
+                              "fontSize": 20,
+                              "fontFamily": "sans-serif",
+                              "textStyles": [],
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "lineHeight": 1.5,
+                              "letterSpacing": 0,
+                              "color": "",
+                              "backgroundColor": "#fff",
+                              "backgroundImage": "",
+                              "backgroundPosition": "",
+                              "backgroundSize": "auto",
+                              "backgroundRepeat": "repeat",
+                              "top": 0,
+                              "left": 0
+                            },
+                            "props": {
+                              "value": "18"
+                            },
+                            "settled": true
+                          }
+                        ]
+                      },
+                      {
+                        "type": "slot",
+                        "lock": true,
+                        "settled": true,
+                        "style": {
+                          "width": 100,
+                          "height": 42
+                        },
+                        "attrs": {},
+                        "props": {},
+                        "children": [
+                          {
+                            "type": "text",
+                            "lock": false,
+                            "style": {
+                              "width": 100,
+                              "height": 42,
+                              "minWidth": 100,
+                              "minHeight": 30,
+                              "opacity": 1,
+                              "rotate": 0,
+                              "overflow": "hidden",
+                              "fontSize": 20,
+                              "fontFamily": "sans-serif",
+                              "textStyles": [],
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "lineHeight": 1.5,
+                              "letterSpacing": 0,
+                              "color": "",
+                              "backgroundColor": "#fff",
+                              "backgroundImage": "",
+                              "backgroundPosition": "",
+                              "backgroundSize": "auto",
+                              "backgroundRepeat": "repeat",
+                              "top": 0,
+                              "left": 0
+                            },
+                            "props": {
+                              "value": "108"
+                            },
+                            "settled": true
+                          }
+                        ]
+                      },
+                      {
+                        "type": "slot",
+                        "lock": true,
+                        "settled": true,
+                        "style": {
+                          "width": 100,
+                          "height": 42
+                        },
+                        "attrs": {},
+                        "props": {},
+                        "children": [
+                          {
+                            "type": "text",
+                            "lock": false,
+                            "style": {
+                              "width": 100,
+                              "height": 42,
+                              "minWidth": 100,
+                              "minHeight": 30,
+                              "opacity": 1,
+                              "rotate": 0,
+                              "overflow": "hidden",
+                              "fontSize": 20,
+                              "fontFamily": "sans-serif",
+                              "textStyles": [],
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "lineHeight": 1.5,
+                              "letterSpacing": 0,
+                              "color": "",
+                              "backgroundColor": "#fff",
+                              "backgroundImage": "",
+                              "backgroundPosition": "",
+                              "backgroundSize": "auto",
+                              "backgroundRepeat": "repeat",
+                              "top": 0,
+                              "left": 0
+                            },
+                            "props": {
+                              "value": "8"
+                            },
+                            "settled": true
+                          }
+                        ]
+                      }
+                    ],
+                    "settled": true
+                  }
+                ]
+              },
+              {
+                "type": "slot",
+                "lock": true,
+                "settled": true,
+                "style": {
+                  "width": 205,
+                  "height": 250
+                },
+                "attrs": {
+                  "rowNum": 3
+                },
+                "props": {},
+                "children": [
+                  {
+                    "type": "column",
+                    "lock": false,
+                    "style": {
+                      "width": 205,
+                      "height": 250,
+                      "minWidth": 50,
+                      "minHeight": 50,
+                      "opacity": 1,
+                      "rotate": 0,
+                      "overflow": "hidden",
+                      "fontSize": 20,
+                      "fontFamily": "sans-serif",
+                      "justifyContent": "",
+                      "alignItems": "",
+                      "lineHeight": 1.5,
+                      "letterSpacing": 0,
+                      "color": "",
+                      "backgroundColor": "#fff"
+                    },
+                    "attrs": {
+                      "width": "",
+                      "headHeight": "",
+                      "rowPadding": ""
+                    },
+                    "props": {
+                      "head": "地址"
+                    },
+                    "children": [
+                      {
+                        "type": "slot",
+                        "lock": true,
+                        "settled": true,
+                        "style": {
+                          "width": 185,
+                          "height": 42
+                        },
+                        "attrs": {},
+                        "props": {},
+                        "children": [
+                          {
+                            "type": "text",
+                            "lock": false,
+                            "style": {
+                              "width": 185,
+                              "height": 42,
+                              "minWidth": 100,
+                              "minHeight": 30,
+                              "opacity": 1,
+                              "rotate": 0,
+                              "overflow": "hidden",
+                              "fontSize": 20,
+                              "fontFamily": "sans-serif",
+                              "textStyles": [],
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "lineHeight": 1.5,
+                              "letterSpacing": 0,
+                              "color": "",
+                              "backgroundColor": "#fff",
+                              "backgroundImage": "",
+                              "backgroundPosition": "",
+                              "backgroundSize": "auto",
+                              "backgroundRepeat": "repeat",
+                              "top": 0,
+                              "left": 0
+                            },
+                            "props": {
+                              "value": "弗兰常杀人"
+                            },
+                            "settled": true
+                          }
+                        ]
+                      },
+                      {
+                        "type": "slot",
+                        "lock": true,
+                        "settled": true,
+                        "style": {
+                          "width": 185,
+                          "height": 42
+                        },
+                        "attrs": {},
+                        "props": {},
+                        "children": [
+                          {
+                            "type": "text",
+                            "lock": false,
+                            "style": {
+                              "width": 185,
+                              "height": 42,
+                              "minWidth": 100,
+                              "minHeight": 30,
+                              "opacity": 1,
+                              "rotate": 0,
+                              "overflow": "hidden",
+                              "fontSize": 20,
+                              "fontFamily": "sans-serif",
+                              "textStyles": [],
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "lineHeight": 1.5,
+                              "letterSpacing": 0,
+                              "color": "",
+                              "backgroundColor": "#fff",
+                              "backgroundImage": "",
+                              "backgroundPosition": "",
+                              "backgroundSize": "auto",
+                              "backgroundRepeat": "repeat",
+                              "top": 0,
+                              "left": 0
+                            },
+                            "props": {
+                              "value": "学园都市"
+                            },
+                            "settled": true
+                          }
+                        ]
+                      },
+                      {
+                        "type": "slot",
+                        "lock": true,
+                        "settled": true,
+                        "style": {
+                          "width": 185,
+                          "height": 42
+                        },
+                        "attrs": {},
+                        "props": {},
+                        "children": [
+                          {
+                            "type": "text",
+                            "lock": false,
+                            "style": {
+                              "width": 185,
+                              "height": 42,
+                              "minWidth": 100,
+                              "minHeight": 30,
+                              "opacity": 1,
+                              "rotate": 0,
+                              "overflow": "hidden",
+                              "fontSize": 20,
+                              "fontFamily": "sans-serif",
+                              "textStyles": [],
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "lineHeight": 1.5,
+                              "letterSpacing": 0,
+                              "color": "",
+                              "backgroundColor": "#fff",
+                              "backgroundImage": "",
+                              "backgroundPosition": "",
+                              "backgroundSize": "auto",
+                              "backgroundRepeat": "repeat",
+                              "top": 0,
+                              "left": 0
+                            },
+                            "props": {
+                              "value": "王者峡谷"
+                            },
+                            "settled": true
+                          }
+                        ]
+                      }
+                    ],
+                    "settled": true
+                  }
+                ]
+              }
+            ],
+            "settled": true
+          }
+        ]
+      }
     }
   ]
 }
