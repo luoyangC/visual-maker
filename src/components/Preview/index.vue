@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-  import { useStore } from '@/store'
+  import { useWidgetStore } from '@/store/widget'
   import { computed } from 'vue'
   import VmPreview from './VmPreview.vue'
 
@@ -14,6 +14,6 @@
     (e: 'update:modelValue', modelValue: boolean): void
   }>()
 
-  const store = useStore()
-  const rootWidget = computed(() => store.getters['widget/root'])
+  const widgetStore = useWidgetStore()
+  const rootWidget = computed(() => widgetStore.root)
 </script>

@@ -11,11 +11,11 @@
 </template>
 
 <script setup lang="ts">
-  import { useStore } from '@/store'
+  import { useWidgetStore } from '@/store/widget'
   import { computed } from 'vue'
 
-  const store = useStore()
+  const widgetStore = useWidgetStore()
 
-  const curWidget = computed(() => store.getters['widget/current'])
+  const curWidget = computed(() => widgetStore.current)
   const propConfigs = computed(() => curWidget.value.propConfigs)
 </script>

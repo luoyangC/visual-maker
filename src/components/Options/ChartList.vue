@@ -29,9 +29,9 @@
 </template>
 
 <script setup lang="ts">
+  import type { Example } from '@/api'
   import { ref } from 'vue'
   import { chartHook } from '@/hooks/chart'
-  import type { Example } from '@/api'
   import { getChartExampleList } from '@/api'
 
   const chartList = chartHook.getDragTypeList()

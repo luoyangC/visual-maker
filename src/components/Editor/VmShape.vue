@@ -26,14 +26,16 @@
 <script setup lang="ts">
   import type { LooseOptions, WidgetConfig } from '@/models/widget'
   import { computed, ref } from 'vue'
-  import { useStore } from '@/store'
+  import { useWidgetStore } from '@/store/widget'
+  import { useMenuStore } from '@/store/menu'
   import { debounce } from '@/utils'
 
   type DirectionKey = 't' | 'b' | 'l' | 'r'
 
   const props = defineProps<{ widget: WidgetConfig }>()
 
-  const store = useStore()
+  const widgetStore = useWidgetStore()
+  const menuStore = useMenuStore()
 
   const pointList = ['t', 'r', 'b', 'l', 'lt', 'rt', 'lb', 'rb']
   const directionKey = { t: 'n', b: 's', l: 'w', r: 'e' }
@@ -42,11 +44,11 @@
 
   const VmShape = ref()
 
-  const curWidget = computed(() => store.getters['widget/current'])
+  const curWidget = computed(() => widgetStore.current)
   const isActive = computed(() => props.widget === curWidget.value)
   const isLock = computed(() => props.widget.lock)
   const isVirtual = computed(() => props.widget.virtual)
-  const isAction = computed(() => store.getters['widget/isAction'])
+  const isAction = computed(() => widgetStore.isAction)
 
   const showPoint = computed(
     () => isActive.value && !isRoot && !isSettled && !isLock.value && !isVirtual.value
@@ -119,7 +121,7 @@
     e.preventDefault()
     e.stopPropagation()
 
-    store.dispatch('menu/hidden')
+    menuStore.hidden()
   }
 
   const handleRotate = (e: any) => {
@@ -142,7 +144,7 @@
       const rotateDegreeAfter = Math.atan2(curY - centerY, curX - centerX) / (Math.PI / 180)
 
       pos.rotate = startRotate + rotateDegreeAfter - rotateDegreeBefore
-      store.dispatch('widget/setStyle', pos)
+      widgetStore.setStyle(pos)
     })
     const up = debounce(() => {
       window.removeEventListener('mousemove', move)
@@ -160,11 +162,11 @@
     const parent = getWidgetParent(props.widget)
 
     if (isHandelEdge) {
-      store.dispatch('widget/setCurrent', parent)
+      widgetStore.setCurrent(parent)
       if (parent?.settled) return
       if (parent?.lock) return
     } else {
-      store.dispatch('widget/setCurrent', props.widget)
+      widgetStore.setCurrent(props.widget)
       if (props.widget.settled) return
       if (props.widget.lock) return
     }
@@ -177,18 +179,18 @@
     const startLeft = Number(pos.left)
 
     const move = debounce((moveEvent) => {
-      store.dispatch('widget/setAction', true)
+      widgetStore.setAction(true)
 
       const curX = moveEvent.clientX
       const curY = moveEvent.clientY
       pos.top = curY - startY + startTop
       pos.left = curX - startX + startLeft
 
-      store.dispatch('widget/setStyle', pos)
+      widgetStore.setStyle(pos)
     })
 
     const up = () => {
-      store.dispatch('widget/setAction', false)
+      widgetStore.setAction(false)
       window.removeEventListener('mousemove', move)
       window.removeEventListener('mouseup', up)
     }
@@ -213,7 +215,7 @@
     const startY = dowEvent.clientY
 
     const move = debounce((moveEvent: any) => {
-      store.dispatch('widget/setAction', true)
+      widgetStore.setAction(true)
 
       const curX = moveEvent.clientX
       const curY = moveEvent.clientY
@@ -233,11 +235,11 @@
       pos.left = left + (hasL ? disX : 0)
       pos.top = top + (hasT ? disY : 0)
 
-      store.dispatch('widget/setStyle', pos)
+      widgetStore.setStyle(pos)
     })
 
     const up = () => {
-      store.dispatch('widget/setAction', false)
+      widgetStore.setAction(false)
 
       window.removeEventListener('mousemove', move)
       window.removeEventListener('mouseup', up)
@@ -252,7 +254,7 @@
     e.stopPropagation()
     const top = e.pageY
     const left = e.pageX
-    store.dispatch('menu/show', { top, left })
+    menuStore.show({ top, left })
   }
 </script>
 

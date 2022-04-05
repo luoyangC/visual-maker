@@ -29,9 +29,9 @@
 </template>
 
 <script setup lang="ts">
+  import type { Example } from '@/api'
   import { ref } from 'vue'
   import { widgetHook } from '@/hooks/widget'
-  import type { Example } from '@/api'
   import { getCustomExampleList } from '@/api'
 
   const widgetList = widgetHook.getDragTypeList()

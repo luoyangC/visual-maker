@@ -1,6 +1,6 @@
 <template>
   <div id="editor" class="editor">
-    <vm-shape :key="rootWidget.id" :widget="rootWidget" />
+    <vm-shape :widget="rootWidget" />
     <!-- 右击菜单 -->
     <VmMenu />
     <!-- 标线 -->
@@ -9,13 +9,12 @@
 </template>
 
 <script setup lang="ts">
-  import { useStore } from '@/store'
+  import { useWidgetStore } from '@/store/widget'
   import { computed } from 'vue'
   import VmMenu from './VmMenu.vue'
-  // import VmShape from './VmShape.vue'
 
-  const store = useStore()
-  const rootWidget = computed(() => store.getters['widget/root'])
+  const widgetStore = useWidgetStore()
+  const rootWidget = computed(() => widgetStore.root)
 </script>
 
 <style lang="scss" scoped>

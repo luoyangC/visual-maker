@@ -10,13 +10,13 @@
 </template>
 
 <script setup lang="ts">
-  import { useStore } from '@/store'
+  import { useWidgetStore } from '@/store/widget'
   import { widgetHook } from '@/hooks/widget'
 
-  const store = useStore()
+  const widgetStore = useWidgetStore()
 
   const exportJson = () => {
-    const rootWidget = store.getters['widget/root']
+    const rootWidget = widgetStore.root
     const widgetData = widgetHook.widgetToJson(rootWidget)
 
     const blobParts = [JSON.stringify(widgetData, null, 2)]

@@ -1,96 +1,67 @@
-import type { Module } from 'vuex'
-import type { RootState } from './index'
 import type { LooseOptions, WidgetConfig } from '@/models/widget'
-import { isDef } from '@/utils'
+import { defineStore } from 'pinia'
 import { widgetHook } from '@/hooks/widget'
-
-export interface WidgetState {
-  root: WidgetConfig
-  current: WidgetConfig
-  action: boolean
-}
+import { isDef } from '@/utils'
 
 const rootWidget = widgetHook.getWidgetConfig('root')
 
-export const widget: Module<WidgetState, RootState> = {
-  namespaced: true,
-
-  state: {
+export const useWidgetStore = defineStore({
+  id: 'widget',
+  state: () => ({
+    action: false,
     root: rootWidget,
-    current: rootWidget,
-    action: false
-  },
-
+    current: rootWidget
+  }),
   getters: {
-    root: (state) => state.root,
-    current: (state) => state.current,
-    isSettled: (state) => Boolean(state.current.settled),
     isAction: (state) => state.action,
-    iaActive: (state) => state.root.props?.schema === '2'
+    iaActive: (state) => state.root.props?.schema === '2',
+    isSettled: (state) => Boolean(state.current.settled)
   },
-
-  mutations: {
-    TOGGLE_LOCK(state) {
-      state.current.lock = !state.current.lock
+  actions: {
+    lock() {
+      this.current.lock = !this.current.lock
     },
-    PUSH_WIDGET(state, { current, parent }: { current: WidgetConfig; parent: WidgetConfig }) {
+    push({ current, parent }: { current: WidgetConfig; parent: WidgetConfig }) {
       parent.children?.push(current)
     },
-    DELETE_WIDGET(state) {
-      const index = state.current.parent?.children?.findIndex((item) => item === state.current)
+    delete() {
+      const index = this.current.parent?.children?.findIndex((item) => item === this.current)
       if (isDef(index) && index !== -1) {
-        const parentWidget = state.current.parent?.parent || state.root
-        state.current.parent?.children?.splice(index as number, 1)
-        state.current = parentWidget
+        const parentWidget = this.current.parent?.parent || this.root
+        this.current.parent?.children?.splice(index as number, 1)
+        this.current = parentWidget
       }
     },
-    SET_CURRENT(state, current: WidgetConfig) {
-      state.current = current
-    },
-    SET_STYLE(state, { widget, styles }: { widget?: WidgetConfig; styles: LooseOptions }) {
-      const curWidget = widget || state.current
-      for (const key in styles) {
-        styles[key] && (curWidget.style[key] = styles[key])
+    setCurrent(current: WidgetConfig) {
+      if (this.current === current) return
+      if (this.current.virtual) {
+        this.delete()
       }
+      this.current = current
     },
-    SET_ACTION(state, action: boolean) {
-      state.action = action
-    }
-  },
+    setAction(action: boolean) {
+      this.action = action
+    },
+    setStyle(styles: LooseOptions) {
+      const relativeY = styles.top - this.current.style.top
+      const relativeX = styles.left - this.current.style.left
+      const relativeR = styles.rotate - this.current.style.rotate
+      this.updateStyle({ styles })
 
-  actions: {
-    lock({ commit }) {
-      commit('TOGGLE_LOCK')
-    },
-    push({ commit }, { current, parent }) {
-      commit('PUSH_WIDGET', { current, parent })
-    },
-    delete({ commit }) {
-      commit('DELETE_WIDGET')
-    },
-    setCurrent({ state, commit }, current) {
-      if (state.current === current) return
-      if (state.current.virtual) {
-        commit('DELETE_WIDGET')
-      }
-      commit('SET_CURRENT', current)
-    },
-    setStyle({ state, commit }, styles) {
-      const relativeY = styles.top - state.current.style.top
-      const relativeX = styles.left - state.current.style.left
-      const relativeR = styles.rotate - state.current.style.rotate
-      commit('SET_STYLE', { styles })
-      if (state.current.virtual) {
-        state.current.children?.forEach((item) => {
+      if (this.current.virtual) {
+        this.current.children?.forEach((item) => {
           const top = item.style.top + relativeY
           const left = item.style.left + relativeX
           const rotate = item.style.rotate + relativeR
-          commit('SET_STYLE', { widget: item, styles: { top, left, rotate } })
+          this.updateStyle({ widget: item, styles: { top, left, rotate } })
         })
       }
     },
-    setAction({ commit }, action) {
-      commit('SET_ACTION', action)
+    updateStyle({ widget, styles }: { widget?: WidgetConfig; styles: LooseOptions }) {
+      const curWidget = widget || this.current
+      for (const key in styles) {
+        styles[key] && (curWidget.style[key] = styles[key])
+      }
     }
   }
-}
+})

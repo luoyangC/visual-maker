@@ -1,44 +1,20 @@
-import type { Module } from 'vuex'
-import type { RootState } from './index'
+import { defineStore } from 'pinia'
 
-export interface MenuState {
-  top: number
-  left: number
-  show: boolean
-}
-
-export const menu: Module<MenuState, RootState> = {
-  namespaced: true,
-
-  state: {
+export const useMenuStore = defineStore({
+  id: 'menu',
+  state: () => ({
     top: 0,
     left: 0,
-    show: false
-  },
-
-  getters: {
-    top: (state) => state.top,
-    left: (state) => state.left,
-    show: (state) => state.show
-  },
-
-  mutations: {
-    SET_COORD(state, { top, left }) {
-      state.top = top
-      state.left = left
-    },
-    SET_SHOW(state, show) {
-      state.show = show
-    }
-  },
-
+    display: false
+  }),
   actions: {
-    show({ commit }, { top, left }) {
-      commit('SET_COORD', { top, left })
-      commit('SET_SHOW', true)
+    show({ top, left }: { top: number; left: number }) {
+      this.top = top
+      this.left = left
+      this.display = true
     },
-    hidden({ commit }) {
-      commit('SET_SHOW', false)
+    hidden() {
+      this.display = false
     }
   }
-}
+})

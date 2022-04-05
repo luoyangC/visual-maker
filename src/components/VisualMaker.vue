@@ -51,7 +51,7 @@
 </template>
 
 <script setup lang="ts">
-  import { useStore } from '@/store'
+  import { useWidgetStore } from '@/store/widget'
   import { ref, computed, watch } from 'vue'
   import WidgetList from './Options/WidgetList.vue'
   import ChartList from './Options/ChartList.vue'
@@ -86,9 +86,9 @@
   const save = () => {}
   const clear = () => {}
 
-  const store = useStore()
+  const widgetStore = useWidgetStore()
 
-  const curWidget = computed(() => store.getters['widget/current'])
+  const curWidget = computed(() => widgetStore.current)
 
   watch(curWidget, () => {
     active.value = 'attr'

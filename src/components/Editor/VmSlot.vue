@@ -21,15 +21,17 @@
 <script setup lang="ts">
   import type { WidgetConfig } from '@/models/widget'
   import { computed, ref } from 'vue'
-  import { useStore } from '@/store'
+  import { useWidgetStore } from '@/store/widget'
+  import { useMenuStore } from '@/store/menu'
   import { widgetHook } from '@/hooks/widget'
   import { useMessage } from '@/commons/useMessage'
   import { debounce } from '@/utils'
 
   const props = defineProps<{ widget: WidgetConfig }>()
-  const store = useStore()
+  const widgetStore = useWidgetStore()
+  const menuStore = useMenuStore()
 
-  const curWidget = computed(() => store.getters['widget/current'])
+  const curWidget = computed(() => widgetStore.current)
   const isParentActive = computed(() => props.widget.parent === curWidget.value)
 
   const isRoot = props.widget?.parent?.type === 'root'
@@ -82,7 +84,7 @@
       innerWidget.style.top = e.offsetY
       innerWidget.style.left = e.offsetX
     }
-    store.dispatch('widget/push', { current: innerWidget, parent: props.widget })
+    widgetStore.push({ current: innerWidget, parent: props.widget })
   }
 
   const handleDragOver = (e: any) => {
@@ -94,7 +96,7 @@
     e.preventDefault()
     e.stopPropagation()
 
-    store.dispatch('menu/hidden')
+    menuStore.hidden()
   }
 
   const handleMouseDown = (e: any) => {
@@ -118,8 +120,8 @@
         virtualWidget.style.top = e.offsetY
         virtualWidget.style.left = e.offsetX
 
-        store.dispatch('widget/push', { current: virtualWidget, parent: props.widget })
-        store.dispatch('widget/setCurrent', virtualWidget)
+        widgetStore.push({ current: virtualWidget, parent: props.widget })
+        widgetStore.setCurrent(virtualWidget)
 
         isMove = true
       }
@@ -151,7 +153,7 @@
             curCoord[3] > coord[3]
           ) {
             intersections.push(item)
-            store.dispatch('widget/push', { current: item, parent: curWidget.value })
+            widgetStore.push({ current: item, parent: curWidget.value })
           }
         })
         return intersections.length
@@ -161,7 +163,7 @@
         moveEvent.preventDefault()
         moveEvent.stopPropagation()
 
-        store.dispatch('widget/setAction', true)
+        widgetStore.setAction(true)
         createVirtualWidget()
 
         const curX = moveEvent.clientX
@@ -170,14 +172,14 @@
         const width = curX - startX
 
         if (moveEvent.offsetX >= slotWidth - 1 || moveEvent.offsetY >= slotHeight - 1) {
-          store.dispatch('widget/delete')
+          widgetStore.delete()
         } else {
-          store.dispatch('widget/setStyle', { height, width })
+          widgetStore.setStyle({ height, width })
         }
       })
 
       const up = () => {
-        store.dispatch('widget/setAction', false)
+        widgetStore.setAction(false)
         VmSlot.value.removeEventListener('mousemove', move)
         VmSlot.value.removeEventListener('mouseup', up)
 
@@ -185,7 +187,7 @@
           isMove = false
           e.stopPropagation()
           const res = findIntersection()
-          !res && store.dispatch('widget/delete')
+          !res && widgetStore.delete()
         }
       }
 

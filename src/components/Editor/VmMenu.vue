@@ -1,5 +1,5 @@
 <template>
-  <div v-show="show" class="vm-menu" :style="{ top: top + 'px', left: left + 'px' }">
+  <div v-show="display" class="vm-menu" :style="{ top: top + 'px', left: left + 'px' }">
     <ul>
       <li @click="delWidget">删除</li>
       <li @click="setWidgetLock">锁定</li>
@@ -10,22 +10,22 @@
 </template>
 
 <script setup lang="ts">
-  import { computed } from 'vue'
-  import { useStore } from '@/store'
-  const store = useStore()
+  import { useWidgetStore } from '@/store/widget'
+  import { useMenuStore } from '@/store/menu'
+  import { storeToRefs } from 'pinia'
 
-  const top = computed(() => store.getters['menu/top'])
-  const left = computed(() => store.getters['menu/left'])
-  const show = computed(() => store.getters['menu/show'])
+  const widgetStore = useWidgetStore()
+  const menuStore = useMenuStore()
+  const { top, left, display } = storeToRefs(menuStore)
 
   const delWidget = () => {
-    store.dispatch('widget/delete')
-    store.dispatch('menu/hidden')
+    widgetStore.delete()
+    menuStore.hidden()
   }
 
   const setWidgetLock = () => {
-    store.dispatch('widget/lock')
-    store.dispatch('menu/hidden')
+    widgetStore.lock()
+    menuStore.hidden()
   }
 
   const copyWidget = () => {}

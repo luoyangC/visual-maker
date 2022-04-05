@@ -96,7 +96,7 @@
     </div>
     <el-divider v-if="showBackground" class="attr-divider" />
     <!-- 图表标题 -->
-    <div v-if="showChartOption && curChart.title" class="attr-chart-option">
+    <div v-if="showChartOption && curChart?.title" class="attr-chart-option">
       <vm-collapse title="图表标题">
         <template #left>
           <el-switch v-model="curChart.title.show" size="small"></el-switch>
@@ -108,9 +108,9 @@
         </div>
       </vm-collapse>
     </div>
-    <el-divider v-if="showChartOption && curChart.title" class="attr-divider" />
+    <el-divider v-if="showChartOption && curChart?.title" class="attr-divider" />
     <!-- 图表图例 -->
-    <div v-if="showChartOption && curChart.legend" class="attr-chart-option">
+    <div v-if="showChartOption && curChart?.legend" class="attr-chart-option">
       <vm-collapse title="图表图例">
         <template #left>
           <el-switch v-model="curChart.legend.show" size="small"></el-switch>
@@ -128,9 +128,9 @@
         </div>
       </vm-collapse>
     </div>
-    <el-divider v-if="showChartOption && curChart.legend" class="attr-divider" />
+    <el-divider v-if="showChartOption && curChart?.legend" class="attr-divider" />
     <!-- 图表提示 -->
-    <div v-if="showChartOption && curChart.tooltip" class="attr-chart-option">
+    <div v-if="showChartOption && curChart?.tooltip" class="attr-chart-option">
       <vm-collapse title="图表提示">
         <template #left>
           <el-switch v-model="curChart.tooltip.show" size="small"></el-switch>
@@ -142,9 +142,9 @@
         </div>
       </vm-collapse>
     </div>
-    <el-divider v-if="showChartOption && curChart.tooltip" class="attr-divider" />
+    <el-divider v-if="showChartOption && curChart?.tooltip" class="attr-divider" />
     <!-- 图表X轴 -->
-    <div v-if="showChartOption && curChart.xAxis" class="attr-chart-option">
+    <div v-if="showChartOption && curChart?.xAxis" class="attr-chart-option">
       <vm-collapse title="图表X轴">
         <template #left>
           <el-switch v-model="curChart.xAxis.show" size="small"></el-switch>
@@ -159,9 +159,9 @@
         </div>
       </vm-collapse>
     </div>
-    <el-divider v-if="showChartOption && curChart.xAxis" class="attr-divider" />
+    <el-divider v-if="showChartOption && curChart?.xAxis" class="attr-divider" />
     <!-- 图表Y轴 -->
-    <div v-if="showChartOption && curChart.yAxis" class="attr-chart-option">
+    <div v-if="showChartOption && curChart?.yAxis" class="attr-chart-option">
       <vm-collapse title="图表Y轴">
         <template #left>
           <el-switch v-model="curChart.yAxis.show" size="small"></el-switch>
@@ -176,7 +176,7 @@
         </div>
       </vm-collapse>
     </div>
-    <el-divider v-if="showChartOption && curChart.yAxis" class="attr-divider" />
+    <el-divider v-if="showChartOption && curChart?.yAxis" class="attr-divider" />
     <!-- 图表配置 -->
     <div v-if="showChartOption" class="attr-chart-option">
       <vm-collapse v-model="showMoreChartOption" title="图表更多配置">
@@ -196,7 +196,7 @@
       <vm-collapse title="更多属性">
         <vm-dynamic
           v-for="(item, index) in attrConfigs"
-          :key="`${String(index)}.${String(item.model)}.${String(item.id)}`"
+          :key="`${String(index)}.${String(item.model)}`"
           :config="item"
           :widget="curWidget"
           :model-type="'attrs'"
@@ -209,7 +209,7 @@
 
 <script setup lang="ts">
   import { computed, ref, watch } from 'vue'
-  import { useStore } from '@/store'
+  import { useWidgetStore } from '@/store/widget'
   import {
     OVERFLOW_TYPES,
     FONT_FAMILY_TYPES,
@@ -220,9 +220,9 @@
   } from '@/constant/dict'
   import { isDef } from '@/utils'
 
-  const store = useStore()
+  const widgetStore = useWidgetStore()
 
-  const curWidget = computed(() => store.getters['widget/current'])
+  const curWidget = computed(() => widgetStore.current)
 
   const curStyle = computed(() => curWidget.value.style)
   const attrConfigs = computed(() => curWidget.value.attrConfigs || [])

@@ -22,9 +22,9 @@
     "codemirror": "^5.65.2",
     "echarts": "^5.2.2",
     "element-plus": "^2.0",
+    "pinia": "^2.0.13",
     "vue": "^3.2.6",
-    "vue-router": "^4.0.0",
-    "vuex": "^4.0.2"
+    "vue-router": "^4.0.0"
   },
   "devDependencies": {
     "@types/codemirror": "^5.60.5",
