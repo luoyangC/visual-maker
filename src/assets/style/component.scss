@@ -23,8 +23,13 @@
 
 .v-ul {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   align-items: center;
+  flex-wrap: nowrap;
+}
+
+.v-li {
+  flex: none;
 }
 
 .v-table {

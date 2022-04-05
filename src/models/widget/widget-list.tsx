@@ -17,18 +17,19 @@ export class ListWidget extends Widget {
   onStyleRepaint(config: WidgetConfig) {
     const restyle = { width: 0, height: 0 }
 
-    const itemNum = config.attrs?.itemNum
-    const contentWidth = config.style.width
-    const contentHeight = config.style.height
+    const itemHeight = toPxNum(config.attrs?.itemHeight)
+
+    const listWidth = config.style.width
+    const listHeight = config.style.height
 
     if (config.attrs?.flexDirection === 'column') {
-      const itemGap = toPxNum(config.attrs?.itemGap, contentHeight)
-      restyle.width = contentWidth
-      restyle.height = (contentHeight - (itemNum + 1) * itemGap) / itemNum
+      const itemGap = toPxNum(config.attrs?.itemGap, listHeight)
+      restyle.width = listWidth - 2 * itemGap
+      restyle.height = itemHeight
     } else {
-      const itemGap = toPxNum(config.attrs?.itemGap, contentWidth)
-      restyle.width = (contentWidth - (itemNum + 1) * itemGap) / itemNum
-      restyle.height = contentHeight
+      const itemGap = toPxNum(config.attrs?.itemGap, listWidth)
+      restyle.width = itemHeight
+      restyle.height = listHeight - 2 * itemGap
     }
 
     config.children?.forEach((item) => {
@@ -49,22 +50,36 @@ export class ListWidget extends Widget {
     }
   }
 
-  getItemStyle(config: WidgetConfig) {
-    const style = {
+  getItemStyle(config: WidgetConfig, isLast: boolean) {
+    const style: any = {
       width: config.style.width + 'px',
       height: config.style.height + 'px'
+    }
+    const listConfig = config.parent
+
+    if (listConfig?.attrs?.flexDirection === 'column') {
+      style['marginTop'] = toPxNum(listConfig?.attrs?.itemGap, listConfig.style.height) + 'px'
+      if (isLast) {
+        style['marginBottom'] = toPxNum(listConfig?.attrs?.itemGap, listConfig.style.height) + 'px'
+      }
+    } else if (listConfig?.attrs?.flexDirection === 'row') {
+      style['marginLeft'] = toPxNum(listConfig?.attrs?.itemGap, listConfig.style.width) + 'px'
+      if (isLast) {
+        style['marginRight'] = toPxNum(listConfig?.attrs?.itemGap, listConfig.style.width) + 'px'
+      }
     }
     return style
   }
 
-  getItemTemplate(config: WidgetConfig, index: number) {
+  getItemTemplate(config: WidgetConfig, isLast: boolean) {
     const template = this.getWidgetTemplate('slot', config)
-    return h('li', { class: 'v-li', style: this.getItemStyle(config) }, [template])
+    return h('li', { class: 'v-li', style: this.getItemStyle(config, isLast) }, [template])
   }
 
   getTemplate(config: WidgetConfig) {
     const items = config.children?.map((item, index) => {
-      return this.getItemTemplate(item, index)
+      const isLast = index === (config.children?.length as number) - 1
+      return this.getItemTemplate(item, isLast)
     })
     return h(
       'ul',
@@ -77,14 +92,15 @@ export class ListWidget extends Widget {
     )
   }
 
-  getItemPreview(config: WidgetConfig, index: number) {
+  getItemPreview(config: WidgetConfig, isLast: boolean) {
     const template = this.getWidgetPreview('slot', config)
-    return h('li', { class: 'v-li', style: this.getItemStyle(config) }, [template])
+    return h('li', { class: 'v-li', style: this.getItemStyle(config, isLast) }, [template])
   }
 
   getPreview(config: WidgetConfig) {
     const items = config.children?.map((item, index) => {
-      return this.getItemPreview(item, index)
+      const isLast = index === (config.children?.length as number) - 1
+      return this.getItemPreview(item, isLast)
     })
     return h(
       'ul',
@@ -107,7 +123,7 @@ export class ListWidget extends Widget {
         minHeight: 100,
         opacity: 1,
         rotate: 0,
-        overflow: 'hidden',
+        overflow: 'auto',
         fontSize: 20,
         fontFamily: 'sans-serif',
         justifyContent: '',
@@ -121,7 +137,8 @@ export class ListWidget extends Widget {
         flexDirection: 'column',
         listStyle: 'none',
         itemGap: 10,
-        itemNum: 4
+        itemHeight: 62,
+        itemNum: 7
       },
       attrConfigs: [
         {
@@ -135,6 +152,14 @@ export class ListWidget extends Widget {
           type: 'select',
           model: 'listStyle',
           items: LIST_STYLE_TYPES
+        },
+        {
+          label: '元素高度',
+          type: 'unit',
+          model: 'itemHeight',
+          func: (val: number, old: number, widget: WidgetConfig) => {
+            this.onStyleRepaint(widget)
+          }
         },
         {
           label: '元素间距',
