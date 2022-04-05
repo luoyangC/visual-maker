@@ -1,11 +1,49 @@
-# Vue 3 + Typescript + Vite
+# Visual Maker
 
-This template should help get you started developing with Vue 3 and Typescript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+这是一个低代码平台搭建的项目，可以通过一些简单的拖拽和配置生成页面
 
-## Recommended IDE Setup
+- 💪 Vue 3 Composition API
+- 🔥 Written in TypeScript
+- 🎨 Style based on Element-plus
+- 🍍 Managing state with Pinia
 
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+# 本地启动
 
-## Type Support For `.vue` Imports in TS
+---
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's `.vue` type support plugin by running `Volar: Switch TS Plugin on/off` from VSCode command palette.
+```bash
+git clone https://github.com/luoyangC/visual-maker.git
+cd visual-maker
+yarn
+yarn run start
+```
+
+# 在线体验
+
+---
+
+[Visual Maker (luoyangc.github.io)](https://luoyangc.github.io/visual-maker/)
+
+# 功能及规划
+
+---
+
+- [x] 编辑器
+- [x] 拖拽添加
+- [x] 删除组件
+- [x] 拖动位置
+- [x] 放大缩小旋转
+- [x] 样式设置
+- [x] echarts 支持
+- [x] 自定义组件
+- [x] 页面预览
+- [x] 导出 json
+- [ ] 拖动吸附
+- [ ] 撤销重做
+- [ ] 工具能力
+- [ ] 插件能力
+- [ ] 页面结构
+
+# UI 界面简介
+
+![https://raw.githubusercontent.com/luoyangC/visual-maker/main/public/image/ui.png](https://raw.githubusercontent.com/luoyangC/visual-maker/main/public/image/ui.png)
