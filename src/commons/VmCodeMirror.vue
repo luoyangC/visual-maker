@@ -22,19 +22,22 @@
   import 'codemirror/addon/fold/brace-fold'
   import 'codemirror/addon/fold/indent-fold'
   import 'codemirror/addon/fold/comment-fold'
+  import { isNumber } from '@/utils'
 
   const props = defineProps<{
     modelValue: string
     readonly: boolean
     mode: string
+    height?: number | string
   }>()
   const emits = defineEmits<{
     (e: 'update:modelValue', modelValue: string): void
     (e: 'change', value: string): void
   }>()
 
-  const cm = ref()
   let editor: CodeMirror.Editor | null
+  const cm = ref()
+  const cmHeight = isNumber(props.height) ? `${props.height}px` : props.height || '600px'
 
   watch(
     () => props.modelValue,
@@ -58,6 +61,7 @@
         lineNumbers: true,
         smartIndent: true, // 是否智能缩进
         lineWrapping: true, // 自动换行
+        scrollbarStyle: 'null',
         gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter', 'CodeMirror-lint-markers']
       })
     )
@@ -79,21 +83,15 @@
   })
 </script>
 
-<style>
+<style lang="scss">
   .vm-codemirror {
     height: 100%;
     position: relative;
-  }
-
-  .CodeMirror-lines {
-    text-align: left;
-  }
-
-  .cm-keyword-error {
-    color: red !important;
-  }
-
-  .cm-keyword-debug {
-    color: yellow !important;
+    .CodeMirror {
+      height: v-bind(cmHeight);
+    }
+    .CodeMirror-lines {
+      text-align: left;
+    }
   }
 </style>

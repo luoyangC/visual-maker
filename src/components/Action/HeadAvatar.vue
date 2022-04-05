@@ -1,6 +1,6 @@
 <template>
   <div class="head-avatar">
-    <el-avatar :size="50" :src="circleUrl" @click="handleAvatar" />
+    <el-avatar :size="50" :src="avatar" @click="handleAvatar" />
   </div>
 </template>
 
@@ -8,7 +8,7 @@
   import { ref } from 'vue'
 
   const week = ref(1)
-  const circleUrl = ref('')
+  const avatar = ref('')
 
   const getWeekDate = () => {
     const now = new Date()
@@ -19,7 +19,7 @@
 
   const initAvatar = () => {
     week.value = getWeekDate()
-    circleUrl.value = `/visual-maker/thumb/avatar-${week.value}.png`
+    avatar.value = `/visual-maker/thumb/avatar-${week.value}.png`
   }
 
   const handleAvatar = () => {
@@ -28,7 +28,7 @@
     } else {
       week.value++
     }
-    circleUrl.value = `/visual-maker/thumb/avatar-${week.value}.png`
+    avatar.value = `/visual-maker/thumb/avatar-${week.value}.png`
   }
 
   initAvatar()

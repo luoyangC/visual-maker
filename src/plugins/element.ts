@@ -22,7 +22,8 @@ import {
   ElInputNumber,
   ElDialog,
   ElDropdown,
-  ElDropdownMenu
+  ElDropdownMenu,
+  ElScrollbar
 } from 'element-plus'
 
 export default function elementPlugin(app: App) {
@@ -53,4 +54,5 @@ export default function elementPlugin(app: App) {
   app.use(ElDialog)
   app.use(ElDropdown)
   app.use(ElDropdownMenu)
+  app.use(ElScrollbar)
 }

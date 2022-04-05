@@ -187,11 +187,11 @@
       store.dispatch('widget/setStyle', pos)
     })
 
-    const up = debounce(() => {
+    const up = () => {
       store.dispatch('widget/setAction', false)
       window.removeEventListener('mousemove', move)
       window.removeEventListener('mouseup', up)
-    })
+    }
 
     window.addEventListener('mousemove', move)
     window.addEventListener('mouseup', up)

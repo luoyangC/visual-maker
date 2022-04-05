@@ -24,6 +24,7 @@
   import { useStore } from '@/store'
   import { widgetHook } from '@/hooks/widget'
   import { useMessage } from '@/commons/useMessage'
+  import { debounce } from '@/utils'
 
   const props = defineProps<{ widget: WidgetConfig }>()
   const store = useStore()
@@ -156,7 +157,7 @@
         return intersections.length
       }
 
-      const move = (moveEvent: any) => {
+      const move = debounce((moveEvent: any) => {
         moveEvent.preventDefault()
         moveEvent.stopPropagation()
 
@@ -173,7 +174,7 @@
         } else {
           store.dispatch('widget/setStyle', { height, width })
         }
-      }
+      })
 
       const up = () => {
         store.dispatch('widget/setAction', false)

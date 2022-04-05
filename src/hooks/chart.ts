@@ -36,6 +36,13 @@ class ChartHook {
     return this.getChart(name).getPreview(config)
   }
 
+  getChartDataList(config: WidgetConfig) {
+    if (config.type === 'chart' && config.subConfig) {
+      return JSON.stringify(config.subConfig?.dataset, null, 2) || ''
+    }
+    return ''
+  }
+
   newChart(Model: ChartModel) {
     const el = new Model()
 

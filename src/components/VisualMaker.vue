@@ -3,8 +3,8 @@
     <el-header class="vm-header">
       <vm-icon name="undo" text="撤销" class="header-item" />
       <vm-icon name="redo" text="重做" class="header-item" />
-      <vm-icon name="delete" text="清空" class="header-item" />
-      <vm-icon name="save" text="保存" class="header-item" />
+      <vm-icon name="delete" text="清空" class="header-item" @click="clear" />
+      <vm-icon name="save" text="保存" class="header-item" @click="save" />
       <vm-icon name="preview" text="预览" class="header-item" @click="preview" />
       <head-export />
       <head-avatar />
@@ -16,13 +16,7 @@
         <vm-icon name="custom" tip="工具" size="24" class="aside-item" @click="checkOption('3')" />
         <vm-icon name="app" tip="扩展" size="24" class="aside-item" @click="checkOption('4')" />
         <vm-icon name="tree" tip="结构" size="24" class="aside-item" @click="checkOption('5')" />
-        <vm-icon
-          name="github"
-          tip="源码"
-          size="24"
-          class="aside-item aside-bottom"
-          @click="toGitHub"
-        />
+        <vm-icon name="github" tip="源码" size="24" class="aside-item bottom" @click="toGitHub" />
       </div>
       <div class="vm-option">
         <widget-list v-if="option === '1'" />
@@ -37,7 +31,9 @@
       <div class="vm-attribute">
         <el-tabs v-model="active" stretch>
           <el-tab-pane label="外观" name="attr" lazy>
-            <attr-list />
+            <el-scrollbar always>
+              <attr-list />
+            </el-scrollbar>
           </el-tab-pane>
           <el-tab-pane v-if="curWidget.propConfigs?.length" label="属性" name="prop" lazy>
             <prop-list />
@@ -87,19 +83,16 @@
   const preview = () => {
     showPreview.value = true
   }
-  // const save = () => {}
-  // const clearCanvas = () => {}
+  const save = () => {}
+  const clear = () => {}
 
   const store = useStore()
 
   const curWidget = computed(() => store.getters['widget/current'])
 
-  watch(
-    () => curWidget.value,
-    () => {
-      active.value = 'attr'
-    }
-  )
+  watch(curWidget, () => {
+    active.value = 'attr'
+  })
 </script>
 
 <style lang="scss" scoped>
@@ -167,7 +160,7 @@
     margin-bottom: 10px;
     border-radius: 4px;
   }
-  .aside-bottom {
+  .aside-item.bottom {
     position: absolute;
     bottom: 10px;
   }
