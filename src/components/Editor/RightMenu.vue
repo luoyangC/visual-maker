@@ -1,5 +1,5 @@
 <template>
-  <div v-show="display" class="vm-menu" :style="{ top: top + 'px', left: left + 'px' }">
+  <div v-show="display" class="right-menu" :style="{ top: top + 'px', left: left + 'px' }">
     <ul>
       <li @click="delWidget">删除</li>
       <li @click="setWidgetLock">锁定</li>
@@ -34,7 +34,7 @@
 </script>
 
 <style lang="scss" scoped>
-  .vm-menu {
+  .right-menu {
     z-index: 1000;
     position: fixed;
     ul {

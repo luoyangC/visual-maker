@@ -117,7 +117,6 @@
     justify-content: center;
     align-items: center;
     flex-grow: 1;
-    padding: 10px;
   }
   .vm-aside {
     z-index: 30;
