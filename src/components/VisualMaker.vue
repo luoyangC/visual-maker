@@ -115,8 +115,9 @@
     z-index: 20;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     flex-grow: 1;
+    background-color: #fff;
   }
   .vm-aside {
     z-index: 30;

@@ -283,7 +283,7 @@
     }
     &--root {
       position: relative !important;
-      margin: 20px;
+      margin: 50px;
       &::after {
         width: 0;
         height: 0;
