@@ -18,7 +18,7 @@
         <template #left>
           <el-switch v-model="showDynamic" size="small"></el-switch>
         </template>
-        <div class="more-option__body">
+        <div v-if="curWidget.props" class="more-option__body">
           <div class="attr-cell g-flex--bc mt-10">
             <vm-input v-model="curWidget.props.dataApi" label="数据地址" />
           </div>
