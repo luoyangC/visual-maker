@@ -24,14 +24,14 @@ export class TextWidget extends Widget {
     )
   }
 
-  getPreview(config: WidgetConfig) {
+  getPreview(config: WidgetConfig, data: any) {
     return h(
       'div',
       {
         class: 'v-text',
         style: this.getWidgetStyle(config.style)
       },
-      config.props?.value
+      this.getPreviewModel(config.props?.value, data)
     )
   }
 

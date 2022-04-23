@@ -25,12 +25,12 @@
 <style lang="scss" scoped>
   .editor {
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: calc(100vw - 665px);
-    height: calc(100vh - 80px);
     overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(100vw - 665px);
+    height: calc(100vh - 84px);
     background-color: #f5f5f5;
     box-shadow: 0 2px 10px rgb(0 0 0 / 5%);
     &::-webkit-scrollbar {

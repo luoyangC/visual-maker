@@ -279,7 +279,7 @@
 
 <style lang="scss" scoped>
   .attr-list {
-    height: calc(100vh - 130px);
+    height: calc(100vh - 154px);
   }
   .attr-icon {
     width: 26px;

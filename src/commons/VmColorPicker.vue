@@ -40,3 +40,10 @@
     emits('change', val || '')
   }
 </script>
+
+<style lang="scss" scoped>
+  ::v-deep(.el-color-picker__mask) {
+    height: 30px;
+    width: 30px;
+  }
+</style>

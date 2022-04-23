@@ -32,14 +32,11 @@
         <el-tabs v-model="active" stretch>
           <el-tab-pane label="外观" name="attr" lazy>
             <el-scrollbar always>
-              <attr-list />
+              <attr-list :key="curWidget.id" />
             </el-scrollbar>
           </el-tab-pane>
-          <el-tab-pane v-if="curWidget.propConfigs?.length" label="属性" name="prop" lazy>
-            <prop-list />
-          </el-tab-pane>
-          <el-tab-pane v-if="curWidget.type === 'chart'" label="数据集" name="data" lazy>
-            <data-list />
+          <el-tab-pane label="属性" name="prop" lazy>
+            <prop-list :key="curWidget.id" />
           </el-tab-pane>
         </el-tabs>
       </div>
@@ -47,12 +44,13 @@
         <Preview v-model="showPreview" />
       </div>
     </el-main>
+    <el-footer class="vm-footer">Power by luoyang</el-footer>
   </el-container>
 </template>
 
 <script setup lang="ts">
   import { useWidgetStore } from '@/store/widget'
-  import { ref, computed, watch } from 'vue'
+  import { ref, computed } from 'vue'
   import WidgetList from './Options/WidgetList.vue'
   import ChartList from './Options/ChartList.vue'
   import ExtendList from './Options/ExtendList.vue'
@@ -61,7 +59,6 @@
   import Editor from './Editor/index.vue'
   import AttrList from './Attrs/AttrList.vue'
   import PropList from './Attrs/PropList.vue'
-  import DataList from './Attrs/DataList.vue'
   import Preview from './Preview/index.vue'
   import HeadExport from './Action/HeadExport.vue'
   import HeadAvatar from './Action/HeadAvatar.vue'
@@ -70,14 +67,15 @@
   const active = ref('attr')
   const showPreview = ref(false)
 
+  const widgetStore = useWidgetStore()
+  const curWidget = computed(() => widgetStore.current)
+
   const checkOption = (val: string) => {
     option.value = val
   }
-
   const toGitHub = () => {
     window.open('https://github.com/luoyangC/visual-maker')
   }
-
   // const undo = () => {}
   // const redo = () => {}
   const preview = () => {
@@ -85,14 +83,6 @@
   }
   const save = () => {}
   const clear = () => {}
-
-  const widgetStore = useWidgetStore()
-
-  const curWidget = computed(() => widgetStore.current)
-
-  watch(curWidget, () => {
-    active.value = 'attr'
-  })
 </script>
 
 <style lang="scss" scoped>
@@ -103,25 +93,31 @@
     align-items: center;
     border-bottom: 1px solid #e6e6e6;
   }
+  .vm-footer {
+    height: 23px;
+    border-top: 1px solid #e6e6e6;
+    line-height: 23px;
+    font-size: 12px;
+  }
   .vm-main {
     z-index: 10;
     display: flex;
     justify-content: space-between;
     background-color: #f5f5f5;
-    height: calc(100vh - 60px);
+    height: calc(100vh - 84px);
     padding: 0;
   }
   .vm-canvas {
     z-index: 20;
+    flex: auto;
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    flex-grow: 1;
     background-color: #fff;
   }
   .vm-aside {
     z-index: 30;
-    z-index: 1;
+    flex: none;
     width: 55px;
     padding: 10px;
     background-color: #ffffff;
@@ -129,6 +125,7 @@
   }
   .vm-option {
     z-index: 40;
+    flex: none;
     width: 250px;
     background-color: #ffffff;
     padding: 10px;
@@ -136,6 +133,7 @@
   }
   .vm-attribute {
     z-index: 50;
+    flex: none;
     width: 360px;
     background-color: #ffffff;
     padding: 10px;
@@ -162,6 +160,6 @@
   }
   .aside-item.bottom {
     position: absolute;
-    bottom: 10px;
+    bottom: 24px;
   }
 </style>

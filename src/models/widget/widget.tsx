@@ -1,5 +1,6 @@
+import { getDataModel } from '@/api'
 import { widgetHook } from '@/hooks/widget'
-import { isDef } from '@/utils'
+import { isDef, isUndefined } from '@/utils'
 import { VNode } from 'vue'
 import { LooseOptions, WidgetConfigOptions, WidgetConfig } from '.'
 
@@ -20,7 +21,7 @@ export abstract class Widget {
 
   abstract getTemplate(config?: WidgetConfig): VNode
 
-  abstract getPreview(config?: WidgetConfig): VNode
+  abstract getPreview(config?: WidgetConfig, data?: any): VNode
 
   getWidget(name: string) {
     return widgetHook.getWidget(name)
@@ -34,8 +35,8 @@ export abstract class Widget {
     return widgetHook.getWidgetTemplate(name, config)
   }
 
-  getWidgetPreview(name: string, config: WidgetConfig) {
-    return widgetHook.getWidgetPreview(name, config)
+  getWidgetPreview(name: string, config: WidgetConfig, data: any) {
+    return widgetHook.getWidgetPreview(name, config, data)
   }
 
   getWidgetStyle(style?: LooseOptions, config?: WidgetConfig) {
@@ -86,6 +87,59 @@ export abstract class Widget {
 
   getCustomStyle(style?: LooseOptions, config?: WidgetConfig) {
     return style
+  }
+
+  getWidgetData(config: WidgetConfig) {
+    if (config.props?.dataApi && config.props?.dataModel) {
+      return getDataModel(config.props.dataApi, config.props.dataModel)
+    }
+    return config.props?.dataset || {}
+  }
+
+  getWidgetDataset(config: WidgetConfig) {
+    if (isDef(config.props?.dataset)) {
+      return JSON.stringify(config.props?.dataset, null, 2) || '{}'
+    }
+    return '{}'
+  }
+
+  setWidgetDataset(config: WidgetConfig, value: string) {
+    try {
+      config.props && (config.props.dataset = JSON.parse(value))
+    } catch (error) {
+      // console.log(error)
+    }
+  }
+
+  getPreviewModel(model: string, data: any, config?: WidgetConfig): string {
+    const strArray: Array<string> = model.split('')
+    const results = model.matchAll(/\$\{([\w|\.]*)\}/g)
+    for (const item of results) {
+      const index = item.index as number
+      Array.from({ length: item[0].length }).forEach((_, i) => {
+        if (i === 0) {
+          strArray[index] = this.getPreviewData(item[1], data)
+        } else {
+          strArray[index + i] = ''
+        }
+      })
+    }
+    return strArray.join('')
+  }
+
+  getPreviewData(name: string, data: any): string {
+    let res = data
+    const getNameValue = (name: string, data: any): any => {
+      if (isUndefined(data[name]) && data._scope) {
+        return getNameValue(name, data._scope)
+      }
+      return data[name]
+    }
+    for (const key of name.split('.')) {
+      res = getNameValue(key, res)
+      if (res === undefined) break
+    }
+    return res
   }
 
   onStyleRepaint(config?: WidgetConfig) {}

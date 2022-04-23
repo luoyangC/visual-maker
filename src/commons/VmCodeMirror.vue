@@ -1,6 +1,6 @@
 <template>
   <div class="vm-codemirror">
-    <textarea ref="cm" />
+    <textarea ref="cm" style="min-height: 100px; max-height: 500px" />
   </div>
 </template>
 
@@ -22,13 +22,11 @@
   import 'codemirror/addon/fold/brace-fold'
   import 'codemirror/addon/fold/indent-fold'
   import 'codemirror/addon/fold/comment-fold'
-  import { isNumber } from '@/utils'
 
   const props = defineProps<{
     modelValue: string
     readonly: boolean
     mode: string
-    height?: number | string
   }>()
   const emits = defineEmits<{
     (e: 'update:modelValue', modelValue: string): void
@@ -37,7 +35,6 @@
 
   let editor: CodeMirror.Editor | null
   const cm = ref()
-  const cmHeight = isNumber(props.height) ? `${props.height}px` : props.height || '600px'
 
   watch(
     () => props.modelValue,
@@ -88,10 +85,15 @@
     height: 100%;
     position: relative;
     .CodeMirror {
-      height: v-bind(cmHeight);
+      height: auto;
     }
     .CodeMirror-lines {
       text-align: left;
+    }
+    .CodeMirror-scroll {
+      height: auto;
+      min-height: 100px;
+      max-height: 500px;
     }
   }
 </style>

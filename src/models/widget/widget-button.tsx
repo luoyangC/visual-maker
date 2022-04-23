@@ -24,14 +24,14 @@ export class ButtonWidget extends Widget {
     )
   }
 
-  getPreview(config: WidgetConfig) {
+  getPreview(config: WidgetConfig, data: any) {
     return h(
       'button',
       {
         class: 'v-button',
         style: this.getWidgetStyle(config.style)
       },
-      config.props?.label
+      this.getPreviewModel(config.props?.label, data)
     )
   }
 

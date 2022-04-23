@@ -150,6 +150,7 @@
       display: flex;
       flex-direction: row;
       align-items: flex-end;
+      border-bottom: 1px solid #e6e6e6;
     }
     &-y {
       z-index: 101;
@@ -160,6 +161,7 @@
       display: flex;
       flex-direction: column;
       align-items: flex-end;
+      border-right: 1px solid #e6e6e6;
     }
     &-scale {
       flex: none;

@@ -24,8 +24,8 @@ export class SlotWidget extends Widget {
     })
   }
 
-  getPreview(config: WidgetConfig) {
-    const templates = config.children?.map((item) => this.getWidgetPreview(item.type, item))
+  getPreview(config: WidgetConfig, data: any) {
+    const templates = config.children?.map((item) => this.getWidgetPreview(item.type, item, data))
     return h('div', { class: 'v-slot' }, templates)
   }
 

@@ -28,8 +28,8 @@ export class CustomWidget extends Widget {
     )
   }
 
-  getPreview(config: WidgetConfig) {
-    const children = config.children?.map((item) => this.getWidgetPreview(item.type, item))
+  getPreview(config: WidgetConfig, data: any) {
+    const children = config.children?.map((item) => this.getWidgetPreview(item.type, item, data))
     return h(
       'div',
       {

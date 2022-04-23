@@ -15,8 +15,8 @@ export class RootWidget extends Widget {
     return h('div', { class: 'v-root', style: this.getWidgetStyle(config.style) }, [template])
   }
 
-  getPreview(config: WidgetConfig) {
-    const template = this.getWidgetPreview('slot', config?.children?.[0] as WidgetConfig)
+  getPreview(config: WidgetConfig, data: any) {
+    const template = this.getWidgetPreview('slot', config?.children?.[0] as WidgetConfig, data)
     return h('div', { class: 'v-root', style: this.getWidgetStyle(config.style) }, [template])
   }
 
@@ -40,23 +40,11 @@ export class RootWidget extends Widget {
         backgroundRepeat: 'repeat'
       },
       props: {
-        schema: '1',
-        dataUrl: ''
+        dataset: {},
+        dataApi: '',
+        dataModel: ''
       },
-      propConfigs: [
-        {
-          label: '页面类型',
-          type: 'select',
-          model: 'schema',
-          items: PAGE_SCHEMA_TYPES
-        },
-        {
-          label: '数据接口',
-          type: 'input',
-          model: 'dataUrl',
-          show: (props: any) => props.schema === '2'
-        }
-      ],
+      propConfigs: [],
       parent: null,
       children: [],
       settled: false

@@ -1,4 +1,4 @@
-import { toPxNum } from '@/utils'
+import { isArray, toPxNum } from '@/utils'
 import { h } from 'vue'
 import { Widget, WidgetConfig, LooseOptions } from './index'
 
@@ -73,8 +73,18 @@ export class TableWidget extends Widget {
     )
   }
 
-  getPreview(config: WidgetConfig) {
-    const columns = config.children?.map((item) => this.getWidgetPreview('slot', item))
+  setRowNum(config: WidgetConfig, data: any) {
+    const listModel = data[config.props?.listModel]
+    if (config.props?.listModel && listModel) {
+      const diff = toPxNum(config.attrs?.rowHeight) * (listModel.length - config.props.rowNum)
+      config.style['height'] = config.style['height'] + diff
+      config.props.rowNum = listModel.length
+    }
+  }
+
+  getPreview(config: WidgetConfig, data: any) {
+    this.setRowNum(config, data)
+    const columns = config.children?.map((item) => this.getWidgetPreview('slot', item, data))
     return h(
       'div',
       {
@@ -179,8 +189,25 @@ export class TableWidget extends Widget {
           }
         }
       ],
-      props: {},
-      propConfigs: [],
+      props: {
+        dataset: {},
+        dataApi: '',
+        dataModel: '',
+        listModel: 'list',
+        itemModel: 'row'
+      },
+      propConfigs: [
+        {
+          label: '列表模型',
+          type: 'input',
+          model: 'listModel'
+        },
+        {
+          label: '元素模型',
+          type: 'input',
+          model: 'itemModel'
+        }
+      ],
       children: [],
       settled: false
     }

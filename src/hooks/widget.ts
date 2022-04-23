@@ -18,10 +18,12 @@ const excKeys: Array<WidgetConfigKeys> = ['parent', 'propConfigs', 'attrConfigs'
 class WidgetHook {
   widgetMap: Map<string, InstanceType<WidgetModel>>
   dragTypeList: Array<{ type: string; icon?: string; label?: string }>
+  previewData: any
 
   constructor() {
     this.widgetMap = new Map()
     this.dragTypeList = []
+    this.previewData = {}
   }
 
   getDragTypeList() {
@@ -44,8 +46,10 @@ class WidgetHook {
     return template
   }
 
-  getWidgetPreview(name: string, config: WidgetConfig) {
-    const preview: any = this.getWidget(name).getPreview(config)
+  getWidgetPreview(name: string, config: WidgetConfig, data: any = this.previewData) {
+    const _data: any = this.getWidget(name).getWidgetData(config)
+    Object.assign(data, _data)
+    const preview: any = this.getWidget(name).getPreview(config, data)
     if (preview.props && preview.props.class) {
       const isAbsolute = config.parent?.type === 'custom' || !config.settled
       preview.props.class += isAbsolute ? ' g-pos--a' : ' g-pos--r'

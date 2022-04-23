@@ -1,4 +1,4 @@
-import { toPxNum } from '@/utils'
+import { isArray, toPxNum } from '@/utils'
 import { h } from 'vue'
 import { WidgetConfigOptions, Widget, WidgetConfig } from './index'
 
@@ -90,16 +90,30 @@ export class ColumnWidget extends Widget {
     )
   }
 
-  getItemPreview(config: WidgetConfig) {
-    const template = this.getWidgetPreview('slot', config)
+  getItemPreview(config: WidgetConfig, data: any) {
+    const template = this.getWidgetPreview('slot', config, data)
     return h('dd', { class: 'v-table-cell', style: this.getItemStyle(config) }, [template])
   }
 
-  getPreview(config: WidgetConfig) {
+  getListModel(config: WidgetConfig, data: any): Array<any> | undefined {
+    const tableConfig = this.getTableConfig(config)
+    const listModel = data[tableConfig.props?.listModel]
+    if (isArray(listModel)) {
+      return listModel
+    }
+    return undefined
+  }
+
+  getPreview(config: WidgetConfig, data: any) {
     const head = this.getHeadTemplate(config)
-    const items = config.children?.map((item) => {
-      return this.getItemPreview(item)
-    })
+    const items = this.getListModel(config, data)
+      ? this.getListModel(config, data)?.map((item) => {
+          const _data = { ['row']: item, _scope: data }
+          return this.getItemPreview((config.children as Array<WidgetConfig>)[0], _data)
+        })
+      : config.children?.map((item) => {
+          return this.getItemPreview(item, data)
+        })
     return h(
       'dl',
       {

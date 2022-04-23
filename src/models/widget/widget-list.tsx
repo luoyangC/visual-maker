@@ -1,5 +1,5 @@
 import { LIST_DIRECTION_TYPES, LIST_STYLE_TYPES } from '@/constant/dict'
-import { toPxNum } from '@/utils'
+import { isArray, toPxNum } from '@/utils'
 import { h } from 'vue'
 import { LooseOptions, Widget, WidgetConfig } from './index'
 
@@ -92,16 +92,30 @@ export class ListWidget extends Widget {
     )
   }
 
-  getItemPreview(config: WidgetConfig, isLast: boolean) {
-    const template = this.getWidgetPreview('slot', config)
+  getListModel(config: WidgetConfig, data: any): Array<any> | undefined {
+    const listModel = data[config.props?.listModel]
+    if (isArray(listModel)) {
+      return listModel
+    }
+    return undefined
+  }
+
+  getItemPreview(config: WidgetConfig, isLast: boolean, data: any) {
+    const template = this.getWidgetPreview('slot', config, data)
     return h('li', { class: 'v-li', style: this.getItemStyle(config, isLast) }, [template])
   }
 
-  getPreview(config: WidgetConfig) {
-    const items = config.children?.map((item, index) => {
-      const isLast = index === (config.children?.length as number) - 1
-      return this.getItemPreview(item, isLast)
-    })
+  getPreview(config: WidgetConfig, data: any) {
+    const items = this.getListModel(config, data)
+      ? this.getListModel(config, data)?.map((item, index) => {
+          const _data = { ['row']: item, _scope: data }
+          const isLast = index === (config.children?.length as number) - 1
+          return this.getItemPreview((config.children as Array<WidgetConfig>)[0], isLast, _data)
+        })
+      : config.children?.map((item, index) => {
+          const isLast = index === (config.children?.length as number) - 1
+          return this.getItemPreview(item, isLast, data)
+        })
     return h(
       'ul',
       {
@@ -182,8 +196,25 @@ export class ListWidget extends Widget {
           }
         }
       ],
-      props: {},
-      propConfigs: [],
+      props: {
+        dataset: {},
+        dataApi: '',
+        dataModel: '',
+        listModel: '',
+        itemModel: ''
+      },
+      propConfigs: [
+        {
+          label: '列表模型',
+          type: 'input',
+          model: 'listModel'
+        },
+        {
+          label: '元素模型',
+          type: 'input',
+          model: 'itemModel'
+        }
+      ],
       children: [],
       settled: false
     }
