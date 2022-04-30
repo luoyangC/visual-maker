@@ -28,7 +28,7 @@ export class ColumnWidget extends Widget {
     config.children?.forEach((item) => {
       item.style.width = restyle.width - 2 * itemPadding
       item.style.height = restyle.height - 2 * itemPadding
-      if (item.settled && item.children?.length) {
+      if (item.fixed && item.children?.length) {
         item.children[0].style.width = restyle.width - 2 * itemPadding
         item.children[0].style.height = restyle.height - 2 * itemPadding
       }
@@ -169,10 +169,11 @@ export class ColumnWidget extends Widget {
       ],
       parent: options.parent,
       children: [],
-      settled: true
+      fixed: true,
+      closable: false
     }
     for (let index = 0; index < options.attrs?.rowNum; index++) {
-      this.pushSlotToChildren(config, { settled: true })
+      this.pushSlotToChildren(config, { fixed: true })
     }
     return config
   }

@@ -35,7 +35,7 @@ export class ListWidget extends Widget {
     config.children?.forEach((item) => {
       item.style.width = restyle.width
       item.style.height = restyle.height
-      if (item.settled && item.children?.length) {
+      if (item.fixed && item.children?.length) {
         item.children[0].style.width = restyle.width
         item.children[0].style.height = restyle.height
       }
@@ -189,7 +189,7 @@ export class ListWidget extends Widget {
           type: 'number',
           func: (val: number, old: number, widget: WidgetConfig) => {
             if (val > old) {
-              this.pushSlotToChildren(widget, { settled: true })
+              this.pushSlotToChildren(widget, { fixed: true })
             } else if (val < old) {
               this.popSlotFromChildren(widget)
             }
@@ -216,10 +216,10 @@ export class ListWidget extends Widget {
         }
       ],
       children: [],
-      settled: false
+      fixed: false
     }
     for (let index = 0; index < config.attrs?.itemNum; index++) {
-      this.pushSlotToChildren(config, { settled: true })
+      this.pushSlotToChildren(config, { fixed: true })
     }
     return config
   }

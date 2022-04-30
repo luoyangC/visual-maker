@@ -47,7 +47,8 @@ export class RootWidget extends Widget {
       propConfigs: [],
       parent: null,
       children: [],
-      settled: false
+      fixed: false,
+      closable: false
     }
     this.pushSlotToChildren(config)
     return config

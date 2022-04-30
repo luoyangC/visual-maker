@@ -40,7 +40,7 @@
   const pointList = ['t', 'r', 'b', 'l', 'lt', 'rt', 'lb', 'rb']
   const directionKey = { t: 'n', b: 's', l: 'w', r: 'e' }
   const isRoot = props.widget.type === 'root'
-  const isSettled = Boolean(props.widget.settled)
+  const isFixed = Boolean(props.widget.fixed)
 
   const VmShape = ref()
 
@@ -51,10 +51,10 @@
   const isAction = computed(() => widgetStore.isAction)
 
   const showPoint = computed(
-    () => isActive.value && !isRoot && !isSettled && !isLock.value && !isVirtual.value
+    () => isActive.value && !isRoot && !isFixed && !isLock.value && !isVirtual.value
   )
   const showRotate = computed(
-    () => isActive.value && !isRoot && !isSettled && !isLock.value && !isAction.value
+    () => isActive.value && !isRoot && !isFixed && !isLock.value && !isAction.value
   )
 
   const getWidgetParent = (widget: WidgetConfig): any => {
@@ -163,11 +163,11 @@
 
     if (isHandelEdge) {
       widgetStore.setCurrent(parent)
-      if (parent?.settled) return
+      if (parent?.fixed) return
       if (parent?.lock) return
     } else {
       widgetStore.setCurrent(props.widget)
-      if (props.widget.settled) return
+      if (props.widget.fixed) return
       if (props.widget.lock) return
     }
 

@@ -33,7 +33,7 @@ export class SlotWidget extends Widget {
     const config: WidgetConfig = {
       type: 'slot',
       lock: true,
-      settled: options?.settled,
+      fixed: options?.fixed,
       style: {
         ...options?.style
       },

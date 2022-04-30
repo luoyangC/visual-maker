@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { widgetHook } from '@/hooks/widget'
-  import { defineComponent } from 'vue'
   import type { WidgetConfig } from '@/models/widget'
+  import { defineComponent } from 'vue'
+  import { widgetHook } from '@/hooks/widget'
 
   export default defineComponent({
     name: 'VmWidget',

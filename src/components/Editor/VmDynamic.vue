@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { dynamicHook } from '@/hooks/dynamic'
-  import { defineComponent, h } from 'vue'
   import type { WidgetDynamicConfig, WidgetConfig } from '@/models/widget'
+  import { defineComponent, h } from 'vue'
+  import { dynamicHook } from '@/hooks/dynamic'
 
   export default defineComponent({
     name: 'VmDynamic',

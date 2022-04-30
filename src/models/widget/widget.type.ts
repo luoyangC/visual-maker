@@ -19,8 +19,9 @@ export interface WidgetConfig {
   id?: number
   type: string
   lock: boolean // 锁定，是否可编辑
-  settled?: boolean // 固定内容
+  fixed?: boolean // 固定内容
   virtual?: boolean // 虚拟组件
+  closable?: boolean
 
   style: LooseOptions
 
@@ -38,7 +39,7 @@ export interface WidgetConfig {
 
 export interface WidgetConfigOptions {
   slotType?: string
-  settled?: boolean
+  fixed?: boolean
   subtype?: string
 
   style?: LooseOptions

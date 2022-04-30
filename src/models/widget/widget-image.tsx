@@ -26,6 +26,7 @@ export class ImageWidget extends Widget {
         class: 'v-image',
         style: { ...this.getWidgetStyle(config.style), ...this.getImageAttrs(config.attrs) },
         src: config.props?.src,
+        onerror: "this.src='/thumb/defaultImg.png';this.onerror=null;",
         onMousedown: this.preventDefault
       },
       config.props?.label

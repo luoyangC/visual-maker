@@ -1,7 +1,7 @@
 <template>
   <div v-show="display" class="right-menu" :style="{ top: top + 'px', left: left + 'px' }">
     <ul>
-      <li @click="delWidget">删除</li>
+      <li v-show="showDelete" @click="delWidget">删除</li>
       <li @click="setWidgetLock">锁定</li>
       <li @click="copyWidget">复制</li>
       <li @click="pasteWidget">粘贴</li>
@@ -13,10 +13,17 @@
   import { useWidgetStore } from '@/store/widget'
   import { useMenuStore } from '@/store/menu'
   import { storeToRefs } from 'pinia'
+  import { computed } from 'vue'
+  import { isDef } from '@/utils'
 
   const widgetStore = useWidgetStore()
   const menuStore = useMenuStore()
   const { top, left, display } = storeToRefs(menuStore)
+  const curWidget = computed(() => widgetStore.current)
+
+  const showDelete = computed(() => {
+    return isDef(curWidget.value?.closable) ? curWidget.value?.closable : true
+  })
 
   const delWidget = () => {
     widgetStore.delete()

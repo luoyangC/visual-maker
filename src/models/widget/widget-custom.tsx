@@ -55,7 +55,7 @@ export class CustomWidget extends Widget {
       props: {},
       propConfigs: [],
       children: [],
-      settled: false
+      fixed: false
     }
     return config
   }

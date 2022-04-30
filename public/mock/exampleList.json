@@ -1200,7 +1200,7 @@
             "props": {
               "src": "/visual-maker/thumb/avatar-1.png"
             },
-            "settled": true
+            "fixed": true
           },
           {
             "type": "text",
@@ -1232,7 +1232,7 @@
             "props": {
               "value": "文本占位"
             },
-            "settled": true
+            "fixed": true
           }
         ]
       }
@@ -1287,7 +1287,7 @@
               {
                 "type": "slot",
                 "lock": true,
-                "settled": true,
+                "fixed": true,
                 "style": {
                   "width": 220,
                   "height": 250
@@ -1329,7 +1329,7 @@
                       {
                         "type": "slot",
                         "lock": true,
-                        "settled": true,
+                        "fixed": true,
                         "style": {
                           "width": 200,
                           "height": 42
@@ -1375,7 +1375,7 @@
                                 "props": {
                                   "src": "/visual-maker/thumb/avatar-1.png"
                                 },
-                                "settled": true
+                                "fixed": true
                               },
                               {
                                 "type": "text",
@@ -1407,10 +1407,10 @@
                                 "props": {
                                   "value": "warma"
                                 },
-                                "settled": true
+                                "fixed": true
                               }
                             ],
-                            "settled": true,
+                            "fixed": true,
                             "attrs": {}
                           }
                         ]
@@ -1418,7 +1418,7 @@
                       {
                         "type": "slot",
                         "lock": true,
-                        "settled": true,
+                        "fixed": true,
                         "style": {
                           "width": 200,
                           "height": 42
@@ -1464,7 +1464,7 @@
                                 "props": {
                                   "src": "/visual-maker/thumb/avatar-6.png"
                                 },
-                                "settled": true
+                                "fixed": true
                               },
                               {
                                 "type": "text",
@@ -1496,10 +1496,10 @@
                                 "props": {
                                   "value": "忆雨"
                                 },
-                                "settled": true
+                                "fixed": true
                               }
                             ],
-                            "settled": true,
+                            "fixed": true,
                             "attrs": {}
                           }
                         ]
@@ -1507,7 +1507,7 @@
                       {
                         "type": "slot",
                         "lock": true,
-                        "settled": true,
+                        "fixed": true,
                         "style": {
                           "width": 200,
                           "height": 42
@@ -1553,7 +1553,7 @@
                                 "props": {
                                   "src": "/visual-maker/thumb/avatar-5.png"
                                 },
-                                "settled": true
+                                "fixed": true
                               },
                               {
                                 "type": "text",
@@ -1585,23 +1585,23 @@
                                 "props": {
                                   "value": "店员"
                                 },
-                                "settled": true
+                                "fixed": true
                               }
                             ],
-                            "settled": true,
+                            "fixed": true,
                             "attrs": {}
                           }
                         ]
                       }
                     ],
-                    "settled": true
+                    "fixed": true
                   }
                 ]
               },
               {
                 "type": "slot",
                 "lock": true,
-                "settled": true,
+                "fixed": true,
                 "style": {
                   "width": 120,
                   "height": 250
@@ -1643,7 +1643,7 @@
                       {
                         "type": "slot",
                         "lock": true,
-                        "settled": true,
+                        "fixed": true,
                         "style": {
                           "width": 100,
                           "height": 42
@@ -1681,14 +1681,14 @@
                             "props": {
                               "value": "18"
                             },
-                            "settled": true
+                            "fixed": true
                           }
                         ]
                       },
                       {
                         "type": "slot",
                         "lock": true,
-                        "settled": true,
+                        "fixed": true,
                         "style": {
                           "width": 100,
                           "height": 42
@@ -1726,14 +1726,14 @@
                             "props": {
                               "value": "108"
                             },
-                            "settled": true
+                            "fixed": true
                           }
                         ]
                       },
                       {
                         "type": "slot",
                         "lock": true,
-                        "settled": true,
+                        "fixed": true,
                         "style": {
                           "width": 100,
                           "height": 42
@@ -1771,19 +1771,19 @@
                             "props": {
                               "value": "8"
                             },
-                            "settled": true
+                            "fixed": true
                           }
                         ]
                       }
                     ],
-                    "settled": true
+                    "fixed": true
                   }
                 ]
               },
               {
                 "type": "slot",
                 "lock": true,
-                "settled": true,
+                "fixed": true,
                 "style": {
                   "width": 205,
                   "height": 250
@@ -1825,7 +1825,7 @@
                       {
                         "type": "slot",
                         "lock": true,
-                        "settled": true,
+                        "fixed": true,
                         "style": {
                           "width": 185,
                           "height": 42
@@ -1863,14 +1863,14 @@
                             "props": {
                               "value": "弗兰常杀人"
                             },
-                            "settled": true
+                            "fixed": true
                           }
                         ]
                       },
                       {
                         "type": "slot",
                         "lock": true,
-                        "settled": true,
+                        "fixed": true,
                         "style": {
                           "width": 185,
                           "height": 42
@@ -1908,14 +1908,14 @@
                             "props": {
                               "value": "学园都市"
                             },
-                            "settled": true
+                            "fixed": true
                           }
                         ]
                       },
                       {
                         "type": "slot",
                         "lock": true,
-                        "settled": true,
+                        "fixed": true,
                         "style": {
                           "width": 185,
                           "height": 42
@@ -1953,17 +1953,17 @@
                             "props": {
                               "value": "王者峡谷"
                             },
-                            "settled": true
+                            "fixed": true
                           }
                         ]
                       }
                     ],
-                    "settled": true
+                    "fixed": true
                   }
                 ]
               }
             ],
-            "settled": true
+            "fixed": true
           }
         ]
       }
@@ -2022,7 +2022,7 @@
               {
                 "type": "slot",
                 "lock": true,
-                "settled": true,
+                "fixed": true,
                 "style": {
                   "width": 200,
                   "height": 42
@@ -2068,7 +2068,7 @@
                         "props": {
                           "src": "/visual-maker/thumb/avatar-1.png"
                         },
-                        "settled": true
+                        "fixed": true
                       },
                       {
                         "type": "text",
@@ -2100,10 +2100,10 @@
                         "props": {
                           "value": "文本占位"
                         },
-                        "settled": true
+                        "fixed": true
                       }
                     ],
-                    "settled": true,
+                    "fixed": true,
                     "attrs": {}
                   }
                 ]
@@ -2111,7 +2111,7 @@
               {
                 "type": "slot",
                 "lock": true,
-                "settled": true,
+                "fixed": true,
                 "style": {
                   "width": 200,
                   "height": 42
@@ -2157,7 +2157,7 @@
                         "props": {
                           "src": "/visual-maker/thumb/avatar-2.png"
                         },
-                        "settled": true
+                        "fixed": true
                       },
                       {
                         "type": "text",
@@ -2189,10 +2189,10 @@
                         "props": {
                           "value": "文本占位"
                         },
-                        "settled": true
+                        "fixed": true
                       }
                     ],
-                    "settled": true,
+                    "fixed": true,
                     "attrs": {}
                   }
                 ]
@@ -2200,7 +2200,7 @@
               {
                 "type": "slot",
                 "lock": true,
-                "settled": true,
+                "fixed": true,
                 "style": {
                   "width": 200,
                   "height": 42
@@ -2246,7 +2246,7 @@
                         "props": {
                           "src": "/visual-maker/thumb/avatar-3.png"
                         },
-                        "settled": true
+                        "fixed": true
                       },
                       {
                         "type": "text",
@@ -2278,10 +2278,10 @@
                         "props": {
                           "value": "文本占位"
                         },
-                        "settled": true
+                        "fixed": true
                       }
                     ],
-                    "settled": true,
+                    "fixed": true,
                     "attrs": {}
                   }
                 ]
@@ -2289,7 +2289,7 @@
               {
                 "type": "slot",
                 "lock": true,
-                "settled": true,
+                "fixed": true,
                 "style": {
                   "width": 200,
                   "height": 42
@@ -2335,7 +2335,7 @@
                         "props": {
                           "src": "/visual-maker/thumb/avatar-4.png"
                         },
-                        "settled": true
+                        "fixed": true
                       },
                       {
                         "type": "text",
@@ -2367,10 +2367,10 @@
                         "props": {
                           "value": "文本占位"
                         },
-                        "settled": true
+                        "fixed": true
                       }
                     ],
-                    "settled": true,
+                    "fixed": true,
                     "attrs": {}
                   }
                 ]
@@ -2378,7 +2378,7 @@
               {
                 "type": "slot",
                 "lock": true,
-                "settled": true,
+                "fixed": true,
                 "style": {
                   "width": 200,
                   "height": 42
@@ -2424,7 +2424,7 @@
                         "props": {
                           "src": "/visual-maker/thumb/avatar-5.png"
                         },
-                        "settled": true
+                        "fixed": true
                       },
                       {
                         "type": "text",
@@ -2456,10 +2456,10 @@
                         "props": {
                           "value": "文本占位"
                         },
-                        "settled": true
+                        "fixed": true
                       }
                     ],
-                    "settled": true,
+                    "fixed": true,
                     "attrs": {}
                   }
                 ]
@@ -2467,7 +2467,7 @@
               {
                 "type": "slot",
                 "lock": true,
-                "settled": true,
+                "fixed": true,
                 "style": {
                   "width": 200,
                   "height": 42
@@ -2513,7 +2513,7 @@
                         "props": {
                           "src": "/visual-maker/thumb/avatar-6.png"
                         },
-                        "settled": true
+                        "fixed": true
                       },
                       {
                         "type": "text",
@@ -2545,10 +2545,10 @@
                         "props": {
                           "value": "文本占位"
                         },
-                        "settled": true
+                        "fixed": true
                       }
                     ],
-                    "settled": true,
+                    "fixed": true,
                     "attrs": {}
                   }
                 ]
@@ -2556,7 +2556,7 @@
               {
                 "type": "slot",
                 "lock": true,
-                "settled": true,
+                "fixed": true,
                 "style": {
                   "width": 200,
                   "height": 42
@@ -2602,7 +2602,7 @@
                         "props": {
                           "src": "/visual-maker/thumb/avatar-7.png"
                         },
-                        "settled": true
+                        "fixed": true
                       },
                       {
                         "type": "text",
@@ -2634,16 +2634,409 @@
                         "props": {
                           "value": "文本占位"
                         },
-                        "settled": true
+                        "fixed": true
                       }
                     ],
-                    "settled": true,
+                    "fixed": true,
                     "attrs": {}
                   }
                 ]
               }
             ],
-            "settled": true
+            "fixed": true
+          }
+        ]
+      }
+    },
+    {
+      "id": 9,
+      "type": 1,
+      "icon": "/visual-maker/thumb/custom-widget-4.png",
+      "option": {
+        "type": "custom",
+        "lock": false,
+        "style": {
+          "width": 720,
+          "height": 146,
+          "minWidth": 700,
+          "minHeight": 126,
+          "opacity": 1,
+          "rotate": 0,
+          "top": 0,
+          "left": 0
+        },
+        "attrs": {},
+        "props": {},
+        "children": [
+          {
+            "type": "table",
+            "lock": false,
+            "style": {
+              "width": 700,
+              "height": 126,
+              "minWidth": 100,
+              "minHeight": 100,
+              "opacity": 1,
+              "rotate": 0,
+              "overflow": "hidden",
+              "fontSize": 20,
+              "fontFamily": "sans-serif",
+              "color": "",
+              "backgroundColor": "#fff",
+              "top": 10,
+              "left": 10
+            },
+            "attrs": {
+              "columnNum": 3,
+              "rowNum": 1,
+              "headHeight": "64px",
+              "rowHeight": "62px",
+              "rowPadding": "10px"
+            },
+            "props": {
+              "dataset": {},
+              "dataApi": "userInfoList.json",
+              "dataModel": "userInfoList",
+              "listModel": "userInfoList",
+              "itemModel": "row"
+            },
+            "children": [
+              {
+                "type": "slot",
+                "lock": true,
+                "fixed": true,
+                "style": {
+                  "width": 220,
+                  "height": 126
+                },
+                "attrs": {
+                  "rowNum": 3
+                },
+                "props": {},
+                "children": [
+                  {
+                    "type": "column",
+                    "lock": false,
+                    "style": {
+                      "width": 220,
+                      "height": 126,
+                      "minWidth": 50,
+                      "minHeight": 50,
+                      "opacity": 1,
+                      "rotate": 0,
+                      "overflow": "hidden",
+                      "fontSize": 20,
+                      "fontFamily": "sans-serif",
+                      "justifyContent": "",
+                      "alignItems": "",
+                      "lineHeight": 1.5,
+                      "letterSpacing": 0,
+                      "color": "",
+                      "backgroundColor": "#fff"
+                    },
+                    "attrs": {
+                      "width": "220px",
+                      "headHeight": "",
+                      "rowPadding": "",
+                      "rowNum": null
+                    },
+                    "props": {
+                      "head": "用户名"
+                    },
+                    "children": [
+                      {
+                        "type": "slot",
+                        "lock": true,
+                        "fixed": true,
+                        "style": {
+                          "width": 200,
+                          "height": 42
+                        },
+                        "attrs": {},
+                        "props": {},
+                        "children": [
+                          {
+                            "type": "custom",
+                            "lock": false,
+                            "style": {
+                              "width": 200,
+                              "height": 42,
+                              "minWidth": 200,
+                              "minHeight": 42,
+                              "opacity": 1,
+                              "rotate": 0,
+                              "top": 0,
+                              "left": 0
+                            },
+                            "props": {},
+                            "children": [
+                              {
+                                "type": "image",
+                                "lock": false,
+                                "style": {
+                                  "width": 42,
+                                  "height": 42,
+                                  "minWidth": 40,
+                                  "minHeight": 40,
+                                  "opacity": 1,
+                                  "rotate": 0,
+                                  "overflow": "hidden",
+                                  "justifyContent": "",
+                                  "color": "",
+                                  "backgroundColor": "#fff",
+                                  "top": 0,
+                                  "left": 0
+                                },
+                                "attrs": {
+                                  "objectFit": "fill"
+                                },
+                                "props": {
+                                  "src": "${row.avatar}"
+                                },
+                                "id": 26,
+                                "fixed": true
+                              },
+                              {
+                                "type": "text",
+                                "lock": false,
+                                "style": {
+                                  "width": 152,
+                                  "height": 42,
+                                  "minWidth": 100,
+                                  "minHeight": 30,
+                                  "opacity": 1,
+                                  "rotate": 0,
+                                  "overflow": "hidden",
+                                  "fontSize": 18,
+                                  "fontFamily": "sans-serif",
+                                  "textStyles": [],
+                                  "justifyContent": "flex-start",
+                                  "alignItems": "center",
+                                  "lineHeight": 1.5,
+                                  "letterSpacing": 0,
+                                  "color": "",
+                                  "backgroundColor": "#fff",
+                                  "backgroundImage": "",
+                                  "backgroundPosition": "",
+                                  "backgroundSize": "auto",
+                                  "backgroundRepeat": "repeat",
+                                  "top": 0,
+                                  "left": 48
+                                },
+                                "props": {
+                                  "value": "${row.name}"
+                                },
+                                "id": 28,
+                                "fixed": true
+                              }
+                            ],
+                            "fixed": true,
+                            "id": 29,
+                            "attrs": {}
+                          }
+                        ],
+                        "id": 6
+                      }
+                    ],
+                    "fixed": true,
+                    "id": 5
+                  }
+                ]
+              },
+              {
+                "type": "slot",
+                "lock": true,
+                "fixed": true,
+                "style": {
+                  "width": 180,
+                  "height": 126
+                },
+                "attrs": {
+                  "rowNum": 3
+                },
+                "props": {},
+                "children": [
+                  {
+                    "type": "column",
+                    "lock": false,
+                    "style": {
+                      "width": 180,
+                      "height": 126,
+                      "minWidth": 50,
+                      "minHeight": 50,
+                      "opacity": 1,
+                      "rotate": 0,
+                      "overflow": "hidden",
+                      "fontSize": 20,
+                      "fontFamily": "sans-serif",
+                      "justifyContent": "",
+                      "alignItems": "",
+                      "lineHeight": 1.5,
+                      "letterSpacing": 0,
+                      "color": "",
+                      "backgroundColor": "#fff"
+                    },
+                    "attrs": {
+                      "width": "180px",
+                      "headHeight": "",
+                      "rowPadding": "",
+                      "rowNum": null
+                    },
+                    "props": {
+                      "head": "年龄"
+                    },
+                    "children": [
+                      {
+                        "type": "slot",
+                        "lock": true,
+                        "fixed": true,
+                        "style": {
+                          "width": 160,
+                          "height": 42
+                        },
+                        "attrs": {},
+                        "props": {},
+                        "children": [
+                          {
+                            "type": "text",
+                            "lock": false,
+                            "style": {
+                              "width": 160,
+                              "height": 42,
+                              "minWidth": 100,
+                              "minHeight": 30,
+                              "opacity": 1,
+                              "rotate": 0,
+                              "overflow": "hidden",
+                              "fontSize": 20,
+                              "fontFamily": "sans-serif",
+                              "textStyles": [],
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "lineHeight": 1.5,
+                              "letterSpacing": 0,
+                              "color": "",
+                              "backgroundColor": "#fff",
+                              "backgroundImage": "",
+                              "backgroundPosition": "",
+                              "backgroundSize": "auto",
+                              "backgroundRepeat": "repeat",
+                              "top": 0,
+                              "left": 0
+                            },
+                            "props": {
+                              "value": "${row.age}"
+                            },
+                            "id": 30,
+                            "fixed": true
+                          }
+                        ],
+                        "id": 11
+                      }
+                    ],
+                    "fixed": true,
+                    "id": 10
+                  }
+                ]
+              },
+              {
+                "type": "slot",
+                "lock": true,
+                "fixed": true,
+                "style": {
+                  "width": 300,
+                  "height": 126
+                },
+                "attrs": {
+                  "rowNum": 3
+                },
+                "props": {},
+                "children": [
+                  {
+                    "type": "column",
+                    "lock": false,
+                    "style": {
+                      "width": 300,
+                      "height": 126,
+                      "minWidth": 50,
+                      "minHeight": 50,
+                      "opacity": 1,
+                      "rotate": 0,
+                      "overflow": "hidden",
+                      "fontSize": 20,
+                      "fontFamily": "sans-serif",
+                      "justifyContent": "",
+                      "alignItems": "",
+                      "lineHeight": 1.5,
+                      "letterSpacing": 0,
+                      "color": "",
+                      "backgroundColor": "#fff"
+                    },
+                    "attrs": {
+                      "width": "",
+                      "headHeight": "",
+                      "rowPadding": "",
+                      "rowNum": null
+                    },
+                    "props": {
+                      "head": "地址"
+                    },
+                    "children": [
+                      {
+                        "type": "slot",
+                        "lock": true,
+                        "fixed": true,
+                        "style": {
+                          "width": 280,
+                          "height": 42
+                        },
+                        "attrs": {},
+                        "props": {},
+                        "children": [
+                          {
+                            "type": "text",
+                            "lock": false,
+                            "style": {
+                              "width": 280,
+                              "height": 42,
+                              "minWidth": 100,
+                              "minHeight": 30,
+                              "opacity": 1,
+                              "rotate": 0,
+                              "overflow": "hidden",
+                              "fontSize": 20,
+                              "fontFamily": "sans-serif",
+                              "textStyles": [],
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "lineHeight": 1.5,
+                              "letterSpacing": 0,
+                              "color": "",
+                              "backgroundColor": "#fff",
+                              "backgroundImage": "",
+                              "backgroundPosition": "",
+                              "backgroundSize": "auto",
+                              "backgroundRepeat": "repeat",
+                              "top": 0,
+                              "left": 0
+                            },
+                            "props": {
+                              "value": "${row.address}"
+                            },
+                            "id": 31,
+                            "fixed": true
+                          }
+                        ],
+                        "id": 21
+                      }
+                    ],
+                    "fixed": true,
+                    "id": 20
+                  }
+                ]
+              }
+            ],
+            "fixed": true
           }
         ]
       }

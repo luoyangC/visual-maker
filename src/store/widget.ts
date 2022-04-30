@@ -15,7 +15,7 @@ export const useWidgetStore = defineStore({
   getters: {
     isAction: (state) => state.action,
     iaActive: (state) => state.root.props?.schema === '2',
-    isSettled: (state) => Boolean(state.current.settled)
+    isFixed: (state) => Boolean(state.current.fixed)
   },
   actions: {
     lock() {

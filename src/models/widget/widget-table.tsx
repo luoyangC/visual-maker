@@ -1,6 +1,6 @@
-import { isArray, toPxNum } from '@/utils'
 import { h } from 'vue'
-import { Widget, WidgetConfig, LooseOptions } from './index'
+import { toPxNum } from '@/utils'
+import { Widget, WidgetConfig } from './index'
 
 export class TableWidget extends Widget {
   constructor() {
@@ -18,7 +18,7 @@ export class TableWidget extends Widget {
     const tableHeight = config.style.height
 
     config.children?.forEach((item) => {
-      if (item.settled && item.children?.length) {
+      if (item.fixed && item.children?.length) {
         const attrWidth = toPxNum(item.children[0].attrs?.width, tableWidth)
         if (attrWidth > 0) {
           item.style.width = attrWidth
@@ -48,7 +48,7 @@ export class TableWidget extends Widget {
     let columnNum = 0
     let remWidth = config.style.width
     config.children?.forEach((item) => {
-      if (item.settled && item.children?.length) {
+      if (item.fixed && item.children?.length) {
         const attrWidth = toPxNum(item.children[0].attrs?.width, config.style.width)
         if (attrWidth > 0) {
           remWidth = remWidth - attrWidth
@@ -75,10 +75,10 @@ export class TableWidget extends Widget {
 
   setRowNum(config: WidgetConfig, data: any) {
     const listModel = data[config.props?.listModel]
-    if (config.props?.listModel && listModel) {
-      const diff = toPxNum(config.attrs?.rowHeight) * (listModel.length - config.props.rowNum)
+    if (config.props?.listModel && listModel && config.attrs) {
+      const diff = toPxNum(config.attrs?.rowHeight) * (listModel.length - config.attrs.rowNum)
       config.style['height'] = config.style['height'] + diff
-      config.props.rowNum = listModel.length
+      config.attrs.rowNum = listModel.length
     }
   }
 
@@ -155,7 +155,7 @@ export class TableWidget extends Widget {
           func: (val: number, old: number, config: WidgetConfig) => {
             if (val > old) {
               this.pushSlotToChildren(config, {
-                settled: true,
+                fixed: true,
                 slotType: 'column',
                 attrs: { rowNum: config.attrs?.rowNum }
               })
@@ -178,7 +178,7 @@ export class TableWidget extends Widget {
               const columnItem = slotItem.children?.[0]
               if (columnItem) {
                 if (val > old) {
-                  this.pushSlotToChildren(columnItem, { settled: true })
+                  this.pushSlotToChildren(columnItem, { fixed: true })
                   columnItem.attrs && columnItem.attrs.rowNum++
                 } else if (val < old) {
                   this.popSlotFromChildren(columnItem)
@@ -209,11 +209,11 @@ export class TableWidget extends Widget {
         }
       ],
       children: [],
-      settled: false
+      fixed: false
     }
     for (let index = 0; index < config.attrs?.columnNum; index++) {
       this.pushSlotToChildren(config, {
-        settled: true,
+        fixed: true,
         slotType: 'column',
         attrs: { rowNum: config.attrs?.rowNum }
       })

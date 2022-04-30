@@ -35,8 +35,8 @@
   const isParentActive = computed(() => props.widget.parent === curWidget.value)
 
   const isRoot = props.widget?.parent?.type === 'root'
-  const isSlotSettled = Boolean(props.widget.settled)
-  const isSlotFilled = computed(() => isSlotSettled && props.widget.children?.length)
+  const isSlotFixed = Boolean(props.widget.fixed)
+  const isSlotFilled = computed(() => isSlotFixed && props.widget.children?.length)
 
   const VmSlot = ref()
 
@@ -62,7 +62,7 @@
     // 设置父组件
     innerWidget.parent = props.widget
 
-    if (isSlotSettled) {
+    if (isSlotFixed) {
       // 插槽为固定插槽，长宽设为父组件长宽，定位设为0
       if (
         props.widget.style.height < innerWidget.style.minHeight ||
@@ -78,7 +78,7 @@
       innerWidget.style.width = props.widget.style.width
       innerWidget.style.top = 0
       innerWidget.style.left = 0
-      innerWidget.settled = true
+      innerWidget.fixed = true
     } else {
       // 根据拖动事件设置定位
       innerWidget.style.top = e.offsetY
@@ -102,13 +102,11 @@
   const handleMouseDown = (e: any) => {
     e.preventDefault()
 
-    if (!isSlotSettled) {
+    if (!isSlotFixed) {
       const startY = e.clientY
       const startX = e.clientX
-      const slotWidth = isSlotSettled ? props.widget.style.width : props.widget.parent?.style.width
-      const slotHeight = isSlotSettled
-        ? props.widget.style.height
-        : props.widget.parent?.style.height
+      const slotWidth = isSlotFixed ? props.widget.style.width : props.widget.parent?.style.width
+      const slotHeight = isSlotFixed ? props.widget.style.height : props.widget.parent?.style.height
 
       let isMove = false
 

@@ -1,7 +1,7 @@
 import type { Widget, WidgetConfig, WidgetConfigOptions } from '@/models/widget'
 import { widgets } from '@/models/widget'
 import { generateID } from '@/utils'
-import { getExampleInfo } from '@/api'
+import { getDataModel, getExampleInfo } from '@/api'
 
 type WidgetKeys = keyof typeof widgets
 
@@ -18,12 +18,10 @@ const excKeys: Array<WidgetConfigKeys> = ['parent', 'propConfigs', 'attrConfigs'
 class WidgetHook {
   widgetMap: Map<string, InstanceType<WidgetModel>>
   dragTypeList: Array<{ type: string; icon?: string; label?: string }>
-  previewData: any
 
   constructor() {
     this.widgetMap = new Map()
     this.dragTypeList = []
-    this.previewData = {}
   }
 
   getDragTypeList() {
@@ -46,12 +44,31 @@ class WidgetHook {
     return template
   }
 
-  getWidgetPreview(name: string, config: WidgetConfig, data: any = this.previewData) {
-    const _data: any = this.getWidget(name).getWidgetData(config)
-    Object.assign(data, _data)
+  getWidgetData(config: WidgetConfig, data: any): any {
+    return new Promise((resolve) => {
+      if (config.props?.dataApi && config.props?.dataModel) {
+        getDataModel(config.props.dataApi, config.props.dataModel).then((res) => {
+          Object.assign(data, { [config.props?.dataModel]: res })
+          resolve(data)
+        })
+      } else {
+        Object.assign(data, config.props?.dataset || {})
+        resolve(data)
+      }
+    }).then((res) => {
+      if (config.children && config.children.length > 0) {
+        for (let index = 0; index < config.children.length; index++) {
+          return this.getWidgetData(config.children[index], res)
+        }
+      }
+      return res
+    })
+  }
+
+  getWidgetPreview(name: string, config: WidgetConfig, data: any = {}) {
     const preview: any = this.getWidget(name).getPreview(config, data)
     if (preview.props && preview.props.class) {
-      const isAbsolute = config.parent?.type === 'custom' || !config.settled
+      const isAbsolute = config.parent?.type === 'custom' || !config.fixed
       preview.props.class += isAbsolute ? ' g-pos--a' : ' g-pos--r'
     }
     if (preview.props && preview.props.style && config.style?.rotate) {
