@@ -44,25 +44,21 @@ class WidgetHook {
     return template
   }
 
-  getWidgetData(config: WidgetConfig, data: any): any {
-    return new Promise((resolve) => {
+  getWidgetData(config: WidgetConfig) {
+    const apiList: Array<any> = []
+    const getDataApiList = (config: WidgetConfig) => {
       if (config.props?.dataApi && config.props?.dataModel) {
-        getDataModel(config.props.dataApi, config.props.dataModel).then((res) => {
-          Object.assign(data, { [config.props?.dataModel]: res })
-          resolve(data)
-        })
-      } else {
-        Object.assign(data, config.props?.dataset || {})
-        resolve(data)
+        apiList.push(getDataModel(config.props.dataApi, config.props.dataModel))
       }
-    }).then((res) => {
-      if (config.children && config.children.length > 0) {
-        for (let index = 0; index < config.children.length; index++) {
-          return this.getWidgetData(config.children[index], res)
-        }
+      if (config.props?.dataset) {
+        apiList.push(new Promise((resolve) => resolve({ ...config.props?.dataset })))
       }
-      return res
-    })
+      config.children?.forEach((item) => {
+        getDataApiList(item)
+      })
+    }
+    getDataApiList(config)
+    return Promise.all(apiList)
   }
 
   getWidgetPreview(name: string, config: WidgetConfig, data: any = {}) {

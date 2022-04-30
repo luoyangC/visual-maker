@@ -9,6 +9,7 @@
     :style="getShapeStyle(widget.style)"
     @click="handleClick"
     @mousedown="handleMouseDown"
+    @mousemove="handleMouseMove"
     @contextmenu="handleContextMenu"
   >
     <i v-if="showRotate" class="vm-shape-rotate iconfont icon-refresh" @mousedown="handleRotate" />
@@ -43,6 +44,7 @@
   const isFixed = Boolean(props.widget.fixed)
 
   const VmShape = ref()
+  const mouseDown = ref(false)
 
   const curWidget = computed(() => widgetStore.current)
   const isActive = computed(() => props.widget === curWidget.value)
@@ -58,7 +60,7 @@
   )
 
   const getWidgetParent = (widget: WidgetConfig): any => {
-    if (widget.parent?.type === 'root') {
+    if (widget.parent?.type === 'slot' && widget.parent?.parent?.type === 'root') {
       return widget
     }
     if (widget.parent?.type === 'slot') {
@@ -158,10 +160,12 @@
     e.preventDefault()
     e.stopPropagation()
 
-    const isHandelEdge = e.offsetY < 5 || e.offsetX < 5
+    mouseDown.value = true
+
+    const isHandelEdge = e.offsetY < 10 || e.offsetX < 10
     const parent = getWidgetParent(props.widget)
 
-    if (isHandelEdge) {
+    if (isHandelEdge && parent.type !== 'root') {
       widgetStore.setCurrent(parent)
       if (parent?.fixed) return
       if (parent?.lock) return
@@ -190,6 +194,7 @@
     })
 
     const up = () => {
+      mouseDown.value = false
       widgetStore.setAction(false)
       window.removeEventListener('mousemove', move)
       window.removeEventListener('mouseup', up)
@@ -197,6 +202,19 @@
 
     window.addEventListener('mousemove', move)
     window.addEventListener('mouseup', up)
+  }
+
+  const handleMouseMove = (e: any) => {
+    if (mouseDown.value) {
+      return
+    } else {
+      const isHandelEdge = e.offsetY < 10 || e.offsetX < 10
+      if (isHandelEdge) {
+        VmShape.value.style.cursor = 'move'
+      } else {
+        VmShape.value.style.cursor = ''
+      }
+    }
   }
 
   const handleMouseDownOnPoint = (point: string) => {

@@ -22,17 +22,21 @@
   const widgetStore = useWidgetStore()
 
   const loading = ref(true)
-  const previewData = ref({})
   const rootWidget = ref({})
+  const previewData = ref({})
 
   watch(
     () => props.modelValue,
     (val) => {
       if (val) {
         rootWidget.value = clone(widgetStore.root)
-        widgetHook.getWidgetData(rootWidget.value as WidgetConfig, {}).then((res: any) => {
-          previewData.value = res
+        widgetHook.getWidgetData(rootWidget.value as WidgetConfig).then((res) => {
+          const _data = {}
+          res.forEach((_obj) => {
+            Object.assign(_data, _obj)
+          })
           loading.value = false
+          previewData.value = _data
         })
       } else {
         loading.value = true

@@ -3,6 +3,10 @@
   text-decoration: none;
   outline: none;
   cursor: pointer;
+  color: var(--el-link-text-color);
+  &:hover {
+    color: var(--el-link-hover-text-color);
+  }
 }
 
 .v-button {
