@@ -219,6 +219,7 @@
     IMAGE_REPEAT_TYPES
   } from '@/constant/dict'
   import { isDef } from '@/utils'
+  import type { WidgetConfig } from '@/models/widget'
 
   const widgetStore = useWidgetStore()
 
@@ -259,13 +260,13 @@
     const ctxHeight = curWidget.value.style.height
     if (type === 1) {
       let totalWidth = 0
-      widgetList.forEach((item) => {
+      widgetList.forEach((item: WidgetConfig) => {
         totalWidth += item.style.width
       })
       if (totalWidth > ctxWidth) return
 
       const gapWidth = (ctxWidth - totalWidth) / (widgetList.length + 1)
-      widgetList.forEach((item, index) => {
+      widgetList.forEach((item: WidgetConfig, index: number) => {
         if (index === 0) {
           item.style.left = gapWidth
         } else {
@@ -275,29 +276,29 @@
       })
     }
     if (type === 2) {
-      widgetList?.forEach((item) => {
+      widgetList.forEach((item: WidgetConfig) => {
         item.style.left = 0
       })
     }
     if (type === 3) {
-      widgetList?.forEach((item) => {
+      widgetList.forEach((item: WidgetConfig) => {
         item.style.left = (ctxWidth - item.style.width) / 2
       })
     }
     if (type === 4) {
-      widgetList?.forEach((item) => {
+      widgetList.forEach((item: WidgetConfig) => {
         item.style.left = ctxWidth - item.style.width
       })
     }
     if (type === 5) {
       let totalHeight = 0
-      widgetList.forEach((item) => {
+      widgetList.forEach((item: WidgetConfig) => {
         totalHeight += item.style.height
       })
       if (totalHeight > ctxHeight) return
 
       const gapHeight = (ctxHeight - totalHeight) / (widgetList.length + 1)
-      widgetList.forEach((item, index) => {
+      widgetList.forEach((item: WidgetConfig, index: number) => {
         if (index === 0) {
           item.style.top = gapHeight
         } else {
@@ -307,17 +308,17 @@
       })
     }
     if (type === 6) {
-      widgetList?.forEach((item) => {
+      widgetList.forEach((item: WidgetConfig) => {
         item.style.top = 0
       })
     }
     if (type === 7) {
-      widgetList?.forEach((item) => {
+      widgetList.forEach((item: WidgetConfig) => {
         item.style.top = (ctxHeight - item.style.height) / 2
       })
     }
     if (type === 8) {
-      widgetList?.forEach((item) => {
+      widgetList.forEach((item: WidgetConfig) => {
         item.style.top = ctxHeight - item.style.height
       })
     }
