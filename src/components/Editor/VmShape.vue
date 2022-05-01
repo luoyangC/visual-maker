@@ -272,7 +272,7 @@
     e.stopPropagation()
     const top = e.pageY
     const left = e.pageX
-    menuStore.show({ top, left })
+    menuStore.show({ top, left, offsetX: e.offsetX, offsetY: e.offsetY })
   }
 </script>
 

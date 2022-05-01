@@ -15,10 +15,13 @@
   import { storeToRefs } from 'pinia'
   import { computed } from 'vue'
   import { isDef } from '@/utils'
+  import { copy } from '@/utils'
+  import { widgetHook } from '@/hooks/widget'
+  import { useMessage } from '@/commons/useMessage'
 
   const widgetStore = useWidgetStore()
   const menuStore = useMenuStore()
-  const { top, left, display } = storeToRefs(menuStore)
+  const { top, left, offsetX, offsetY, display } = storeToRefs(menuStore)
   const curWidget = computed(() => widgetStore.current)
 
   const showDelete = computed(() => {
@@ -35,9 +38,30 @@
     menuStore.hidden()
   }
 
-  const copyWidget = () => {}
+  const copyWidget = () => {
+    const widgetData = widgetHook.widgetToJson(curWidget.value)
+    copy({ text: JSON.stringify(widgetData, null, 2) })
+    menuStore.hidden()
+  }
 
-  const pasteWidget = () => {}
+  const pasteWidget = () => {
+    navigator.clipboard.readText().then((res) => {
+      if (!curWidget.value.children?.[0]) return
+
+      try {
+        const innerWidget = widgetHook.jsonToWidget(JSON.parse(res), curWidget.value.children[0])
+        // 设置父组件
+        innerWidget.parent = curWidget.value.children[0]
+
+        innerWidget.style.top = offsetY.value
+        innerWidget.style.left = offsetX.value
+        widgetStore.push({ current: innerWidget, parent: curWidget.value.children[0] })
+        menuStore.hidden()
+      } catch (error) {
+        useMessage({ mode: 'message', type: 'warning', message: '复制错误' })
+      }
+    })
+  }
 </script>
 
 <style lang="scss" scoped>

@@ -1,9 +1,11 @@
 import type { LooseOptions, WidgetConfig } from '@/models/widget'
 import { defineStore } from 'pinia'
 import { widgetHook } from '@/hooks/widget'
-import { isDef } from '@/utils'
+import { getLocalStore, isDef, setLocalStore } from '@/utils'
 
-const rootWidget = widgetHook.getWidgetConfig('root')
+const rootWidget = getLocalStore('root')
+  ? widgetHook.jsonToWidget(JSON.parse(getLocalStore('root')), null)
+  : widgetHook.getWidgetConfig('root')
 
 export const useWidgetStore = defineStore({
   id: 'widget',
@@ -25,12 +27,21 @@ export const useWidgetStore = defineStore({
       parent.children?.push(current)
     },
     delete() {
-      const index = this.current.parent?.children?.findIndex((item) => item === this.current)
+      const index = this.current.parent?.children?.findIndex((item: any) => item === this.current)
       if (isDef(index) && index !== -1) {
         const parentWidget = this.current.parent?.parent || this.root
         this.current.parent?.children?.splice(index as number, 1)
         this.current = parentWidget
       }
+    },
+    clear() {
+      this.setCurrent(this.root)
+      if (this.root.children) {
+        this.root.children[0].children = []
+      }
+    },
+    save() {
+      setLocalStore('root', widgetHook.widgetToJson(this.root))
     },
     setCurrent(current: WidgetConfig) {
       if (this.current === current) return
@@ -49,7 +60,7 @@ export const useWidgetStore = defineStore({
       this.updateStyle({ styles })
 
       if (this.current.virtual) {
-        this.current.children?.forEach((item) => {
+        this.current.children?.forEach((item: any) => {
           const top = item.style.top + relativeY
           const left = item.style.left + relativeX
           const rotate = item.style.rotate + relativeR

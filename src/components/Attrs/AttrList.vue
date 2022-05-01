@@ -2,14 +2,14 @@
   <vm-form class="attr-list" :disabled="curWidget.lock">
     <!-- 排列布局 -->
     <div class="attr-layout g-flex--ac">
-      <vm-icon name="level-average-align" class="attr-icon" />
-      <vm-icon name="vertical-average-align" class="attr-icon" />
-      <vm-icon name="level-left-align" class="attr-icon" />
-      <vm-icon name="level-center-align" class="attr-icon" />
-      <vm-icon name="level-right-align" class="attr-icon" />
-      <vm-icon name="vertical-top-align" class="attr-icon" />
-      <vm-icon name="vertical-left-align" class="attr-icon" />
-      <vm-icon name="vertical-bottom-align" class="attr-icon" />
+      <vm-icon name="level-average-align" class="attr-icon" @click="handleJustify(1)" />
+      <vm-icon name="level-left-align" class="attr-icon" @click="handleJustify(2)" />
+      <vm-icon name="level-center-align" class="attr-icon" @click="handleJustify(3)" />
+      <vm-icon name="level-right-align" class="attr-icon" @click="handleJustify(4)" />
+      <vm-icon name="vertical-average-align" class="attr-icon" @click="handleJustify(5)" />
+      <vm-icon name="vertical-top-align" class="attr-icon" @click="handleJustify(6)" />
+      <vm-icon name="vertical-left-align" class="attr-icon" @click="handleJustify(7)" />
+      <vm-icon name="vertical-bottom-align" class="attr-icon" @click="handleJustify(8)" />
     </div>
     <el-divider class="attr-divider" />
     <!-- 位置和长宽 -->
@@ -250,6 +250,77 @@
       return JSON.stringify(curWidget.value.subConfig, null, 2)
     }
     return ''
+  }
+
+  const handleJustify = (type: number) => {
+    if (!curWidget.value.children?.[0]) return
+    const widgetList = curWidget.value.children[0].children || []
+    const ctxWidth = curWidget.value.style.width
+    const ctxHeight = curWidget.value.style.height
+    if (type === 1) {
+      let totalWidth = 0
+      widgetList.forEach((item) => {
+        totalWidth += item.style.width
+      })
+      if (totalWidth > ctxWidth) return
+
+      const gapWidth = (ctxWidth - totalWidth) / (widgetList.length + 1)
+      widgetList.forEach((item, index) => {
+        if (index === 0) {
+          item.style.left = gapWidth
+        } else {
+          const beforeItem = widgetList[index - 1]
+          item.style.left = beforeItem.style.left + beforeItem.style.width + gapWidth
+        }
+      })
+    }
+    if (type === 2) {
+      widgetList?.forEach((item) => {
+        item.style.left = 0
+      })
+    }
+    if (type === 3) {
+      widgetList?.forEach((item) => {
+        item.style.left = (ctxWidth - item.style.width) / 2
+      })
+    }
+    if (type === 4) {
+      widgetList?.forEach((item) => {
+        item.style.left = ctxWidth - item.style.width
+      })
+    }
+    if (type === 5) {
+      let totalHeight = 0
+      widgetList.forEach((item) => {
+        totalHeight += item.style.height
+      })
+      if (totalHeight > ctxHeight) return
+
+      const gapHeight = (ctxHeight - totalHeight) / (widgetList.length + 1)
+      widgetList.forEach((item, index) => {
+        if (index === 0) {
+          item.style.top = gapHeight
+        } else {
+          const beforeItem = widgetList[index - 1]
+          item.style.top = beforeItem.style.top + beforeItem.style.height + gapHeight
+        }
+      })
+    }
+    if (type === 6) {
+      widgetList?.forEach((item) => {
+        item.style.top = 0
+      })
+    }
+    if (type === 7) {
+      widgetList?.forEach((item) => {
+        item.style.top = (ctxHeight - item.style.height) / 2
+      })
+    }
+    if (type === 8) {
+      widgetList?.forEach((item) => {
+        item.style.top = ctxHeight - item.style.height
+      })
+    }
   }
 
   const showMoreChartOption = ref(false)

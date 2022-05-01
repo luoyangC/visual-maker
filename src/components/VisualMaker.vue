@@ -1,8 +1,8 @@
 <template>
   <el-container>
     <el-header class="vm-header">
-      <vm-icon name="undo" text="撤销" class="header-item" />
-      <vm-icon name="redo" text="重做" class="header-item" />
+      <vm-icon name="undo" text="撤销" class="header-item" @click="undo" />
+      <vm-icon name="redo" text="重做" class="header-item" @click="redo" />
       <vm-icon name="delete" text="清空" class="header-item" @click="clear" />
       <vm-icon name="save" text="保存" class="header-item" @click="save" />
       <vm-icon name="preview" text="预览" class="header-item" @click="preview" />
@@ -62,6 +62,7 @@
   import Preview from './Preview/index.vue'
   import HeadExport from './Action/HeadExport.vue'
   import HeadAvatar from './Action/HeadAvatar.vue'
+  import { useMessage } from '@/commons/useMessage'
 
   const option = ref('1')
   const active = ref('attr')
@@ -76,13 +77,26 @@
   const toGitHub = () => {
     window.open('https://github.com/luoyangC/visual-maker')
   }
-  // const undo = () => {}
-  // const redo = () => {}
+  const undo = () => {
+    useMessage({ mode: 'message', type: 'warning', message: '暂不支持' })
+  }
+  const redo = () => {
+    useMessage({ mode: 'message', type: 'warning', message: '暂不支持' })
+  }
   const preview = () => {
     showPreview.value = true
   }
-  const save = () => {}
-  const clear = () => {}
+  const save = () => {
+    try {
+      widgetStore.save()
+      useMessage({ mode: 'message', type: 'success', message: '保存成功' })
+    } catch (error) {
+      useMessage({ mode: 'message', type: 'success', message: '保存失败' })
+    }
+  }
+  const clear = () => {
+    widgetStore.clear()
+  }
 </script>
 
 <style lang="scss" scoped>

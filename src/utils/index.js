@@ -1,6 +1,8 @@
 export * from './type'
+export * from './local'
 export { clone } from './clone'
 export { generateID } from './generateID'
 export { debounce } from './debounce'
 export { throttle } from './throttle'
 export { styleToString } from './styleToString'
+export { copy } from './clipboard'
