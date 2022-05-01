@@ -1,4 +1,4 @@
-import { h } from 'vue'
+import { h, resolveComponent } from 'vue'
 import { Widget, WidgetConfig } from './index'
 
 export class ButtonWidget extends Widget {
@@ -14,7 +14,7 @@ export class ButtonWidget extends Widget {
 
   getTemplate(config: WidgetConfig) {
     return h(
-      'button',
+      resolveComponent('ElButton'),
       {
         class: 'v-button',
         style: this.getWidgetStyle(config.style),
@@ -26,7 +26,7 @@ export class ButtonWidget extends Widget {
 
   getPreview(config: WidgetConfig, data: any) {
     return h(
-      'button',
+      resolveComponent('ElButton'),
       {
         class: 'v-button',
         style: this.getWidgetStyle(config.style)

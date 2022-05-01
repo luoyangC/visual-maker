@@ -24,7 +24,9 @@ import {
   ElDropdown,
   ElDropdownMenu,
   ElScrollbar,
-  ElLoading
+  ElLoading,
+  ElImage,
+  ElLink
 } from 'element-plus'
 
 export default function elementPlugin(app: App) {
@@ -57,4 +59,6 @@ export default function elementPlugin(app: App) {
   app.use(ElDropdownMenu)
   app.use(ElScrollbar)
   app.use(ElLoading)
+  app.use(ElImage)
+  app.use(ElLink)
 }

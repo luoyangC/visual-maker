@@ -1,4 +1,4 @@
-import { h } from 'vue'
+import { h, resolveComponent } from 'vue'
 import { Widget, WidgetConfig } from './index'
 
 export class LinkWidget extends Widget {
@@ -14,7 +14,7 @@ export class LinkWidget extends Widget {
 
   getTemplate(config: WidgetConfig) {
     return h(
-      'a',
+      resolveComponent('ElLink'),
       {
         class: 'v-link',
         style: this.getWidgetStyle(config.style),
@@ -27,7 +27,7 @@ export class LinkWidget extends Widget {
 
   getPreview(config: WidgetConfig, data: any) {
     return h(
-      'a',
+      resolveComponent('ElLink'),
       {
         class: 'v-link',
         style: this.getWidgetStyle(config.style),

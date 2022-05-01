@@ -1,4 +1,4 @@
-import { h } from 'vue'
+import { h, resolveComponent } from 'vue'
 import { IMAGE_OBJECT_FIT_TYPES } from '@/constant/dict'
 import { Widget, WidgetConfig, LooseOptions } from './index'
 
@@ -21,12 +21,12 @@ export class ImageWidget extends Widget {
 
   getTemplate(config: WidgetConfig) {
     return h(
-      'img',
+      resolveComponent('ElImage'),
       {
         class: 'v-image',
-        style: { ...this.getWidgetStyle(config.style), ...this.getImageAttrs(config.attrs) },
+        style: this.getWidgetStyle(config.style),
         src: config.props?.src,
-        onerror: "this.src='/thumb/defaultImg.png';this.onerror=null;",
+        fit: config.attrs?.objectFit,
         onMousedown: this.preventDefault
       },
       config.props?.label
@@ -35,11 +35,12 @@ export class ImageWidget extends Widget {
 
   getPreview(config: WidgetConfig, data: any) {
     return h(
-      'img',
+      resolveComponent('ElImage'),
       {
         class: 'v-image',
-        style: { ...this.getWidgetStyle(config.style), ...this.getImageAttrs(config.attrs) },
-        src: this.getPreviewModel(config.props?.src, data)
+        style: this.getWidgetStyle(config.style),
+        src: this.getPreviewModel(config.props?.src, data),
+        fit: config.attrs?.objectFit
       },
       config.props?.label
     )
