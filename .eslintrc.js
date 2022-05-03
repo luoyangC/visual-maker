@@ -45,6 +45,8 @@ module.exports = {
     'vue/no-v-html': 'off',
     'vue/require-default-prop': 'off',
     'vue/require-explicit-emits': 'off',
+    'vue/first-attribute-linebreak': 'off',
+    'vue/no-reserved-props': 'off',
 
     'prettier/prettier': 'error'
   },

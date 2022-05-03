@@ -102,7 +102,7 @@
   const handleMouseDown = (e: any) => {
     e.preventDefault()
 
-    if (!isSlotFixed) {
+    if (isRoot) {
       const startY = e.clientY
       const startX = e.clientX
       const slotWidth = isSlotFixed ? props.widget.style.width : props.widget.parent?.style.width

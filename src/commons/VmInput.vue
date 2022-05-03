@@ -64,14 +64,8 @@
   .el-input__prefix {
     left: 8px;
   }
-  .el-input__inner {
-    padding: 0 15px;
-  }
-  .el-input--prefix .el-input__inner {
-    padding-left: 25px;
-  }
   .el-input__inner::-webkit-inner-spin-button {
-    margin: 0 -15px;
+    margin: 1px -0px;
   }
 </style>
 

@@ -223,7 +223,9 @@
 
   const widgetStore = useWidgetStore()
 
-  const curWidget = computed(() => widgetStore.current)
+  const curWidget = computed(() =>
+    widgetStore.isCustom ? widgetStore.current.children[0] : widgetStore.current
+  )
 
   const curStyle = computed(() => curWidget.value.style)
   const attrConfigs = computed(() => curWidget.value.attrConfigs || [])

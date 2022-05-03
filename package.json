@@ -6,7 +6,7 @@
   "author": "luoyang <luoyangc2233@gmail.com>",
   "scripts": {
     "start": "vite",
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "vue-tsc --noEmit --skipLibCheck && vite build",
     "serve": "vite preview",
     "deploy": "bash ./deploy.sh"
   },
@@ -18,29 +18,29 @@
     "low code"
   ],
   "dependencies": {
-    "axios": "^0.26.1",
-    "codemirror": "^5.65.2",
-    "echarts": "^5.2.2",
-    "element-plus": "^2.0",
+    "axios": "^0.27.2",
+    "codemirror": "^5.65.3",
+    "echarts": "^5.3.2",
+    "element-plus": "^2.1",
     "pinia": "^2.0.13",
-    "vue": "^3.2.6",
-    "vue-router": "^4.0.0"
+    "vue": "^3.2.33",
+    "vue-router": "^4.0.14"
   },
   "devDependencies": {
     "@types/codemirror": "^5.60.5",
-    "@types/node": "^16.10.2",
-    "@typescript-eslint/eslint-plugin": "^4.31.2",
-    "@typescript-eslint/parser": "^4.31.2",
-    "@vitejs/plugin-vue": "^1.6.1",
-    "@vue/compiler-sfc": "^3.2.6",
-    "eslint": "^7.32.0",
-    "eslint-config-prettier": "^8.3.0",
+    "@types/node": "^17.0.30",
+    "@typescript-eslint/eslint-plugin": "^5.21.0",
+    "@typescript-eslint/parser": "^5.21.0",
+    "@vitejs/plugin-vue": "^2.3.1",
+    "@vue/compiler-sfc": "^3.2.33",
+    "eslint": "^8.14.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-vue": "^7.18.0",
-    "prettier": "^2.4.1",
-    "sass": "^1.42.1",
-    "typescript": "^4.3.2",
-    "vite": "^2.5.4",
-    "vue-tsc": "^0.2.2"
+    "eslint-plugin-vue": "^8.7.1",
+    "prettier": "^2.6.2",
+    "sass": "^1.51.0",
+    "typescript": "^4.6.4",
+    "vite": "^2.9.6",
+    "vue-tsc": "^0.34.11"
   }
 }

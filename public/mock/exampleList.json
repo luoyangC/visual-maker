@@ -1178,45 +1178,20 @@
         "props": {},
         "children": [
           {
-            "type": "image",
+            "type": "rectangle",
             "lock": false,
             "style": {
-              "width": 42,
+              "width": 200,
               "height": 42,
-              "minWidth": 40,
-              "minHeight": 40,
+              "minWidth": 10,
+              "minHeight": 10,
               "opacity": 1,
               "rotate": 0,
               "overflow": "hidden",
-              "justifyContent": "",
-              "color": "",
-              "backgroundColor": "#fff",
-              "top": 0,
-              "left": 0
-            },
-            "attrs": {
-              "objectFit": "fill"
-            },
-            "props": {
-              "src": "/visual-maker/thumb/avatar-1.png"
-            },
-            "fixed": true
-          },
-          {
-            "type": "text",
-            "lock": false,
-            "style": {
-              "width": 152,
-              "height": 42,
-              "minWidth": 100,
-              "minHeight": 30,
-              "opacity": 1,
-              "rotate": 0,
-              "overflow": "hidden",
-              "fontSize": 18,
+              "fontSize": 20,
               "fontFamily": "sans-serif",
               "textStyles": [],
-              "justifyContent": "flex-start",
+              "justifyContent": "center",
               "alignItems": "center",
               "lineHeight": 1.5,
               "letterSpacing": 0,
@@ -1227,11 +1202,83 @@
               "backgroundSize": "auto",
               "backgroundRepeat": "repeat",
               "top": 0,
-              "left": 48
+              "left": 0
             },
             "props": {
-              "value": "文本占位"
+              "dataset": {},
+              "dataApi": "",
+              "dataModel": ""
             },
+            "children": [
+              {
+                "type": "slot",
+                "lock": true,
+                "style": {},
+                "attrs": {},
+                "props": {},
+                "children": [
+                  {
+                    "type": "image",
+                    "lock": false,
+                    "style": {
+                      "width": 42,
+                      "height": 42,
+                      "minWidth": 40,
+                      "minHeight": 40,
+                      "opacity": 1,
+                      "rotate": 0,
+                      "overflow": "hidden",
+                      "justifyContent": "",
+                      "color": "",
+                      "backgroundColor": "#fff",
+                      "top": 0,
+                      "left": 0
+                    },
+                    "attrs": {
+                      "objectFit": "fill"
+                    },
+                    "props": {
+                      "src": "/visual-maker/thumb/avatar-1.png"
+                    },
+                    "id": 14
+                  },
+                  {
+                    "type": "text",
+                    "lock": false,
+                    "style": {
+                      "width": 152,
+                      "height": 42,
+                      "minWidth": 100,
+                      "minHeight": 30,
+                      "opacity": 1,
+                      "rotate": 0,
+                      "overflow": "hidden",
+                      "fontSize": 20,
+                      "fontFamily": "sans-serif",
+                      "textStyles": [],
+                      "justifyContent": "flex-start",
+                      "alignItems": "center",
+                      "lineHeight": 1.5,
+                      "letterSpacing": 0,
+                      "color": "",
+                      "backgroundColor": "#fff",
+                      "backgroundImage": "",
+                      "backgroundPosition": "",
+                      "backgroundSize": "auto",
+                      "backgroundRepeat": "repeat",
+                      "top": 0,
+                      "left": 48
+                    },
+                    "props": {
+                      "value": "文本占位"
+                    },
+                    "id": 15
+                  }
+                ],
+                "id": 7
+              }
+            ],
+            "id": 6,
             "fixed": true
           }
         ]
@@ -1245,10 +1292,10 @@
         "type": "custom",
         "lock": false,
         "style": {
-          "width": 565,
-          "height": 270,
-          "minWidth": 200,
-          "minHeight": 42,
+          "width": 600,
+          "height": 250,
+          "minWidth": 600,
+          "minHeight": 250,
           "opacity": 1,
           "rotate": 0,
           "top": 0,
@@ -1261,7 +1308,7 @@
             "type": "table",
             "lock": false,
             "style": {
-              "width": 545,
+              "width": 600,
               "height": 250,
               "minWidth": 100,
               "minHeight": 100,
@@ -1272,17 +1319,23 @@
               "fontFamily": "sans-serif",
               "color": "",
               "backgroundColor": "#fff",
-              "top": 10,
-              "left": 10
+              "top": 0,
+              "left": 0
             },
             "attrs": {
               "columnNum": 3,
               "rowNum": 3,
               "headHeight": "64px",
-              "rowHeight": 62,
+              "rowHeight": "62px",
               "rowPadding": "10px"
             },
-            "props": {},
+            "props": {
+              "dataset": {},
+              "dataApi": "",
+              "dataModel": "",
+              "listModel": "list",
+              "itemModel": "row"
+            },
             "children": [
               {
                 "type": "slot",
@@ -1353,45 +1406,20 @@
                             "props": {},
                             "children": [
                               {
-                                "type": "image",
+                                "type": "rectangle",
                                 "lock": false,
                                 "style": {
-                                  "width": 42,
+                                  "width": 200,
                                   "height": 42,
-                                  "minWidth": 40,
-                                  "minHeight": 40,
+                                  "minWidth": 10,
+                                  "minHeight": 10,
                                   "opacity": 1,
                                   "rotate": 0,
                                   "overflow": "hidden",
-                                  "justifyContent": "",
-                                  "color": "",
-                                  "backgroundColor": "#fff",
-                                  "top": 0,
-                                  "left": 0
-                                },
-                                "attrs": {
-                                  "objectFit": "fill"
-                                },
-                                "props": {
-                                  "src": "/visual-maker/thumb/avatar-1.png"
-                                },
-                                "fixed": true
-                              },
-                              {
-                                "type": "text",
-                                "lock": false,
-                                "style": {
-                                  "width": 152,
-                                  "height": 42,
-                                  "minWidth": 100,
-                                  "minHeight": 30,
-                                  "opacity": 1,
-                                  "rotate": 0,
-                                  "overflow": "hidden",
-                                  "fontSize": 18,
+                                  "fontSize": 20,
                                   "fontFamily": "sans-serif",
                                   "textStyles": [],
-                                  "justifyContent": "flex-start",
+                                  "justifyContent": "center",
                                   "alignItems": "center",
                                   "lineHeight": 1.5,
                                   "letterSpacing": 0,
@@ -1402,18 +1430,92 @@
                                   "backgroundSize": "auto",
                                   "backgroundRepeat": "repeat",
                                   "top": 0,
-                                  "left": 48
+                                  "left": 0
                                 },
                                 "props": {
-                                  "value": "warma"
+                                  "dataset": {},
+                                  "dataApi": "",
+                                  "dataModel": ""
                                 },
+                                "children": [
+                                  {
+                                    "type": "slot",
+                                    "lock": true,
+                                    "style": {},
+                                    "attrs": {},
+                                    "props": {},
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "lock": false,
+                                        "style": {
+                                          "width": 42,
+                                          "height": 42,
+                                          "minWidth": 40,
+                                          "minHeight": 40,
+                                          "opacity": 1,
+                                          "rotate": 0,
+                                          "overflow": "hidden",
+                                          "justifyContent": "",
+                                          "color": "",
+                                          "backgroundColor": "#fff",
+                                          "top": 0,
+                                          "left": 0
+                                        },
+                                        "attrs": {
+                                          "objectFit": "fill"
+                                        },
+                                        "props": {
+                                          "src": "/visual-maker/thumb/avatar-1.png"
+                                        },
+                                        "id": 106
+                                      },
+                                      {
+                                        "type": "text",
+                                        "lock": false,
+                                        "style": {
+                                          "width": 152,
+                                          "height": 42,
+                                          "minWidth": 100,
+                                          "minHeight": 30,
+                                          "opacity": 1,
+                                          "rotate": 0,
+                                          "overflow": "hidden",
+                                          "fontSize": 20,
+                                          "fontFamily": "sans-serif",
+                                          "textStyles": [],
+                                          "justifyContent": "flex-start",
+                                          "alignItems": "center",
+                                          "lineHeight": 1.5,
+                                          "letterSpacing": 0,
+                                          "color": "",
+                                          "backgroundColor": "#fff",
+                                          "backgroundImage": "",
+                                          "backgroundPosition": "",
+                                          "backgroundSize": "auto",
+                                          "backgroundRepeat": "repeat",
+                                          "top": -1,
+                                          "left": 48
+                                        },
+                                        "props": {
+                                          "value": "warma"
+                                        },
+                                        "id": 108
+                                      }
+                                    ],
+                                    "id": 109
+                                  }
+                                ],
+                                "id": 110,
                                 "fixed": true
                               }
                             ],
                             "fixed": true,
+                            "id": 111,
                             "attrs": {}
                           }
-                        ]
+                        ],
+                        "id": 88
                       },
                       {
                         "type": "slot",
@@ -1442,45 +1544,20 @@
                             "props": {},
                             "children": [
                               {
-                                "type": "image",
+                                "type": "rectangle",
                                 "lock": false,
                                 "style": {
-                                  "width": 42,
+                                  "width": 200,
                                   "height": 42,
-                                  "minWidth": 40,
-                                  "minHeight": 40,
+                                  "minWidth": 10,
+                                  "minHeight": 10,
                                   "opacity": 1,
                                   "rotate": 0,
                                   "overflow": "hidden",
-                                  "justifyContent": "",
-                                  "color": "",
-                                  "backgroundColor": "#fff",
-                                  "top": 0,
-                                  "left": 0
-                                },
-                                "attrs": {
-                                  "objectFit": "fill"
-                                },
-                                "props": {
-                                  "src": "/visual-maker/thumb/avatar-6.png"
-                                },
-                                "fixed": true
-                              },
-                              {
-                                "type": "text",
-                                "lock": false,
-                                "style": {
-                                  "width": 152,
-                                  "height": 42,
-                                  "minWidth": 100,
-                                  "minHeight": 30,
-                                  "opacity": 1,
-                                  "rotate": 0,
-                                  "overflow": "hidden",
-                                  "fontSize": 18,
+                                  "fontSize": 20,
                                   "fontFamily": "sans-serif",
                                   "textStyles": [],
-                                  "justifyContent": "flex-start",
+                                  "justifyContent": "center",
                                   "alignItems": "center",
                                   "lineHeight": 1.5,
                                   "letterSpacing": 0,
@@ -1491,18 +1568,92 @@
                                   "backgroundSize": "auto",
                                   "backgroundRepeat": "repeat",
                                   "top": 0,
-                                  "left": 48
+                                  "left": 0
                                 },
                                 "props": {
-                                  "value": "忆雨"
+                                  "dataset": {},
+                                  "dataApi": "",
+                                  "dataModel": ""
                                 },
+                                "children": [
+                                  {
+                                    "type": "slot",
+                                    "lock": true,
+                                    "style": {},
+                                    "attrs": {},
+                                    "props": {},
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "lock": false,
+                                        "style": {
+                                          "width": 42,
+                                          "height": 42,
+                                          "minWidth": 40,
+                                          "minHeight": 40,
+                                          "opacity": 1,
+                                          "rotate": 0,
+                                          "overflow": "hidden",
+                                          "justifyContent": "",
+                                          "color": "",
+                                          "backgroundColor": "#fff",
+                                          "top": 0,
+                                          "left": 0
+                                        },
+                                        "attrs": {
+                                          "objectFit": "fill"
+                                        },
+                                        "props": {
+                                          "src": "/visual-maker/thumb/avatar-6.png"
+                                        },
+                                        "id": 117
+                                      },
+                                      {
+                                        "type": "text",
+                                        "lock": false,
+                                        "style": {
+                                          "width": 152,
+                                          "height": 42,
+                                          "minWidth": 100,
+                                          "minHeight": 30,
+                                          "opacity": 1,
+                                          "rotate": 0,
+                                          "overflow": "hidden",
+                                          "fontSize": 20,
+                                          "fontFamily": "sans-serif",
+                                          "textStyles": [],
+                                          "justifyContent": "flex-start",
+                                          "alignItems": "center",
+                                          "lineHeight": 1.5,
+                                          "letterSpacing": 0,
+                                          "color": "",
+                                          "backgroundColor": "#fff",
+                                          "backgroundImage": "",
+                                          "backgroundPosition": "",
+                                          "backgroundSize": "auto",
+                                          "backgroundRepeat": "repeat",
+                                          "top": 0,
+                                          "left": 48
+                                        },
+                                        "props": {
+                                          "value": "忆雨"
+                                        },
+                                        "id": 119
+                                      }
+                                    ],
+                                    "id": 120
+                                  }
+                                ],
+                                "id": 121,
                                 "fixed": true
                               }
                             ],
                             "fixed": true,
+                            "id": 122,
                             "attrs": {}
                           }
-                        ]
+                        ],
+                        "id": 89
                       },
                       {
                         "type": "slot",
@@ -1531,45 +1682,20 @@
                             "props": {},
                             "children": [
                               {
-                                "type": "image",
+                                "type": "rectangle",
                                 "lock": false,
                                 "style": {
-                                  "width": 42,
+                                  "width": 200,
                                   "height": 42,
-                                  "minWidth": 40,
-                                  "minHeight": 40,
+                                  "minWidth": 10,
+                                  "minHeight": 10,
                                   "opacity": 1,
                                   "rotate": 0,
                                   "overflow": "hidden",
-                                  "justifyContent": "",
-                                  "color": "",
-                                  "backgroundColor": "#fff",
-                                  "top": 0,
-                                  "left": 0
-                                },
-                                "attrs": {
-                                  "objectFit": "fill"
-                                },
-                                "props": {
-                                  "src": "/visual-maker/thumb/avatar-5.png"
-                                },
-                                "fixed": true
-                              },
-                              {
-                                "type": "text",
-                                "lock": false,
-                                "style": {
-                                  "width": 152,
-                                  "height": 42,
-                                  "minWidth": 100,
-                                  "minHeight": 30,
-                                  "opacity": 1,
-                                  "rotate": 0,
-                                  "overflow": "hidden",
-                                  "fontSize": 18,
+                                  "fontSize": 20,
                                   "fontFamily": "sans-serif",
                                   "textStyles": [],
-                                  "justifyContent": "flex-start",
+                                  "justifyContent": "center",
                                   "alignItems": "center",
                                   "lineHeight": 1.5,
                                   "letterSpacing": 0,
@@ -1580,30 +1706,107 @@
                                   "backgroundSize": "auto",
                                   "backgroundRepeat": "repeat",
                                   "top": 0,
-                                  "left": 48
+                                  "left": 0
                                 },
                                 "props": {
-                                  "value": "店员"
+                                  "dataset": {},
+                                  "dataApi": "",
+                                  "dataModel": ""
                                 },
+                                "children": [
+                                  {
+                                    "type": "slot",
+                                    "lock": true,
+                                    "style": {},
+                                    "attrs": {},
+                                    "props": {},
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "lock": false,
+                                        "style": {
+                                          "width": 42,
+                                          "height": 42,
+                                          "minWidth": 40,
+                                          "minHeight": 40,
+                                          "opacity": 1,
+                                          "rotate": 0,
+                                          "overflow": "hidden",
+                                          "justifyContent": "",
+                                          "color": "",
+                                          "backgroundColor": "#fff",
+                                          "top": -1,
+                                          "left": 0
+                                        },
+                                        "attrs": {
+                                          "objectFit": "fill"
+                                        },
+                                        "props": {
+                                          "src": "/visual-maker/thumb/avatar-5.png"
+                                        },
+                                        "id": 128
+                                      },
+                                      {
+                                        "type": "text",
+                                        "lock": false,
+                                        "style": {
+                                          "width": 152,
+                                          "height": 42,
+                                          "minWidth": 100,
+                                          "minHeight": 30,
+                                          "opacity": 1,
+                                          "rotate": 0,
+                                          "overflow": "hidden",
+                                          "fontSize": 20,
+                                          "fontFamily": "sans-serif",
+                                          "textStyles": [],
+                                          "justifyContent": "flex-start",
+                                          "alignItems": "center",
+                                          "lineHeight": 1.5,
+                                          "letterSpacing": 0,
+                                          "color": "",
+                                          "backgroundColor": "#fff",
+                                          "backgroundImage": "",
+                                          "backgroundPosition": "",
+                                          "backgroundSize": "auto",
+                                          "backgroundRepeat": "repeat",
+                                          "top": -1,
+                                          "left": 48
+                                        },
+                                        "props": {
+                                          "value": "店员"
+                                        },
+                                        "id": 130
+                                      }
+                                    ],
+                                    "id": 131
+                                  }
+                                ],
+                                "id": 132,
                                 "fixed": true
                               }
                             ],
                             "fixed": true,
+                            "id": 133,
                             "attrs": {}
                           }
-                        ]
+                        ],
+                        "id": 90
                       }
                     ],
-                    "fixed": true
+                    "fixed": true,
+                    "closable": false,
+                    "id": 87
                   }
-                ]
+                ],
+                "id": 86
               },
               {
                 "type": "slot",
                 "lock": true,
                 "fixed": true,
                 "style": {
-                  "width": 120,
+                  "width": 160,
                   "height": 250
                 },
                 "attrs": {
@@ -1615,7 +1818,7 @@
                     "type": "column",
                     "lock": false,
                     "style": {
-                      "width": 120,
+                      "width": 160,
                       "height": 250,
                       "minWidth": 50,
                       "minHeight": 50,
@@ -1632,7 +1835,7 @@
                       "backgroundColor": "#fff"
                     },
                     "attrs": {
-                      "width": "120px",
+                      "width": "160px",
                       "headHeight": "",
                       "rowPadding": ""
                     },
@@ -1645,7 +1848,7 @@
                         "lock": true,
                         "fixed": true,
                         "style": {
-                          "width": 100,
+                          "width": 140,
                           "height": 42
                         },
                         "attrs": {},
@@ -1655,7 +1858,7 @@
                             "type": "text",
                             "lock": false,
                             "style": {
-                              "width": 100,
+                              "width": 140,
                               "height": 42,
                               "minWidth": 100,
                               "minHeight": 30,
@@ -1681,16 +1884,18 @@
                             "props": {
                               "value": "18"
                             },
+                            "id": 134,
                             "fixed": true
                           }
-                        ]
+                        ],
+                        "id": 93
                       },
                       {
                         "type": "slot",
                         "lock": true,
                         "fixed": true,
                         "style": {
-                          "width": 100,
+                          "width": 140,
                           "height": 42
                         },
                         "attrs": {},
@@ -1700,7 +1905,7 @@
                             "type": "text",
                             "lock": false,
                             "style": {
-                              "width": 100,
+                              "width": 140,
                               "height": 42,
                               "minWidth": 100,
                               "minHeight": 30,
@@ -1726,16 +1931,18 @@
                             "props": {
                               "value": "108"
                             },
+                            "id": 135,
                             "fixed": true
                           }
-                        ]
+                        ],
+                        "id": 94
                       },
                       {
                         "type": "slot",
                         "lock": true,
                         "fixed": true,
                         "style": {
-                          "width": 100,
+                          "width": 140,
                           "height": 42
                         },
                         "attrs": {},
@@ -1745,7 +1952,7 @@
                             "type": "text",
                             "lock": false,
                             "style": {
-                              "width": 100,
+                              "width": 140,
                               "height": 42,
                               "minWidth": 100,
                               "minHeight": 30,
@@ -1771,21 +1978,26 @@
                             "props": {
                               "value": "8"
                             },
+                            "id": 136,
                             "fixed": true
                           }
-                        ]
+                        ],
+                        "id": 95
                       }
                     ],
-                    "fixed": true
+                    "fixed": true,
+                    "closable": false,
+                    "id": 92
                   }
-                ]
+                ],
+                "id": 91
               },
               {
                 "type": "slot",
                 "lock": true,
                 "fixed": true,
                 "style": {
-                  "width": 205,
+                  "width": 220,
                   "height": 250
                 },
                 "attrs": {
@@ -1797,7 +2009,7 @@
                     "type": "column",
                     "lock": false,
                     "style": {
-                      "width": 205,
+                      "width": 220,
                       "height": 250,
                       "minWidth": 50,
                       "minHeight": 50,
@@ -1827,7 +2039,7 @@
                         "lock": true,
                         "fixed": true,
                         "style": {
-                          "width": 185,
+                          "width": 200,
                           "height": 42
                         },
                         "attrs": {},
@@ -1837,7 +2049,7 @@
                             "type": "text",
                             "lock": false,
                             "style": {
-                              "width": 185,
+                              "width": 200,
                               "height": 42,
                               "minWidth": 100,
                               "minHeight": 30,
@@ -1863,16 +2075,18 @@
                             "props": {
                               "value": "弗兰常杀人"
                             },
+                            "id": 137,
                             "fixed": true
                           }
-                        ]
+                        ],
+                        "id": 98
                       },
                       {
                         "type": "slot",
                         "lock": true,
                         "fixed": true,
                         "style": {
-                          "width": 185,
+                          "width": 200,
                           "height": 42
                         },
                         "attrs": {},
@@ -1882,52 +2096,7 @@
                             "type": "text",
                             "lock": false,
                             "style": {
-                              "width": 185,
-                              "height": 42,
-                              "minWidth": 100,
-                              "minHeight": 30,
-                              "opacity": 1,
-                              "rotate": 0,
-                              "overflow": "hidden",
-                              "fontSize": 20,
-                              "fontFamily": "sans-serif",
-                              "textStyles": [],
-                              "justifyContent": "center",
-                              "alignItems": "center",
-                              "lineHeight": 1.5,
-                              "letterSpacing": 0,
-                              "color": "",
-                              "backgroundColor": "#fff",
-                              "backgroundImage": "",
-                              "backgroundPosition": "",
-                              "backgroundSize": "auto",
-                              "backgroundRepeat": "repeat",
-                              "top": 0,
-                              "left": 0
-                            },
-                            "props": {
-                              "value": "学园都市"
-                            },
-                            "fixed": true
-                          }
-                        ]
-                      },
-                      {
-                        "type": "slot",
-                        "lock": true,
-                        "fixed": true,
-                        "style": {
-                          "width": 185,
-                          "height": 42
-                        },
-                        "attrs": {},
-                        "props": {},
-                        "children": [
-                          {
-                            "type": "text",
-                            "lock": false,
-                            "style": {
-                              "width": 185,
+                              "width": 200,
                               "height": 42,
                               "minWidth": 100,
                               "minHeight": 30,
@@ -1953,17 +2122,70 @@
                             "props": {
                               "value": "王者峡谷"
                             },
+                            "id": 138,
                             "fixed": true
                           }
-                        ]
+                        ],
+                        "id": 99
+                      },
+                      {
+                        "type": "slot",
+                        "lock": true,
+                        "fixed": true,
+                        "style": {
+                          "width": 200,
+                          "height": 42
+                        },
+                        "attrs": {},
+                        "props": {},
+                        "children": [
+                          {
+                            "type": "text",
+                            "lock": false,
+                            "style": {
+                              "width": 200,
+                              "height": 42,
+                              "minWidth": 100,
+                              "minHeight": 30,
+                              "opacity": 1,
+                              "rotate": 0,
+                              "overflow": "hidden",
+                              "fontSize": 20,
+                              "fontFamily": "sans-serif",
+                              "textStyles": [],
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "lineHeight": 1.5,
+                              "letterSpacing": 0,
+                              "color": "",
+                              "backgroundColor": "#fff",
+                              "backgroundImage": "",
+                              "backgroundPosition": "",
+                              "backgroundSize": "auto",
+                              "backgroundRepeat": "repeat",
+                              "top": 0,
+                              "left": 0
+                            },
+                            "props": {
+                              "value": "学园都市"
+                            },
+                            "id": 139,
+                            "fixed": true
+                          }
+                        ],
+                        "id": 100
                       }
                     ],
-                    "fixed": true
+                    "fixed": true,
+                    "closable": false,
+                    "id": 97
                   }
-                ]
+                ],
+                "id": 96
               }
             ],
-            "fixed": true
+            "fixed": true,
+            "id": 85
           }
         ]
       }
@@ -2012,12 +2234,18 @@
             },
             "attrs": {
               "flexDirection": "column",
-              "listStyle": "circle",
+              "listStyle": "none",
               "itemGap": "10px",
               "itemHeight": "42px",
               "itemNum": 7
             },
-            "props": {},
+            "props": {
+              "dataset": {},
+              "dataApi": "",
+              "dataModel": "",
+              "listModel": "",
+              "itemModel": ""
+            },
             "children": [
               {
                 "type": "slot",
@@ -2046,45 +2274,20 @@
                     "props": {},
                     "children": [
                       {
-                        "type": "image",
+                        "type": "rectangle",
                         "lock": false,
                         "style": {
-                          "width": 42,
+                          "width": 200,
                           "height": 42,
-                          "minWidth": 40,
-                          "minHeight": 40,
+                          "minWidth": 10,
+                          "minHeight": 10,
                           "opacity": 1,
                           "rotate": 0,
                           "overflow": "hidden",
-                          "justifyContent": "",
-                          "color": "",
-                          "backgroundColor": "#fff",
-                          "top": 0,
-                          "left": 0
-                        },
-                        "attrs": {
-                          "objectFit": "fill"
-                        },
-                        "props": {
-                          "src": "/visual-maker/thumb/avatar-1.png"
-                        },
-                        "fixed": true
-                      },
-                      {
-                        "type": "text",
-                        "lock": false,
-                        "style": {
-                          "width": 152,
-                          "height": 42,
-                          "minWidth": 100,
-                          "minHeight": 30,
-                          "opacity": 1,
-                          "rotate": 0,
-                          "overflow": "hidden",
-                          "fontSize": 18,
+                          "fontSize": 20,
                           "fontFamily": "sans-serif",
                           "textStyles": [],
-                          "justifyContent": "flex-start",
+                          "justifyContent": "center",
                           "alignItems": "center",
                           "lineHeight": 1.5,
                           "letterSpacing": 0,
@@ -2095,18 +2298,92 @@
                           "backgroundSize": "auto",
                           "backgroundRepeat": "repeat",
                           "top": 0,
-                          "left": 48
+                          "left": 0
                         },
                         "props": {
-                          "value": "文本占位"
+                          "dataset": {},
+                          "dataApi": "",
+                          "dataModel": ""
                         },
+                        "children": [
+                          {
+                            "type": "slot",
+                            "lock": true,
+                            "style": {},
+                            "attrs": {},
+                            "props": {},
+                            "children": [
+                              {
+                                "type": "image",
+                                "lock": false,
+                                "style": {
+                                  "width": 42,
+                                  "height": 42,
+                                  "minWidth": 40,
+                                  "minHeight": 40,
+                                  "opacity": 1,
+                                  "rotate": 0,
+                                  "overflow": "hidden",
+                                  "justifyContent": "",
+                                  "color": "",
+                                  "backgroundColor": "#fff",
+                                  "top": 0,
+                                  "left": 0
+                                },
+                                "attrs": {
+                                  "objectFit": "fill"
+                                },
+                                "props": {
+                                  "src": "/visual-maker/thumb/avatar-1.png"
+                                },
+                                "id": 86
+                              },
+                              {
+                                "type": "text",
+                                "lock": false,
+                                "style": {
+                                  "width": 152,
+                                  "height": 42,
+                                  "minWidth": 100,
+                                  "minHeight": 30,
+                                  "opacity": 1,
+                                  "rotate": 0,
+                                  "overflow": "hidden",
+                                  "fontSize": 20,
+                                  "fontFamily": "sans-serif",
+                                  "textStyles": [],
+                                  "justifyContent": "flex-start",
+                                  "alignItems": "center",
+                                  "lineHeight": 1.5,
+                                  "letterSpacing": 0,
+                                  "color": "",
+                                  "backgroundColor": "#fff",
+                                  "backgroundImage": "",
+                                  "backgroundPosition": "",
+                                  "backgroundSize": "auto",
+                                  "backgroundRepeat": "repeat",
+                                  "top": 0,
+                                  "left": 48
+                                },
+                                "props": {
+                                  "value": "文本占位"
+                                },
+                                "id": 88
+                              }
+                            ],
+                            "id": 89
+                          }
+                        ],
+                        "id": 90,
                         "fixed": true
                       }
                     ],
                     "fixed": true,
+                    "id": 91,
                     "attrs": {}
                   }
-                ]
+                ],
+                "id": 74
               },
               {
                 "type": "slot",
@@ -2135,45 +2412,20 @@
                     "props": {},
                     "children": [
                       {
-                        "type": "image",
+                        "type": "rectangle",
                         "lock": false,
                         "style": {
-                          "width": 42,
+                          "width": 200,
                           "height": 42,
-                          "minWidth": 40,
-                          "minHeight": 40,
+                          "minWidth": 10,
+                          "minHeight": 10,
                           "opacity": 1,
                           "rotate": 0,
                           "overflow": "hidden",
-                          "justifyContent": "",
-                          "color": "",
-                          "backgroundColor": "#fff",
-                          "top": 0,
-                          "left": 0
-                        },
-                        "attrs": {
-                          "objectFit": "fill"
-                        },
-                        "props": {
-                          "src": "/visual-maker/thumb/avatar-2.png"
-                        },
-                        "fixed": true
-                      },
-                      {
-                        "type": "text",
-                        "lock": false,
-                        "style": {
-                          "width": 152,
-                          "height": 42,
-                          "minWidth": 100,
-                          "minHeight": 30,
-                          "opacity": 1,
-                          "rotate": 0,
-                          "overflow": "hidden",
-                          "fontSize": 18,
+                          "fontSize": 20,
                           "fontFamily": "sans-serif",
                           "textStyles": [],
-                          "justifyContent": "flex-start",
+                          "justifyContent": "center",
                           "alignItems": "center",
                           "lineHeight": 1.5,
                           "letterSpacing": 0,
@@ -2184,18 +2436,92 @@
                           "backgroundSize": "auto",
                           "backgroundRepeat": "repeat",
                           "top": 0,
-                          "left": 48
+                          "left": 0
                         },
                         "props": {
-                          "value": "文本占位"
+                          "dataset": {},
+                          "dataApi": "",
+                          "dataModel": ""
                         },
+                        "children": [
+                          {
+                            "type": "slot",
+                            "lock": true,
+                            "style": {},
+                            "attrs": {},
+                            "props": {},
+                            "children": [
+                              {
+                                "type": "image",
+                                "lock": false,
+                                "style": {
+                                  "width": 42,
+                                  "height": 42,
+                                  "minWidth": 40,
+                                  "minHeight": 40,
+                                  "opacity": 1,
+                                  "rotate": 0,
+                                  "overflow": "hidden",
+                                  "justifyContent": "",
+                                  "color": "",
+                                  "backgroundColor": "#fff",
+                                  "top": 0,
+                                  "left": 0
+                                },
+                                "attrs": {
+                                  "objectFit": "fill"
+                                },
+                                "props": {
+                                  "src": "/visual-maker/thumb/avatar-2.png"
+                                },
+                                "id": 97
+                              },
+                              {
+                                "type": "text",
+                                "lock": false,
+                                "style": {
+                                  "width": 152,
+                                  "height": 42,
+                                  "minWidth": 100,
+                                  "minHeight": 30,
+                                  "opacity": 1,
+                                  "rotate": 0,
+                                  "overflow": "hidden",
+                                  "fontSize": 20,
+                                  "fontFamily": "sans-serif",
+                                  "textStyles": [],
+                                  "justifyContent": "flex-start",
+                                  "alignItems": "center",
+                                  "lineHeight": 1.5,
+                                  "letterSpacing": 0,
+                                  "color": "",
+                                  "backgroundColor": "#fff",
+                                  "backgroundImage": "",
+                                  "backgroundPosition": "",
+                                  "backgroundSize": "auto",
+                                  "backgroundRepeat": "repeat",
+                                  "top": 0,
+                                  "left": 48
+                                },
+                                "props": {
+                                  "value": "文本占位"
+                                },
+                                "id": 99
+                              }
+                            ],
+                            "id": 100
+                          }
+                        ],
+                        "id": 101,
                         "fixed": true
                       }
                     ],
                     "fixed": true,
+                    "id": 102,
                     "attrs": {}
                   }
-                ]
+                ],
+                "id": 75
               },
               {
                 "type": "slot",
@@ -2224,45 +2550,20 @@
                     "props": {},
                     "children": [
                       {
-                        "type": "image",
+                        "type": "rectangle",
                         "lock": false,
                         "style": {
-                          "width": 42,
+                          "width": 200,
                           "height": 42,
-                          "minWidth": 40,
-                          "minHeight": 40,
+                          "minWidth": 10,
+                          "minHeight": 10,
                           "opacity": 1,
                           "rotate": 0,
                           "overflow": "hidden",
-                          "justifyContent": "",
-                          "color": "",
-                          "backgroundColor": "#fff",
-                          "top": 0,
-                          "left": 0
-                        },
-                        "attrs": {
-                          "objectFit": "fill"
-                        },
-                        "props": {
-                          "src": "/visual-maker/thumb/avatar-3.png"
-                        },
-                        "fixed": true
-                      },
-                      {
-                        "type": "text",
-                        "lock": false,
-                        "style": {
-                          "width": 152,
-                          "height": 42,
-                          "minWidth": 100,
-                          "minHeight": 30,
-                          "opacity": 1,
-                          "rotate": 0,
-                          "overflow": "hidden",
-                          "fontSize": 18,
+                          "fontSize": 20,
                           "fontFamily": "sans-serif",
                           "textStyles": [],
-                          "justifyContent": "flex-start",
+                          "justifyContent": "center",
                           "alignItems": "center",
                           "lineHeight": 1.5,
                           "letterSpacing": 0,
@@ -2273,18 +2574,92 @@
                           "backgroundSize": "auto",
                           "backgroundRepeat": "repeat",
                           "top": 0,
-                          "left": 48
+                          "left": 0
                         },
                         "props": {
-                          "value": "文本占位"
+                          "dataset": {},
+                          "dataApi": "",
+                          "dataModel": ""
                         },
+                        "children": [
+                          {
+                            "type": "slot",
+                            "lock": true,
+                            "style": {},
+                            "attrs": {},
+                            "props": {},
+                            "children": [
+                              {
+                                "type": "image",
+                                "lock": false,
+                                "style": {
+                                  "width": 42,
+                                  "height": 42,
+                                  "minWidth": 40,
+                                  "minHeight": 40,
+                                  "opacity": 1,
+                                  "rotate": 0,
+                                  "overflow": "hidden",
+                                  "justifyContent": "",
+                                  "color": "",
+                                  "backgroundColor": "#fff",
+                                  "top": 0,
+                                  "left": 0
+                                },
+                                "attrs": {
+                                  "objectFit": "fill"
+                                },
+                                "props": {
+                                  "src": "/visual-maker/thumb/avatar-3.png"
+                                },
+                                "id": 108
+                              },
+                              {
+                                "type": "text",
+                                "lock": false,
+                                "style": {
+                                  "width": 152,
+                                  "height": 42,
+                                  "minWidth": 100,
+                                  "minHeight": 30,
+                                  "opacity": 1,
+                                  "rotate": 0,
+                                  "overflow": "hidden",
+                                  "fontSize": 20,
+                                  "fontFamily": "sans-serif",
+                                  "textStyles": [],
+                                  "justifyContent": "flex-start",
+                                  "alignItems": "center",
+                                  "lineHeight": 1.5,
+                                  "letterSpacing": 0,
+                                  "color": "",
+                                  "backgroundColor": "#fff",
+                                  "backgroundImage": "",
+                                  "backgroundPosition": "",
+                                  "backgroundSize": "auto",
+                                  "backgroundRepeat": "repeat",
+                                  "top": 0,
+                                  "left": 48
+                                },
+                                "props": {
+                                  "value": "文本占位"
+                                },
+                                "id": 110
+                              }
+                            ],
+                            "id": 111
+                          }
+                        ],
+                        "id": 112,
                         "fixed": true
                       }
                     ],
                     "fixed": true,
+                    "id": 113,
                     "attrs": {}
                   }
-                ]
+                ],
+                "id": 76
               },
               {
                 "type": "slot",
@@ -2313,45 +2688,20 @@
                     "props": {},
                     "children": [
                       {
-                        "type": "image",
+                        "type": "rectangle",
                         "lock": false,
                         "style": {
-                          "width": 42,
+                          "width": 200,
                           "height": 42,
-                          "minWidth": 40,
-                          "minHeight": 40,
+                          "minWidth": 10,
+                          "minHeight": 10,
                           "opacity": 1,
                           "rotate": 0,
                           "overflow": "hidden",
-                          "justifyContent": "",
-                          "color": "",
-                          "backgroundColor": "#fff",
-                          "top": 0,
-                          "left": 0
-                        },
-                        "attrs": {
-                          "objectFit": "fill"
-                        },
-                        "props": {
-                          "src": "/visual-maker/thumb/avatar-4.png"
-                        },
-                        "fixed": true
-                      },
-                      {
-                        "type": "text",
-                        "lock": false,
-                        "style": {
-                          "width": 152,
-                          "height": 42,
-                          "minWidth": 100,
-                          "minHeight": 30,
-                          "opacity": 1,
-                          "rotate": 0,
-                          "overflow": "hidden",
-                          "fontSize": 18,
+                          "fontSize": 20,
                           "fontFamily": "sans-serif",
                           "textStyles": [],
-                          "justifyContent": "flex-start",
+                          "justifyContent": "center",
                           "alignItems": "center",
                           "lineHeight": 1.5,
                           "letterSpacing": 0,
@@ -2362,18 +2712,92 @@
                           "backgroundSize": "auto",
                           "backgroundRepeat": "repeat",
                           "top": 0,
-                          "left": 48
+                          "left": 0
                         },
                         "props": {
-                          "value": "文本占位"
+                          "dataset": {},
+                          "dataApi": "",
+                          "dataModel": ""
                         },
+                        "children": [
+                          {
+                            "type": "slot",
+                            "lock": true,
+                            "style": {},
+                            "attrs": {},
+                            "props": {},
+                            "children": [
+                              {
+                                "type": "image",
+                                "lock": false,
+                                "style": {
+                                  "width": 42,
+                                  "height": 42,
+                                  "minWidth": 40,
+                                  "minHeight": 40,
+                                  "opacity": 1,
+                                  "rotate": 0,
+                                  "overflow": "hidden",
+                                  "justifyContent": "",
+                                  "color": "",
+                                  "backgroundColor": "#fff",
+                                  "top": 0,
+                                  "left": 0
+                                },
+                                "attrs": {
+                                  "objectFit": "fill"
+                                },
+                                "props": {
+                                  "src": "/visual-maker/thumb/avatar-4.png"
+                                },
+                                "id": 119
+                              },
+                              {
+                                "type": "text",
+                                "lock": false,
+                                "style": {
+                                  "width": 152,
+                                  "height": 42,
+                                  "minWidth": 100,
+                                  "minHeight": 30,
+                                  "opacity": 1,
+                                  "rotate": 0,
+                                  "overflow": "hidden",
+                                  "fontSize": 20,
+                                  "fontFamily": "sans-serif",
+                                  "textStyles": [],
+                                  "justifyContent": "flex-start",
+                                  "alignItems": "center",
+                                  "lineHeight": 1.5,
+                                  "letterSpacing": 0,
+                                  "color": "",
+                                  "backgroundColor": "#fff",
+                                  "backgroundImage": "",
+                                  "backgroundPosition": "",
+                                  "backgroundSize": "auto",
+                                  "backgroundRepeat": "repeat",
+                                  "top": 0,
+                                  "left": 48
+                                },
+                                "props": {
+                                  "value": "文本占位"
+                                },
+                                "id": 121
+                              }
+                            ],
+                            "id": 122
+                          }
+                        ],
+                        "id": 123,
                         "fixed": true
                       }
                     ],
                     "fixed": true,
+                    "id": 124,
                     "attrs": {}
                   }
-                ]
+                ],
+                "id": 77
               },
               {
                 "type": "slot",
@@ -2402,45 +2826,20 @@
                     "props": {},
                     "children": [
                       {
-                        "type": "image",
+                        "type": "rectangle",
                         "lock": false,
                         "style": {
-                          "width": 42,
+                          "width": 200,
                           "height": 42,
-                          "minWidth": 40,
-                          "minHeight": 40,
+                          "minWidth": 10,
+                          "minHeight": 10,
                           "opacity": 1,
                           "rotate": 0,
                           "overflow": "hidden",
-                          "justifyContent": "",
-                          "color": "",
-                          "backgroundColor": "#fff",
-                          "top": 0,
-                          "left": 0
-                        },
-                        "attrs": {
-                          "objectFit": "fill"
-                        },
-                        "props": {
-                          "src": "/visual-maker/thumb/avatar-5.png"
-                        },
-                        "fixed": true
-                      },
-                      {
-                        "type": "text",
-                        "lock": false,
-                        "style": {
-                          "width": 152,
-                          "height": 42,
-                          "minWidth": 100,
-                          "minHeight": 30,
-                          "opacity": 1,
-                          "rotate": 0,
-                          "overflow": "hidden",
-                          "fontSize": 18,
+                          "fontSize": 20,
                           "fontFamily": "sans-serif",
                           "textStyles": [],
-                          "justifyContent": "flex-start",
+                          "justifyContent": "center",
                           "alignItems": "center",
                           "lineHeight": 1.5,
                           "letterSpacing": 0,
@@ -2451,18 +2850,92 @@
                           "backgroundSize": "auto",
                           "backgroundRepeat": "repeat",
                           "top": 0,
-                          "left": 48
+                          "left": 0
                         },
                         "props": {
-                          "value": "文本占位"
+                          "dataset": {},
+                          "dataApi": "",
+                          "dataModel": ""
                         },
+                        "children": [
+                          {
+                            "type": "slot",
+                            "lock": true,
+                            "style": {},
+                            "attrs": {},
+                            "props": {},
+                            "children": [
+                              {
+                                "type": "image",
+                                "lock": false,
+                                "style": {
+                                  "width": 42,
+                                  "height": 42,
+                                  "minWidth": 40,
+                                  "minHeight": 40,
+                                  "opacity": 1,
+                                  "rotate": 0,
+                                  "overflow": "hidden",
+                                  "justifyContent": "",
+                                  "color": "",
+                                  "backgroundColor": "#fff",
+                                  "top": -1,
+                                  "left": 0
+                                },
+                                "attrs": {
+                                  "objectFit": "fill"
+                                },
+                                "props": {
+                                  "src": "/visual-maker/thumb/avatar-5.png"
+                                },
+                                "id": 130
+                              },
+                              {
+                                "type": "text",
+                                "lock": false,
+                                "style": {
+                                  "width": 152,
+                                  "height": 42,
+                                  "minWidth": 100,
+                                  "minHeight": 30,
+                                  "opacity": 1,
+                                  "rotate": 0,
+                                  "overflow": "hidden",
+                                  "fontSize": 20,
+                                  "fontFamily": "sans-serif",
+                                  "textStyles": [],
+                                  "justifyContent": "flex-start",
+                                  "alignItems": "center",
+                                  "lineHeight": 1.5,
+                                  "letterSpacing": 0,
+                                  "color": "",
+                                  "backgroundColor": "#fff",
+                                  "backgroundImage": "",
+                                  "backgroundPosition": "",
+                                  "backgroundSize": "auto",
+                                  "backgroundRepeat": "repeat",
+                                  "top": 0,
+                                  "left": 48
+                                },
+                                "props": {
+                                  "value": "文本占位"
+                                },
+                                "id": 132
+                              }
+                            ],
+                            "id": 133
+                          }
+                        ],
+                        "id": 134,
                         "fixed": true
                       }
                     ],
                     "fixed": true,
+                    "id": 135,
                     "attrs": {}
                   }
-                ]
+                ],
+                "id": 78
               },
               {
                 "type": "slot",
@@ -2491,45 +2964,20 @@
                     "props": {},
                     "children": [
                       {
-                        "type": "image",
+                        "type": "rectangle",
                         "lock": false,
                         "style": {
-                          "width": 42,
+                          "width": 200,
                           "height": 42,
-                          "minWidth": 40,
-                          "minHeight": 40,
+                          "minWidth": 10,
+                          "minHeight": 10,
                           "opacity": 1,
                           "rotate": 0,
                           "overflow": "hidden",
-                          "justifyContent": "",
-                          "color": "",
-                          "backgroundColor": "#fff",
-                          "top": 0,
-                          "left": 0
-                        },
-                        "attrs": {
-                          "objectFit": "fill"
-                        },
-                        "props": {
-                          "src": "/visual-maker/thumb/avatar-6.png"
-                        },
-                        "fixed": true
-                      },
-                      {
-                        "type": "text",
-                        "lock": false,
-                        "style": {
-                          "width": 152,
-                          "height": 42,
-                          "minWidth": 100,
-                          "minHeight": 30,
-                          "opacity": 1,
-                          "rotate": 0,
-                          "overflow": "hidden",
-                          "fontSize": 18,
+                          "fontSize": 20,
                           "fontFamily": "sans-serif",
                           "textStyles": [],
-                          "justifyContent": "flex-start",
+                          "justifyContent": "center",
                           "alignItems": "center",
                           "lineHeight": 1.5,
                           "letterSpacing": 0,
@@ -2540,18 +2988,92 @@
                           "backgroundSize": "auto",
                           "backgroundRepeat": "repeat",
                           "top": 0,
-                          "left": 48
+                          "left": 0
                         },
                         "props": {
-                          "value": "文本占位"
+                          "dataset": {},
+                          "dataApi": "",
+                          "dataModel": ""
                         },
+                        "children": [
+                          {
+                            "type": "slot",
+                            "lock": true,
+                            "style": {},
+                            "attrs": {},
+                            "props": {},
+                            "children": [
+                              {
+                                "type": "image",
+                                "lock": false,
+                                "style": {
+                                  "width": 42,
+                                  "height": 42,
+                                  "minWidth": 40,
+                                  "minHeight": 40,
+                                  "opacity": 1,
+                                  "rotate": 0,
+                                  "overflow": "hidden",
+                                  "justifyContent": "",
+                                  "color": "",
+                                  "backgroundColor": "#fff",
+                                  "top": 0,
+                                  "left": 0
+                                },
+                                "attrs": {
+                                  "objectFit": "fill"
+                                },
+                                "props": {
+                                  "src": "/visual-maker/thumb/avatar-6.png"
+                                },
+                                "id": 141
+                              },
+                              {
+                                "type": "text",
+                                "lock": false,
+                                "style": {
+                                  "width": 152,
+                                  "height": 42,
+                                  "minWidth": 100,
+                                  "minHeight": 30,
+                                  "opacity": 1,
+                                  "rotate": 0,
+                                  "overflow": "hidden",
+                                  "fontSize": 20,
+                                  "fontFamily": "sans-serif",
+                                  "textStyles": [],
+                                  "justifyContent": "flex-start",
+                                  "alignItems": "center",
+                                  "lineHeight": 1.5,
+                                  "letterSpacing": 0,
+                                  "color": "",
+                                  "backgroundColor": "#fff",
+                                  "backgroundImage": "",
+                                  "backgroundPosition": "",
+                                  "backgroundSize": "auto",
+                                  "backgroundRepeat": "repeat",
+                                  "top": 0,
+                                  "left": 48
+                                },
+                                "props": {
+                                  "value": "文本占位"
+                                },
+                                "id": 143
+                              }
+                            ],
+                            "id": 144
+                          }
+                        ],
+                        "id": 145,
                         "fixed": true
                       }
                     ],
                     "fixed": true,
+                    "id": 146,
                     "attrs": {}
                   }
-                ]
+                ],
+                "id": 79
               },
               {
                 "type": "slot",
@@ -2580,45 +3102,20 @@
                     "props": {},
                     "children": [
                       {
-                        "type": "image",
+                        "type": "rectangle",
                         "lock": false,
                         "style": {
-                          "width": 42,
+                          "width": 200,
                           "height": 42,
-                          "minWidth": 40,
-                          "minHeight": 40,
+                          "minWidth": 10,
+                          "minHeight": 10,
                           "opacity": 1,
                           "rotate": 0,
                           "overflow": "hidden",
-                          "justifyContent": "",
-                          "color": "",
-                          "backgroundColor": "#fff",
-                          "top": 0,
-                          "left": 0
-                        },
-                        "attrs": {
-                          "objectFit": "fill"
-                        },
-                        "props": {
-                          "src": "/visual-maker/thumb/avatar-7.png"
-                        },
-                        "fixed": true
-                      },
-                      {
-                        "type": "text",
-                        "lock": false,
-                        "style": {
-                          "width": 152,
-                          "height": 42,
-                          "minWidth": 100,
-                          "minHeight": 30,
-                          "opacity": 1,
-                          "rotate": 0,
-                          "overflow": "hidden",
-                          "fontSize": 18,
+                          "fontSize": 20,
                           "fontFamily": "sans-serif",
                           "textStyles": [],
-                          "justifyContent": "flex-start",
+                          "justifyContent": "center",
                           "alignItems": "center",
                           "lineHeight": 1.5,
                           "letterSpacing": 0,
@@ -2629,21 +3126,96 @@
                           "backgroundSize": "auto",
                           "backgroundRepeat": "repeat",
                           "top": 0,
-                          "left": 48
+                          "left": 0
                         },
                         "props": {
-                          "value": "文本占位"
+                          "dataset": {},
+                          "dataApi": "",
+                          "dataModel": ""
                         },
+                        "children": [
+                          {
+                            "type": "slot",
+                            "lock": true,
+                            "style": {},
+                            "attrs": {},
+                            "props": {},
+                            "children": [
+                              {
+                                "type": "image",
+                                "lock": false,
+                                "style": {
+                                  "width": 42,
+                                  "height": 42,
+                                  "minWidth": 40,
+                                  "minHeight": 40,
+                                  "opacity": 1,
+                                  "rotate": 0,
+                                  "overflow": "hidden",
+                                  "justifyContent": "",
+                                  "color": "",
+                                  "backgroundColor": "#fff",
+                                  "top": 0,
+                                  "left": 0
+                                },
+                                "attrs": {
+                                  "objectFit": "fill"
+                                },
+                                "props": {
+                                  "src": "/visual-maker/thumb/avatar-7.png"
+                                },
+                                "id": 152
+                              },
+                              {
+                                "type": "text",
+                                "lock": false,
+                                "style": {
+                                  "width": 152,
+                                  "height": 42,
+                                  "minWidth": 100,
+                                  "minHeight": 30,
+                                  "opacity": 1,
+                                  "rotate": 0,
+                                  "overflow": "hidden",
+                                  "fontSize": 20,
+                                  "fontFamily": "sans-serif",
+                                  "textStyles": [],
+                                  "justifyContent": "flex-start",
+                                  "alignItems": "center",
+                                  "lineHeight": 1.5,
+                                  "letterSpacing": 0,
+                                  "color": "",
+                                  "backgroundColor": "#fff",
+                                  "backgroundImage": "",
+                                  "backgroundPosition": "",
+                                  "backgroundSize": "auto",
+                                  "backgroundRepeat": "repeat",
+                                  "top": 0,
+                                  "left": 48
+                                },
+                                "props": {
+                                  "value": "文本占位"
+                                },
+                                "id": 154
+                              }
+                            ],
+                            "id": 155
+                          }
+                        ],
+                        "id": 156,
                         "fixed": true
                       }
                     ],
                     "fixed": true,
+                    "id": 157,
                     "attrs": {}
                   }
-                ]
+                ],
+                "id": 80
               }
             ],
-            "fixed": true
+            "fixed": true,
+            "id": 73
           }
         ]
       }
@@ -2656,8 +3228,8 @@
         "type": "custom",
         "lock": false,
         "style": {
-          "width": 720,
-          "height": 146,
+          "width": 700,
+          "height": 126,
           "minWidth": 700,
           "minHeight": 126,
           "opacity": 1,
@@ -2683,8 +3255,8 @@
               "fontFamily": "sans-serif",
               "color": "",
               "backgroundColor": "#fff",
-              "top": 10,
-              "left": 10
+              "top": 0,
+              "left": 0
             },
             "attrs": {
               "columnNum": 3,
@@ -2741,7 +3313,7 @@
                       "rowNum": null
                     },
                     "props": {
-                      "head": "用户名"
+                      "head": "名称"
                     },
                     "children": [
                       {
@@ -2771,46 +3343,20 @@
                             "props": {},
                             "children": [
                               {
-                                "type": "image",
+                                "type": "rectangle",
                                 "lock": false,
                                 "style": {
-                                  "width": 42,
+                                  "width": 200,
                                   "height": 42,
-                                  "minWidth": 40,
-                                  "minHeight": 40,
+                                  "minWidth": 10,
+                                  "minHeight": 10,
                                   "opacity": 1,
                                   "rotate": 0,
                                   "overflow": "hidden",
-                                  "justifyContent": "",
-                                  "color": "",
-                                  "backgroundColor": "#fff",
-                                  "top": 0,
-                                  "left": 0
-                                },
-                                "attrs": {
-                                  "objectFit": "fill"
-                                },
-                                "props": {
-                                  "src": "${row.avatar}"
-                                },
-                                "id": 26,
-                                "fixed": true
-                              },
-                              {
-                                "type": "text",
-                                "lock": false,
-                                "style": {
-                                  "width": 152,
-                                  "height": 42,
-                                  "minWidth": 100,
-                                  "minHeight": 30,
-                                  "opacity": 1,
-                                  "rotate": 0,
-                                  "overflow": "hidden",
-                                  "fontSize": 18,
+                                  "fontSize": 20,
                                   "fontFamily": "sans-serif",
                                   "textStyles": [],
-                                  "justifyContent": "flex-start",
+                                  "justifyContent": "center",
                                   "alignItems": "center",
                                   "lineHeight": 1.5,
                                   "letterSpacing": 0,
@@ -2821,34 +3367,107 @@
                                   "backgroundSize": "auto",
                                   "backgroundRepeat": "repeat",
                                   "top": 0,
-                                  "left": 48
+                                  "left": 0
                                 },
                                 "props": {
-                                  "value": "${row.name}"
+                                  "dataset": {},
+                                  "dataApi": "",
+                                  "dataModel": ""
                                 },
-                                "id": 28,
+                                "children": [
+                                  {
+                                    "type": "slot",
+                                    "lock": true,
+                                    "style": {},
+                                    "attrs": {},
+                                    "props": {},
+                                    "children": [
+                                      {
+                                        "type": "image",
+                                        "lock": false,
+                                        "style": {
+                                          "width": 42,
+                                          "height": 42,
+                                          "minWidth": 40,
+                                          "minHeight": 40,
+                                          "opacity": 1,
+                                          "rotate": 0,
+                                          "overflow": "hidden",
+                                          "justifyContent": "",
+                                          "color": "",
+                                          "backgroundColor": "#fff",
+                                          "top": 0,
+                                          "left": 0
+                                        },
+                                        "attrs": {
+                                          "objectFit": "fill"
+                                        },
+                                        "props": {
+                                          "src": "${row.avatar}"
+                                        },
+                                        "id": 121
+                                      },
+                                      {
+                                        "type": "text",
+                                        "lock": false,
+                                        "style": {
+                                          "width": 152,
+                                          "height": 42,
+                                          "minWidth": 100,
+                                          "minHeight": 30,
+                                          "opacity": 1,
+                                          "rotate": 0,
+                                          "overflow": "hidden",
+                                          "fontSize": 20,
+                                          "fontFamily": "sans-serif",
+                                          "textStyles": [],
+                                          "justifyContent": "flex-start",
+                                          "alignItems": "center",
+                                          "lineHeight": 1.5,
+                                          "letterSpacing": 0,
+                                          "color": "",
+                                          "backgroundColor": "#fff",
+                                          "backgroundImage": "",
+                                          "backgroundPosition": "",
+                                          "backgroundSize": "auto",
+                                          "backgroundRepeat": "repeat",
+                                          "top": 0,
+                                          "left": 48
+                                        },
+                                        "props": {
+                                          "value": "${row.name}"
+                                        },
+                                        "id": 123
+                                      }
+                                    ],
+                                    "id": 124
+                                  }
+                                ],
+                                "id": 125,
                                 "fixed": true
                               }
                             ],
                             "fixed": true,
-                            "id": 29,
+                            "id": 126,
                             "attrs": {}
                           }
                         ],
-                        "id": 6
+                        "id": 9
                       }
                     ],
                     "fixed": true,
-                    "id": 5
+                    "closable": false,
+                    "id": 8
                   }
-                ]
+                ],
+                "id": 7
               },
               {
                 "type": "slot",
                 "lock": true,
                 "fixed": true,
                 "style": {
-                  "width": 180,
+                  "width": 160,
                   "height": 126
                 },
                 "attrs": {
@@ -2860,7 +3479,7 @@
                     "type": "column",
                     "lock": false,
                     "style": {
-                      "width": 180,
+                      "width": 160,
                       "height": 126,
                       "minWidth": 50,
                       "minHeight": 50,
@@ -2877,7 +3496,7 @@
                       "backgroundColor": "#fff"
                     },
                     "attrs": {
-                      "width": "180px",
+                      "width": "160px",
                       "headHeight": "",
                       "rowPadding": "",
                       "rowNum": null
@@ -2891,7 +3510,7 @@
                         "lock": true,
                         "fixed": true,
                         "style": {
-                          "width": 160,
+                          "width": 140,
                           "height": 42
                         },
                         "attrs": {},
@@ -2901,7 +3520,7 @@
                             "type": "text",
                             "lock": false,
                             "style": {
-                              "width": 160,
+                              "width": 140,
                               "height": 42,
                               "minWidth": 100,
                               "minHeight": 30,
@@ -2927,24 +3546,26 @@
                             "props": {
                               "value": "${row.age}"
                             },
-                            "id": 30,
+                            "id": 127,
                             "fixed": true
                           }
                         ],
-                        "id": 11
+                        "id": 14
                       }
                     ],
                     "fixed": true,
-                    "id": 10
+                    "closable": false,
+                    "id": 13
                   }
-                ]
+                ],
+                "id": 12
               },
               {
                 "type": "slot",
                 "lock": true,
                 "fixed": true,
                 "style": {
-                  "width": 300,
+                  "width": 320,
                   "height": 126
                 },
                 "attrs": {
@@ -2956,7 +3577,7 @@
                     "type": "column",
                     "lock": false,
                     "style": {
-                      "width": 300,
+                      "width": 320,
                       "height": 126,
                       "minWidth": 50,
                       "minHeight": 50,
@@ -2987,7 +3608,7 @@
                         "lock": true,
                         "fixed": true,
                         "style": {
-                          "width": 280,
+                          "width": 300,
                           "height": 42
                         },
                         "attrs": {},
@@ -2997,7 +3618,7 @@
                             "type": "text",
                             "lock": false,
                             "style": {
-                              "width": 280,
+                              "width": 300,
                               "height": 42,
                               "minWidth": 100,
                               "minHeight": 30,
@@ -3023,20 +3644,23 @@
                             "props": {
                               "value": "${row.address}"
                             },
-                            "id": 31,
+                            "id": 128,
                             "fixed": true
                           }
                         ],
-                        "id": 21
+                        "id": 19
                       }
                     ],
                     "fixed": true,
-                    "id": 20
+                    "closable": false,
+                    "id": 18
                   }
-                ]
+                ],
+                "id": 17
               }
             ],
-            "fixed": true
+            "fixed": true,
+            "id": 6
           }
         ]
       }

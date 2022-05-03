@@ -137,8 +137,13 @@
     ::v-deep(.el-input-group__append) {
       padding: 0 18px;
     }
+    ::v-deep(.el-input__wrapper) {
+      padding-right: 5px;
+    }
+    ::v-deep(.el-input-group__append .el-input__wrapper) {
+      padding: 0;
+    }
     ::v-deep(.el-input__inner) {
-      padding-right: 25px;
       &::-webkit-outer-spin-button,
       &::-webkit-inner-spin-button {
         -webkit-appearance: none;
@@ -166,12 +171,14 @@
       color: rgb(141, 158, 167);
     }
     &__step {
-      opacity: 0;
+      opacity: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
       transition: all 0.1s cubic-bezier(0, 0, 1, 1);
       &-icon {
+        display: flex;
+        align-items: center;
         font-size: 12px;
         height: 13px;
         width: 16px;

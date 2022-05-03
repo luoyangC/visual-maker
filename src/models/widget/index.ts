@@ -12,6 +12,7 @@ import { TableWidget } from './widget-table'
 import { VirtualWidget } from './widget-virtual'
 import { ChartWidget } from './widget-chart'
 import { CustomWidget } from './widget-custom'
+import { RectangleWidget } from './widget-rectangle'
 
 export const widgets = {
   TextWidget,
@@ -25,5 +26,6 @@ export const widgets = {
   TableWidget,
   VirtualWidget,
   ChartWidget,
-  CustomWidget
+  CustomWidget,
+  RectangleWidget
 }

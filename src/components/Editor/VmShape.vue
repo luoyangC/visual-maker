@@ -63,8 +63,8 @@
     if (widget.parent?.type === 'slot' && widget.parent?.parent?.type === 'root') {
       return widget
     }
-    if (widget.parent?.type === 'slot') {
-      return getWidgetParent(widget.parent)
+    if (widget.parent?.type === 'slot' || widget.fixed) {
+      return getWidgetParent(widget.parent as WidgetConfig)
     }
     return widget.parent
   }
@@ -139,7 +139,7 @@
     const centerY = rect.top + rect.height / 2
 
     const rotateDegreeBefore = Math.atan2(startY - centerY, startX - centerX) / (Math.PI / 180)
-    const move = debounce((moveEvent) => {
+    const move = debounce((moveEvent: any) => {
       const curX = moveEvent.clientX
       const curY = moveEvent.clientY
 
@@ -182,7 +182,7 @@
     const startTop = Number(pos.top)
     const startLeft = Number(pos.left)
 
-    const move = debounce((moveEvent) => {
+    const move = debounce((moveEvent: any) => {
       widgetStore.setAction(true)
 
       const curX = moveEvent.clientX

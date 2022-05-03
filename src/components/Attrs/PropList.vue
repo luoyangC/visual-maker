@@ -47,11 +47,13 @@
   import { useWidgetStore } from '@/store/widget'
   import { computed } from 'vue'
   import { useDataset } from '@/commons/useDataset'
-  import type { WidgetConfig } from '@/models/widget'
 
   const widgetStore = useWidgetStore()
 
-  const curWidget = computed<WidgetConfig>(() => widgetStore.current)
+  const curWidget = computed(() =>
+    widgetStore.isCustom ? widgetStore.current.children[0] : widgetStore.current
+  )
+
   const propConfigs = computed(() => curWidget.value.propConfigs)
   const hasMoreProp = computed(() => curWidget.value.propConfigs?.length)
 

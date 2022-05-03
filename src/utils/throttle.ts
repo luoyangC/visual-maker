@@ -14,7 +14,7 @@ import { isObject } from './type'
  *  Specify invoking on the trailing edge of the timeout.
  * @returns {Function} Returns the new throttled function.
  */
-export function throttle(func, wait, options) {
+export function throttle(func: any, wait = 0, options?: any) {
   let leading = true
   let trailing = true
 

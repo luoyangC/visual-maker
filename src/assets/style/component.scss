@@ -30,7 +30,8 @@
   justify-content: flex-start;
   align-items: center;
   flex-wrap: nowrap;
-  overflow-y: overlay;
+  overflow-y: overlay !important;
+  overflow-x: overlay !important;
 }
 
 .v-li {

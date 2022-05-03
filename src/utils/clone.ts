@@ -16,7 +16,7 @@ const funcTag = '[object Function]'
 
 const deepTag = [mapTag, setTag, arrayTag, objectTag, argsTag]
 
-function forEach(array, iteratee) {
+function forEach(array: any, iteratee: any) {
   let index = -1
   const length = array.length
   while (++index < length) {
@@ -25,27 +25,27 @@ function forEach(array, iteratee) {
   return array
 }
 
-function getInit(target) {
+function getInit(target: any) {
   const Ctor = target.constructor
   return new Ctor()
 }
 
-function cloneSymbol(targe) {
+function cloneSymbol(targe: any) {
   return Object(Symbol.prototype.valueOf.call(targe))
 }
 
-function cloneReg(targe) {
+function cloneReg(targe: any) {
   const reFlags = /\w*$/
   const result = new targe.constructor(targe.source, reFlags.exec(targe))
   result.lastIndex = targe.lastIndex
   return result
 }
 
-function cloneFunction(func) {
+function cloneFunction(func: any) {
   return func
 }
 
-function cloneOtherType(targe, type) {
+function cloneOtherType(targe: any, type: string) {
   const Ctor = targe.constructor
   switch (type) {
     case boolTag:
@@ -65,7 +65,7 @@ function cloneOtherType(targe, type) {
   }
 }
 
-export function clone(target, map = new WeakMap()) {
+export function clone(target: any, map = new WeakMap()) {
   // 克隆原始类型
   if (!isObject(target)) {
     return target
@@ -73,9 +73,9 @@ export function clone(target, map = new WeakMap()) {
 
   // 初始化
   const type = getTag(target)
-  let cloneTarget
+  let cloneTarget: any
   if (deepTag.includes(type)) {
-    cloneTarget = getInit(target, type)
+    cloneTarget = getInit(target)
   } else {
     return cloneOtherType(target, type)
   }
@@ -88,7 +88,7 @@ export function clone(target, map = new WeakMap()) {
 
   // 克隆set
   if (type === setTag) {
-    target.forEach((value) => {
+    target.forEach((value: any) => {
       cloneTarget.add(clone(value, map))
     })
     return cloneTarget
@@ -96,7 +96,7 @@ export function clone(target, map = new WeakMap()) {
 
   // 克隆map
   if (type === mapTag) {
-    target.forEach((value, key) => {
+    target.forEach((value: any, key: any) => {
       cloneTarget.set(key, clone(value, map))
     })
     return cloneTarget
@@ -104,7 +104,7 @@ export function clone(target, map = new WeakMap()) {
 
   // 克隆对象和数组
   const keys = type === arrayTag ? undefined : Object.keys(target)
-  forEach(keys || target, (value, key) => {
+  forEach(keys || target, (value: any, key: any) => {
     if (keys) {
       key = value
     }
