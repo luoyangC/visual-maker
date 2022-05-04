@@ -17,9 +17,7 @@ class DynamicHook {
 
   newDynamic(Model: DynamicModel) {
     const el = new Model()
-
     this.modelMap.set(el.name, el)
-    return el
   }
 }
 

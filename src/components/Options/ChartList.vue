@@ -34,7 +34,7 @@
   import { chartHook } from '@/hooks/chart'
   import { getChartExampleList } from '@/api'
 
-  const chartList = chartHook.getDragTypeList()
+  const chartList = chartHook.getChartList()
   const chartExampleList = ref<Array<Example>>([])
 
   const handleDragStart = (e: any) => {

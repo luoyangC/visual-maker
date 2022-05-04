@@ -30,17 +30,17 @@
     (val) => {
       if (val) {
         rootWidget.value = clone(widgetStore.root)
-        widgetHook.getWidgetData(rootWidget.value as WidgetConfig).then((res) => {
+        widgetHook.getWidgetPreviewData(rootWidget.value as WidgetConfig).then((res) => {
           const _data = {}
           res.forEach((_obj) => {
             Object.assign(_data, _obj)
           })
-          loading.value = false
           previewData.value = _data
+          loading.value = false
         })
       } else {
-        loading.value = true
         previewData.value = {}
+        loading.value = true
       }
     }
   )

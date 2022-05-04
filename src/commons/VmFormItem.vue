@@ -6,6 +6,7 @@
 
 <script setup lang="ts">
   import { computed } from 'vue'
+
   const props = defineProps<{ width: number | string }>()
 
   const innerWidth = computed(() => `width: ${props.width || 260}px`)

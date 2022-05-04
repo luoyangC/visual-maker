@@ -24,7 +24,7 @@ class WidgetHook {
     this.dragTypeList = []
   }
 
-  getDragTypeList() {
+  getWidgetList() {
     return this.dragTypeList
   }
 
@@ -44,7 +44,19 @@ class WidgetHook {
     return template
   }
 
-  getWidgetData(config: WidgetConfig) {
+  getWidgetPreview(name: string, config: WidgetConfig, data: any = {}) {
+    const preview: any = this.getWidget(name).getPreview(config, data)
+    if (preview.props && preview.props.class) {
+      const isAbsolute = config.parent?.type === 'custom' || !config.fixed
+      preview.props.class += isAbsolute ? ' g-pos--a' : ' g-pos--r'
+    }
+    if (preview.props && preview.props.style && config.style?.rotate) {
+      preview.props.style.transform = `rotate(${config.style?.rotate}deg)`
+    }
+    return preview
+  }
+
+  getWidgetPreviewData(config: WidgetConfig) {
     const apiList: Array<any> = []
     const getDataApiList = (config: WidgetConfig) => {
       if (config.props?.dataApi && config.props?.dataModel) {
@@ -61,27 +73,17 @@ class WidgetHook {
     return Promise.all(apiList)
   }
 
-  getWidgetPreview(name: string, config: WidgetConfig, data: any = {}) {
-    const preview: any = this.getWidget(name).getPreview(config, data)
-    if (preview.props && preview.props.class) {
-      const isAbsolute = config.parent?.type === 'custom' || !config.fixed
-      preview.props.class += isAbsolute ? ' g-pos--a' : ' g-pos--r'
-    }
-    if (preview.props && preview.props.style && config.style?.rotate) {
-      preview.props.style.transform = `rotate(${config.style?.rotate}deg)`
-    }
-    return preview
-  }
-
-  async getWidgetExample(exampleId: string) {
-    const exampleInfo = await getExampleInfo(exampleId)
-    return this.jsonToWidget(exampleInfo?.option)
+  getWidgetExample(exampleId: string) {
+    return new Promise((resolve) => {
+      getExampleInfo(exampleId).then((res) => {
+        resolve(this.jsonToWidget(res?.option))
+      })
+    })
   }
 
   newWidget(Widget: WidgetModel) {
     const el = new Widget()
 
-    this.widgetMap.set(el.name, el)
     if (el.isDrag) {
       this.dragTypeList.push({
         type: el.name,
@@ -89,7 +91,7 @@ class WidgetHook {
         label: el.label
       })
     }
-    return el
+    this.widgetMap.set(el.name, el)
   }
 
   jsonToWidget(json: any, parent?: any) {

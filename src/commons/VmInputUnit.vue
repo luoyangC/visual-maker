@@ -47,27 +47,15 @@
 
   const { width, label, vmDisabled } = useFormItem()
 
-  const props = defineProps({
-    modelValue: {
-      type: [String, Number],
-      required: false
-    },
-    title: {
-      type: String,
-      required: false
-    },
-    icon: {
-      type: String,
-      required: false
-    },
-    disabled: {
-      type: Boolean,
-      required: false
-    },
-    unitTypeList: {
-      type: Array as () => Array<string>,
-      default: (): Array<string> => ['px', '%']
-    }
+  interface Props {
+    modelValue?: string | number
+    title?: string
+    icon?: string
+    disabled?: boolean
+    unitTypeList?: Array<string>
+  }
+  const props = withDefaults(defineProps<Props>(), {
+    unitTypeList: () => ['px', '%']
   })
   const emits = defineEmits<{
     (e: 'update:modelValue', modelValue: string): void

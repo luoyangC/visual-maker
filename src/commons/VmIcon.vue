@@ -22,14 +22,13 @@
 <script lang="ts" setup>
   import { computed } from 'vue'
 
-  interface Props {
+  const props = defineProps<{
     name: string
     text?: string
     tip?: string
     size?: number | string
     disabled?: boolean
-  }
-  const props = defineProps<Props>()
+  }>()
 
   const realName = computed(() => `#icon-${props.name}`)
   const realSize = computed(() => `font-size: ${props.size || 16}px`)

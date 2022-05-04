@@ -8,16 +8,14 @@
   import * as echarts from 'echarts'
   import { ref, onMounted, computed, watch } from 'vue'
 
-  interface Props {
+  const props = defineProps<{
     option: any
     width: number | string
     height: number | string
-  }
-  const props = defineProps<Props>()
+  }>()
 
   const vmChartInner = ref()
-
-  let vmChart: any
+  const vmChart = ref()
 
   const chartStyle = computed(() => ({
     height: `${props.height}px`,
@@ -27,14 +25,13 @@
   watch(
     () => chartStyle.value,
     () => {
-      vmChart.resize({ height: props.height, width: props.width })
+      vmChart.value.resize({ height: props.height, width: props.width })
     }
   )
-
   watch(
     () => props.option,
     () => {
-      vmChart.setOption(props.option)
+      vmChart.value.setOption(props.option)
     },
     {
       deep: true
@@ -42,8 +39,8 @@
   )
 
   onMounted(() => {
-    vmChart = echarts.init(vmChartInner.value)
-    vmChart.setOption(props.option)
+    vmChart.value = echarts.init(vmChartInner.value)
+    vmChart.value.setOption(props.option)
   })
 </script>
 

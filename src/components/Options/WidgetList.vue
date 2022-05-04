@@ -34,7 +34,7 @@
   import { widgetHook } from '@/hooks/widget'
   import { getCustomExampleList } from '@/api'
 
-  const widgetList = widgetHook.getDragTypeList()
+  const widgetList = widgetHook.getWidgetList()
 
   const handleDragStart = (e: any) => {
     e.dataTransfer.setData('widgetType', e.target.dataset.type)

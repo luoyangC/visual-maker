@@ -89,26 +89,11 @@ export abstract class Widget {
     return style
   }
 
-  getWidgetData(config: WidgetConfig) {
-    if (config.props?.dataApi && config.props?.dataModel) {
-      return getDataModel(config.props.dataApi, config.props.dataModel)
-    }
-    return config.props?.dataset || {}
-  }
-
   getWidgetDataset(config: WidgetConfig) {
     if (isDef(config.props?.dataset)) {
       return JSON.stringify(config.props?.dataset, null, 2) || '{}'
     }
     return '{}'
-  }
-
-  setWidgetDataset(config: WidgetConfig, value: string) {
-    try {
-      config.props && (config.props.dataset = JSON.parse(value))
-    } catch (error) {
-      // console.log(error)
-    }
   }
 
   getPreviewModel(model: string, data: any, config?: WidgetConfig): string {
@@ -140,6 +125,14 @@ export abstract class Widget {
       if (res === undefined) break
     }
     return res
+  }
+
+  setWidgetDataset(config: WidgetConfig, value: string) {
+    try {
+      config.props && (config.props.dataset = JSON.parse(value))
+    } catch (error) {
+      // console.log(error)
+    }
   }
 
   onStyleRepaint(config?: WidgetConfig) {}

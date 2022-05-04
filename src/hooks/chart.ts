@@ -46,7 +46,6 @@ class ChartHook {
   newChart(Model: ChartModel) {
     const el = new Model()
 
-    this.modelMap.set(el.name, el)
     if (el.isDrag) {
       this.dragTypeList.push({
         type: el.name,
@@ -54,10 +53,10 @@ class ChartHook {
         label: el.label
       })
     }
-    return el
+    this.modelMap.set(el.name, el)
   }
 
-  getDragTypeList() {
+  getChartList() {
     return this.dragTypeList
   }
 }

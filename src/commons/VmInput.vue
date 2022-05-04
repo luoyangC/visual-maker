@@ -27,14 +27,13 @@
 
   const { width, label, vmDisabled } = useFormItem()
 
-  interface Props {
+  const props = defineProps<{
     modelValue?: string | number
     title?: string
     icon?: string
     type?: string
     disabled?: boolean
-  }
-  const props = defineProps<Props>()
+  }>()
   const emits = defineEmits<{
     (e: 'update:modelValue', modelValue: string | number): void
     (e: 'input', value: string | number): void

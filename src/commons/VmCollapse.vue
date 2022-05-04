@@ -19,7 +19,11 @@
 <script setup lang="ts">
   import { ref, watch } from 'vue'
 
-  const props = withDefaults(defineProps<{ title: string; modelValue?: boolean }>(), {
+  interface Props {
+    title: string
+    modelValue?: boolean
+  }
+  const props = withDefaults(defineProps<Props>(), {
     modelValue: true
   })
 
