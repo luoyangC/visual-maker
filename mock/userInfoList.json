@@ -1,0 +1,48 @@
+{
+  "code": 0,
+  "message": "ok",
+  "userInfoList": [
+    {
+      "name": "name1",
+      "avatar": "/visual-maker/thumb/avatar-1.png",
+      "age": "18",
+      "address": "上海市普陀区金沙江路 1518 弄"
+    },
+    {
+      "name": "name2",
+      "avatar": "/visual-maker/thumb/avatar-2.png",
+      "age": "18",
+      "address": "上海市普陀区金沙江路 1518 弄"
+    },
+    {
+      "name": "name3",
+      "avatar": "/visual-maker/thumb/avatar-3.png",
+      "age": "18",
+      "address": "上海市普陀区金沙江路 1518 弄"
+    },
+    {
+      "name": "name4",
+      "avatar": "/visual-maker/thumb/avatar-4.png",
+      "age": "18",
+      "address": "上海市普陀区金沙江路 1518 弄"
+    },
+    {
+      "name": "name5",
+      "avatar": "/visual-maker/thumb/avatar-5.png",
+      "age": "18",
+      "address": "上海市普陀区金沙江路 1518 弄"
+    },
+    {
+      "name": "name6",
+      "avatar": "/visual-maker/thumb/avatar-6.png",
+      "age": "18",
+      "address": "上海市普陀区金沙江路 1518 弄"
+    },
+    {
+      "name": "name7",
+      "avatar": "/visual-maker/thumb/avatar-7.png",
+      "age": "18",
+      "address": "上海市普陀区金沙江路 1518 弄"
+    }
+  ]
+}
