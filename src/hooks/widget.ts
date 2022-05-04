@@ -74,7 +74,7 @@ class WidgetHook {
   }
 
   getWidgetExample(exampleId: string) {
-    return new Promise((resolve) => {
+    return new Promise<WidgetConfig>((resolve) => {
       getExampleInfo(exampleId).then((res) => {
         resolve(this.jsonToWidget(res?.option))
       })
